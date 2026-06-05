@@ -1,4 +1,4 @@
-from playwright.sync_api import Browser, sync_playwright, BrowserContext, Page
+from playwright.sync_api import Browser, BrowserContext, Page, sync_playwright
 
 from automation.src.config import settings
 

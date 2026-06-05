@@ -1,6 +1,6 @@
 from typing import Any
 
-from automation.src.domain.models import Address, Proposal, Candidate, Enterprise
+from automation.src.domain.models import Address, Candidate, Enterprise, Proposal
 from automation.src.domain.validators import clean_checkbox, clean_value, is_checked
 
 

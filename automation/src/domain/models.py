@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
 
 
 class Enterprise(Enum):
@@ -40,12 +39,12 @@ class Address:
 @dataclass
 class Candidate:
     nome_completo: str
-    email: Optional[str] = None
-    cpf: Optional[str] = None
-    rg: Optional[str] = None
-    data_nascimento: Optional[str] = None
-    estado_civil: Optional[str] = None
-    celular: Optional[str] = None
+    email: str | None = None
+    cpf: str | None = None
+    rg: str | None = None
+    data_nascimento: str | None = None
+    estado_civil: str | None = None
+    celular: str | None = None
     endereco: Address = field(default_factory=Address)
 
 
@@ -54,7 +53,7 @@ class Proposal:
     candidato: Candidate
     empresa: Enterprise
     empresa_solicitante: str = ""
-    honorario: Optional[float] = None
+    honorario: float | None = None
     tipo_vaga: str = ""
     centro_custo: str = ""
     funcionario_substituicao: str = ""
@@ -64,9 +63,9 @@ class Proposal:
     email_responsavel: str = ""
 
     # Process metadata
-    processo_id: Optional[str] = None
-    tarefa_nome: Optional[str] = None
-    modelo_nome: Optional[str] = None
+    processo_id: str | None = None
+    tarefa_nome: str | None = None
+    modelo_nome: str | None = None
 
 
 @dataclass
@@ -74,4 +73,4 @@ class Signature:
     link: str
     capturado_em: str = ""
     nome_signatario: str = ""
-    email_signatario: Optional[str] = None
+    email_signatario: str | None = None

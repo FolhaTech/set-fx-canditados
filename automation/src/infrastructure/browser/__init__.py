@@ -1,12 +1,12 @@
 from .actions import (
-    screenshot,
+    click_canvas_center,
     close_modal,
     safe_click,
     safe_fill,
-    wait_for_value,
-    click_canvas_center,
+    screenshot,
     scroll_viewer_to_bottom,
     wait_for_spinners,
+    wait_for_value,
 )
 from .factory import create_browser, create_context, create_page
 

@@ -1,11 +1,9 @@
 import re
-from typing import Optional
-
 import unicodedata
 
 
 # Text normalization
-def normalize_text(s: Optional[str]) -> str:
+def normalize_text(s: str | None) -> str:
     if s is None:
         return ""
     s = str(s).strip().lower()
@@ -17,14 +15,14 @@ def normalize_text(s: Optional[str]) -> str:
     return s
 
 
-def clean_filename(name: Optional[str]) -> str:
+def clean_filename(name: str | None) -> str:
     name = re.sub(r'[\/:*?"<>|]', "_", str(name or "").strip())
     return (
             name.replace(" ", "_") or "Candidato"
     )
 
 
-def clean_value(value: Optional[str]) -> str:
+def clean_value(value: str | None) -> str:
     if not value:
         return ""
 
@@ -36,7 +34,7 @@ def clean_value(value: Optional[str]) -> str:
 
 
 # Currency formatting
-def format_currency(value: Optional[str]) -> str:
+def format_currency(value: str | None) -> str:
     value = clean_value(value)
     if value is None:
         return ""
@@ -49,13 +47,13 @@ def format_currency(value: Optional[str]) -> str:
 
 
 # Checkboxes
-def is_checked(value: Optional[str]) -> bool:
+def is_checked(value: str | None) -> bool:
     if not isinstance(value, str):
         return False
     return value.strip().lower().startswith("[x]")
 
 
-def clean_checkbox(value: Optional[str]) -> str:
+def clean_checkbox(value: str | None) -> str:
     if not isinstance(value, str):
         return ""
     return (
@@ -67,13 +65,13 @@ def clean_checkbox(value: Optional[str]) -> str:
 
 
 # Validation
-def validate_email(email: Optional[str]) -> bool:
+def validate_email(email: str | None) -> bool:
     if not email:
         return False
     return bool(re.match(r"[^@]+@[^@]+\.[^@]+", str(email).strip()))
 
 
-def validate_not_empty(value: Optional[str], field_name: str = "campo") -> str:
+def validate_not_empty(value: str | None, field_name: str = "campo") -> str:
     cleaned = clean_value(value)
     if not cleaned:
         from .exceptions import MandatoryFieldError

@@ -1,27 +1,27 @@
 from .exceptions import (
     AutomationError,
-    TriataLoginError,
-    TarefaNotFoundError,
+    ClickFailedError,
+    ElementNotFoundError,
     FormExtractionError,
     JsonNotFoundError,
     MandatoryFieldError,
     PDFGenerationError,
     PDFNotFoundError,
+    TarefaNotFoundError,
     TemplateNotFoundError,
+    TriataLoginError,
+    ZapSignLinkError,
     ZapSignLoginError,
     ZapSignUploadError,
-    ZapSignLinkError,
-    ElementNotFoundError,
-    ClickFailedError,
 )
-from .models import Address, Proposal, Candidate, Signature, Enterprise
+from .models import Address, Candidate, Enterprise, Proposal, Signature
 from .validators import (
-    normalize_text,
+    clean_checkbox,
     clean_filename,
     clean_value,
     format_currency,
     is_checked,
-    clean_checkbox,
+    normalize_text,
     validate_email,
     validate_not_empty,
 )

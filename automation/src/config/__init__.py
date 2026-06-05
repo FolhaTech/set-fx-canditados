@@ -1,4 +1,4 @@
-from .logging_config import setup_logging, get_logger
+from .logging_config import get_logger, setup_logging
 from .settings import Settings, settings
 
 __all__ = ["Settings", "settings", "setup_logging", "get_logger"]

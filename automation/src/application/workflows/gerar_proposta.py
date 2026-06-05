@@ -6,10 +6,10 @@ from automation.src.domain.validators import clean_filename
 from automation.src.infrastructure.browser.factory import create_page
 from automation.src.infrastructure.external_apis.triata_client import TriataClient
 from automation.src.infrastructure.pdf.generator import (
-    generate_proposal_pdf,
     generate_contract_pdf,
+    generate_proposal_pdf,
 )
-from automation.src.infrastructure.storage import save, append_excel
+from automation.src.infrastructure.storage import append_excel, save
 
 logger = logging.getLogger("automacao.workflow.gerar_proposta")
 

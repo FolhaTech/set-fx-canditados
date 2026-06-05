@@ -1,8 +1,8 @@
 from .generator import (
-    create_table,
     create_bullet_list,
-    generate_proposal_pdf,
+    create_table,
     generate_contract_pdf,
+    generate_proposal_pdf,
 )
 from .styles import build_styles
 

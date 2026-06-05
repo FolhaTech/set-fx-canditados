@@ -1,7 +1,7 @@
 import json
 import time
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 from automation.src.domain import JsonNotFoundError
 
@@ -10,7 +10,7 @@ def load(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise JsonNotFoundError(f"JSON não encontrado: {path}")
 
-    with open(path, "r", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -39,7 +39,7 @@ def save_signature_link(path: Path, link: str) -> None:
     })
 
 
-def get_field(path: Path, field: str, required: bool = False) -> Optional[str]:
+def get_field(path: Path, field: str, required: bool = False) -> str | None:
     data = load(path)
     value = data.get(field)
 

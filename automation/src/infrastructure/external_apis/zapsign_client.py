@@ -3,17 +3,17 @@ import logging
 from playwright.sync_api import Page
 
 from automation.src.domain.exceptions import (
-    ZapSignUploadError,
     ZapSignLinkError,
+    ZapSignUploadError,
 )
 from automation.src.infrastructure.browser.actions import (
+    click_canvas_center,
     close_modal,
     safe_click,
     safe_fill,
-    wait_for_value,
-    wait_for_spinners,
-    click_canvas_center,
     scroll_viewer_to_bottom,
+    wait_for_spinners,
+    wait_for_value,
 )
 
 logger = logging.getLogger("automacao.zapsign")

@@ -4,8 +4,8 @@ import re
 from playwright.sync_api import Page
 
 from automation.src.domain.exceptions import (
-    TriataLoginError,
     TarefaNotFoundError,
+    TriataLoginError,
 )
 from automation.src.infrastructure.browser.actions import safe_click, safe_fill
 
@@ -38,9 +38,7 @@ class TriataClient:
 
         # Confirma que o login sumiu
         try:
-            self.page.wait_for_selector(
-                'input[name="login"]', state="hidden", timeout=30_000
-            )
+            self.page.wait_for_selector('input[name="login"]', state="hidden", timeout=30_000)
             logger.info("Login realizado. URL: %s", self.page.url)
         except Exception:
             raise TriataLoginError("Campo de login ainda visível após tentativa.")

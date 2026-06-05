@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import Optional
 
 from automation.src.config import settings
 from automation.src.domain.models import Enterprise
@@ -33,7 +32,7 @@ def get_theme(empresa: Enterprise) -> dict[str, str]:
     return EMPRESA_TEMAS.get(empresa, EMPRESA_TEMAS[Enterprise.GENTER])
 
 
-def find_logo(empresa: Enterprise) -> Optional[Path]:
+def find_logo(empresa: Enterprise) -> Path | None:
     pasta = settings.logos_dir_path / empresa.value
     if not pasta.exists():
         return None
@@ -46,7 +45,7 @@ def find_logo(empresa: Enterprise) -> Optional[Path]:
     return None
 
 
-def find_signature(empresa: Enterprise) -> Optional[Path]:
+def find_signature(empresa: Enterprise) -> Path | None:
     nome_arquivo = ASSINATURA_POR_EMPRESA.get(empresa)
     if not nome_arquivo:
         return None

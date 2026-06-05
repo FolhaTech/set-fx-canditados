@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 
 from automation.src.application.services.proposta_service import build_proposal
 from automation.src.config import settings
@@ -6,6 +7,7 @@ from automation.src.domain.validators import clean_filename
 from automation.src.infrastructure.browser.factory import create_page
 from automation.src.infrastructure.external_apis.triata_client import TriataClient
 from automation.src.infrastructure.pdf.generator import (
+    generate_contract_html,
     generate_contract_pdf,
     generate_proposal_pdf,
 )
@@ -50,10 +52,12 @@ def executar() -> str | None:
             logger.info("PDF da carta proposta gerado: %s", output)
         elif "08" in tarefa:
             output = settings.pdf_dir_path / f"Contrato_{nome_arquivo}.pdf"
-            resultado = generate_contract_pdf(
+            resultado = generate_contract_html(
                 dados=dados,
                 output_path=output,
-                template_path=settings.template_contrato_path,
+                template_path=Path("modelo_contrato.html"),
+                context=page.context,
+                logo_path=settings.logos_dir_path,
             )
             if resultado:
                 logger.info("PDF do contrato gerado: %s", output)

@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Contrato de Prestação de Serviços</title>
+        <style>
+            body {
+                background-color: #e8e8e8;
+                font-family: "Times New Roman", Times, serif;
+                margin: 0;
+                padding: 20px;
+            }
+            .pagina {
+                width: 210mm;
+                min-height: 297mm;
+                padding: 25mm;
+                background-color: #fff;
+                margin: 10px auto;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                position: relative;
+            }
+            .ph {
+                background: #fff3cd;
+                color: #856404;
+                padding: 0 3px;
+                border-radius: 2px;
+                border: 1px dashed #ffc107;
+            }
+            h1 {
+                font-size: 14pt;
+                text-align: center;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            h2 {
+                font-size: 11pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin-top: 18px;
+                margin-bottom: 6px;
+            }
+            p {
+                font-size: 11pt;
+                text-align: justify;
+                line-height: 1.5;
+                margin-bottom: 8px;
+            }
+            .indent {
+                padding-left: 25px;
+            }
+            .indent-2 {
+                padding-left: 50px;
+            }
+            .assinaturas {
+                margin-top: 40px;
+                page-break-inside: avoid;
+            }
+            .linha-assinatura {
+                border-top: 1px solid #000;
+                margin-top: 50px;
+                padding-top: 4px;
+                text-align: center;
+                font-size: 10pt;
+            }
+            .testemunhas {
+                display: flex;
+                justify-content: space-between;
+                gap: 30px;
+                margin-top: 40px;
+            }
+            .testemunha {
+                flex: 1;
+                text-align: center;
+                font-size: 10pt;
+            }
+            .rodape {
+                margin-top: 30px;
+                padding-top: 10px;
+                border-top: 1px solid #ccc;
+                font-size: 9pt;
+                text-align: center;
+                color: #555;
+            }
+            .quebra {
+                page-break-before: always;
+            }
+            @media print {
+                body {
+                    background-color: #fff;
+                }
+                .pagina {
+                    box-shadow: none;
+                    margin: 0;
+                    padding: 0;
+                }
+                .rodape {
+                    position: fixed;
+                    bottom: 0;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pagina">
+            <h1>
+                INSTRUMENTO DE CONTRATO PARTICULAR DE PRESTAÇÃO DE SERVIÇOS
+                FINANCEIROS
+            </h1>
+            <p>Pelo presente instrumento particular, de um lado:</p>
+            <p>
+                <b>CONTRATANTE:</b> RAPHAELLA ARANTES ARIMURA SOCIEDADE
+                INDIVIDUAL DE ADVOCACIA, sociedade individual de advocacia,
+                inscrita no CNPJ/MF sob o nº 33.373.103/0001-56, com sede na Rua
+                Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé, São
+                Paulo/SP – CEP 03315-000, neste ato representada por sua titular
+                Raphaella Arantes Arimura, portadora do RG nº 44.982.186-9
+                SSP/SP e inscrita no CPF/MF sob o nº 357.205.748-59.
+            </p>
+            <p>E de outro lado:</p>
+            <p>
+                <b>CONTRATADA:</b> <span class="ph">{{EMPRESA}}</span>, com sede
+                em <span class="ph">{{ENDERECO}}</span>,
+                <span class="ph">{{CIDADE_ESTADO}}</span>, inscrita no CNPJ/MF
+                sob o nº <span class="ph">{{CNPJ_CONTRATADA}}</span>, neste ato
+                representada por <span class="ph">{{NOME_REPRESENTANTE}}</span>,
+                <span class="ph">{{ESTADO_CIVIL}}</span>, nascido(a) em
+                <span class="ph">{{DATA_NASCIMENTO}}</span>, portador(a) do RG
+                nº <span class="ph">{{RG}}</span> e inscrito(a) no CPF/MF sob o
+                nº <span class="ph">{{CPF}}</span>.
+            </p>
+            <p>
+                As partes acima qualificadas têm entre si justo e contratado o
+                presente Instrumento Particular de Prestação de Serviços, que se
+                regerá pelas seguintes cláusulas e condições:
+            </p>
+            <h2>CLÁUSULA PRIMEIRA - DO OBJETO</h2>
+            <p>
+                1.1. O presente contrato tem por objeto a prestação de serviços
+                de consultoria administrativa e financeira pela CONTRATADA em
+                favor da CONTRATANTE.
+            </p>
+            <p>
+                1.2. Os serviços serão prestados de forma autônoma, NÃO HAVENDO
+                QUALQUER VÍNCULO EMPREGATÍCIO entre as partes.
+            </p>
+            <h2>CLÁUSULA SEGUNDA - DO TRATAMENTO DE DADOS PESSOAIS (LGPD)</h2>
+            <p>
+                2.1. As partes comprometem-se a observar integralmente a Lei
+                Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD).
+            </p>
+            <p>
+                2.2. Para fins deste contrato: a) A CONTRATANTE figura como
+                CONTROLADORA dos dados pessoais tratados; b) A CONTRATADA figura
+                como OPERADORA, realizando o tratamento conforme instruções da
+                CONTRATANTE.
+            </p>
+            <p>
+                2.3. A CONTRATADA obriga-se a manter sigilo e segurança sobre
+                todos os dados pessoais acessados.
+            </p>
+            <h2>
+                CLÁUSULA TERCEIRA - DA ALTERAÇÃO DO REGIME PRESENCIAL PARA O
+                DOMICILIAR
+            </h2>
+            <p>
+                3.1. Diante do contexto da pandemia de COVID-19, fica autorizada
+                a transição do regime presencial para o regime de teletrabalho
+                (home office).
+            </p>
+            <p>
+                3.2. Os equipamentos tecnológicos necessários poderão ser
+                disponibilizados pela CONTRATANTE.
+            </p>
+            <h2>CLÁUSULA QUARTA - DO PREÇO E FORMA DE PAGAMENTO</h2>
+            <p>
+                4.1. Pela prestação dos serviços, a CONTRATANTE pagará à
+                CONTRATADA o valor mensal de R$ 4.000,00 (quatro mil reais).
+            </p>
+            <p>
+                4.2. O pagamento será efetuado todo dia 10 (dez) de cada mês
+                mediante apresentação da respectiva nota fiscal.
+            </p>
+            <p>
+                4.3. Os pagamentos serão realizados nos seguintes dados
+                bancários: Banco: <span class="ph">{{BANCO}}</span>, Agência:
+                <span class="ph">{{AGENCIA}}</span>, Tipo de Conta:
+                <span class="ph">{{TIPO_CONTA}}</span>, Nº Conta:
+                <span class="ph">{{NUMERO_CONTA}}</span>, Titularidade:
+                <span class="ph">{{TITULARIDADE}}</span>, Chave PIX:
+                <span class="ph">{{PIX}}</span>.
+            </p>
+            <h2>CLÁUSULA QUINTA - DOS TRIBUTOS E DESPESAS</h2>
+            <p>
+                5.1. Cada parte arcará com os tributos incidentes sobre sua
+                respectiva atividade.
+            </p>
+            <p>
+                5.2. A CONTRATADA é exclusivamente responsável pelo recolhimento
+                dos tributos sobre os serviços prestados.
+            </p>
+            <h2>CLÁUSULA SEXTA - DO PRAZO E DA RESCISÃO</h2>
+            <p>
+                6.1. O contrato vigorará por prazo indeterminado, iniciando-se
+                na data de sua assinatura.
+            </p>
+            <p>
+                6.2. Qualquer das partes poderá rescindir o contrato mediante
+                comunicação prévia por escrito.
+            </p>
+            <h2>CLÁUSULA SÉTIMA - DAS RESPONSABILIDADES E GARANTIAS</h2>
+            <p>
+                7.1. A CONTRATADA garante a execução dos serviços com
+                diligência, qualidade técnica e ética profissional.
+            </p>
+            <p>
+                7.2. A CONTRATADA responde por danos causados em decorrência de
+                dolo ou culpa na prestação dos serviços.
+            </p>
+            <h2>CLÁUSULA OITAVA - DA CONFIDENCIALIDADE</h2>
+            <p>
+                8.1. A CONTRATADA obriga-se a manter SIGILO ABSOLUTO sobre todas
+                as informações da CONTRATANTE, seus clientes e parceiros,
+                durante e após o término do contrato.
+            </p>
+            <p>
+                8.2. A violação de confidencialidade sujeitará a parte infratora
+                às penalidades previstas neste contrato.
+            </p>
+            <h2>CLÁUSULA NONA - DA PROPRIEDADE INTELECTUAL</h2>
+            <p>
+                9.1. Todos os trabalhos, ideias, fórmulas, métodos, processos,
+                documentos e demais criações desenvolvidas pela CONTRATADA
+                durante a vigência deste contrato pertencerão EXCLUSIVAMENTE à
+                CONTRATANTE.
+            </p>
+            <p>
+                9.2. A CONTRATADA cede, em caráter definitivo e irrevogável,
+                todos os direitos patrimoniais sobre as obras desenvolvidas.
+            </p>
+            <h2>CLÁUSULA DÉCIMA - NÃO CONCORRÊNCIA</h2>
+            <p>
+                10.1. Durante a vigência do contrato e pelo prazo de 12 (doze)
+                meses após seu término, a CONTRATADA fica impedida de prestar
+                serviços a concorrentes diretos da CONTRATANTE.
+            </p>
+            <p>
+                10.2. A violação desta cláusula sujeitará a CONTRATADA ao
+                pagamento das penalidades previstas neste contrato.
+            </p>
+            <h2>CLÁUSULA DÉCIMA PRIMEIRA - NÃO DIFAMAÇÃO E NÃO SOLICITAÇÃO</h2>
+            <p>
+                11.1. As partes comprometem-se a não praticar atos de difamação
+                contra a outra parte.
+            </p>
+            <p>
+                11.2. A CONTRATADA compromete-se a não aliciar, contratar ou
+                induzir colaboradores, clientes ou parceiros da CONTRATANTE
+                durante a vigência do contrato e por 12 (doze) meses após seu
+                término.
+            </p>
+            <h2>CLÁUSULA DÉCIMA SEGUNDA - DAS PENALIDADES</h2>
+            <p>
+                12.1. O descumprimento de qualquer cláusula contratual sujeitará
+                a parte infratora ao pagamento de multa, sem prejuízo das perdas
+                e danos apurados.
+            </p>
+            <p>
+                12.2. As penalidades poderão ser cumuladas conforme a gravidade
+                da infração.
+            </p>
+            <h2>CLÁUSULA DÉCIMA TERCEIRA - DAS DISPOSIÇÕES GERAIS</h2>
+            <p>
+                13.1. Este contrato obriga as partes, seus sucessores e
+                cessionários.
+            </p>
+            <p>
+                13.2. Qualquer alteração deste instrumento deverá ser realizada
+                por escrito e assinada por ambas as partes.
+            </p>
+            <p>
+                13.3. A tolerância de uma parte quanto ao descumprimento de
+                obrigação pela outra não constituirá novação ou renúncia.
+            </p>
+            <h2>CLÁUSULA DÉCIMA QUARTA - DO FORO</h2>
+            <p>
+                14.1. Fica eleito o foro da Comarca de São Paulo/SP, com
+                renúncia expressa a qualquer outro, por mais privilegiado que
+                seja, para dirimir quaisquer dúvidas ou controvérsias oriundas
+                do presente contrato.
+            </p>
+            <p>
+                E, por estarem justas e contratadas, as partes assinam o
+                presente instrumento em 02 (duas) vias de igual teor e forma, na
+                presença das testemunhas abaixo identificadas.
+            </p>
+            <p>São Paulo, <span class="ph">{{DATA_ATUAL}}</span>.</p>
+            <div class="assinaturas">
+                <div class="linha-assinatura">
+                    Raphaella Arantes Arimura<br />RAPHAELLA ARANTES ARIMURA
+                    SOCIEDADE INDIVIDUAL DE ADVOCACIA
+                </div>
+                <div class="linha-assinatura">
+                    <span class="ph">{{NOME_REPRESENTANTE}}</span><br /><span
+                        class="ph"
+                        >{{EMPRESA}}</span
+                    >
+                </div>
+            </div>
+            <div class="testemunhas">
+                <div class="testemunha">
+                    ___________<br />Karla Schipani<br />CPF: 269.375.108-02
+                </div>
+                <div class="testemunha">
+                    ___________<br />Luana Lidia<br />CPF: 293.342.578-57
+                </div>
+            </div>
+            <div class="rodape">
+                Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé,
+                São Paulo/SP – CEP 03315-000
+            </div>
+        </div>
+        <div class="pagina quebra">
+            <h2>ANEXO II - DA REMUNERAÇÃO</h2>
+            <p>
+                - Valor mensal: R$ 4.000,00 (quatro mil reais)<br />-
+                Vencimento: dia 10 de cada mês<br />- Forma de pagamento:
+                transferência bancária ou PIX<br />- Dados bancários: conforme
+                Cláusula Quarta, item 4.3
+            </p>
+            <div class="rodape">
+                Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé,
+                São Paulo/SP – CEP 03315-000
+            </div>
+        </div>
+        <div class="pagina quebra">
+            <h2>ANEXO III - TERMO DE CONFIDENCIALIDADE</h2>
+            <p>
+                A CONTRATADA, identificada na qualificação inicial deste
+                contrato, declara estar ciente e assumir o compromisso de manter
+                sigilo absoluto sobre todas as informações, dados, documentos e
+                materiais aos quais tiver acesso em razão da prestação de
+                serviços à CONTRATANTE. Este termo permanece em vigor durante
+                toda a vigência do contrato principal e por prazo indeterminado
+                após seu término, no que diz respeito a informações
+                classificadas como confidenciais.
+            </p>
+            <div class="assinaturas">
+                <div class="linha-assinatura">
+                    <span class="ph">{{data_nascimento}}</span> /
+                    <span class="ph">{{EMPRESA}}</span> / CNPJ:
+                    <span class="ph">{{CNPJ_CONTRATADA}}</span>
+                </div>
+            </div>
+            <div class="rodape">
+                Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé,
+                São Paulo/SP – CEP 03315-000
+            </div>
+        </div>
+    </body>
+</html>

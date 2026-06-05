@@ -1,7 +1,9 @@
+from logging import DEBUG
 import re
 from datetime import datetime
 from pathlib import Path
 
+from playwright.sync_api import HttpCredentials
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -22,6 +24,7 @@ from automation.src.application.services.branding_service import (
 )
 from automation.src.domain.models import Proposal
 from automation.src.domain.validators import clean_value, format_currency
+from automation.src.infrastructure.browser.actions import wait_for_spinners
 from automation.src.infrastructure.pdf.styles import build_styles
 
 
@@ -37,7 +40,9 @@ def create_table(
 
     # Line filter
     linhas_validas = [
-        [clean_value(campo), clean_value(valor)] for campo, valor in linhas if clean_value(valor)
+        [clean_value(campo), clean_value(valor)]
+        for campo, valor in linhas
+        if clean_value(valor)
     ]
 
     if not linhas_validas:
@@ -134,14 +139,18 @@ def generate_proposal_pdf(proposta: Proposal, output_path: Path) -> Path:
     )
 
     story.append(Spacer(1, 0.2 * cm))
-    story.append(HRFlowable(width="100%", thickness=0.8, color=colors.HexColor("#DDDDDD")))
+    story.append(
+        HRFlowable(width="100%", thickness=0.8, color=colors.HexColor("#DDDDDD"))
+    )
     story.append(Spacer(1, 0.25 * cm))
 
     # Formatted time
     honorario_str = ""
     if proposta.honorario is not None:
         honorario_str = (
-            f"R$ {proposta.honorario:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+            f"R$ {proposta.honorario:,.2f}".replace(",", "X")
+            .replace(".", ",")
+            .replace("X", ".")
         )
 
     # Tables
@@ -265,7 +274,9 @@ def generate_proposal_pdf(proposta: Proposal, output_path: Path) -> Path:
 
     # Footer
     story.append(Spacer(1, 0.6 * cm))
-    story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#DDDDDD")))
+    story.append(
+        HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#DDDDDD"))
+    )
     story.append(Spacer(1, 0.2 * cm))
     story.append(
         Paragraph(
@@ -333,4 +344,39 @@ def generate_contract_pdf(
             story.append(Spacer(1, 0.3 * cm))
 
     doc.build(story)
+    return output_path
+
+
+def generate_contract_html(
+    dados: dict,
+    output_path: Path,
+    template_path: Path,
+    context,
+    logo_path: Path | None = None,
+) -> Path | None:
+    with open(template_path, encoding="utf-8") as f:
+        html = f.read()
+
+    placeholders = re.findall(r"\{\{(.*?)\}\}", html)
+    for p in placeholders:
+        chave = p.strip()
+        valor = clean_value(dados.get(chave, ""))
+
+        if "honorario" in chave.lower() or "valor" in chave.lower():
+            valor = format_currency(valor)
+        html = html.replace(f"{{{{{p}}}}}", valor)
+
+    if logo_path and logo_path.exists():
+        html = html.replace('src="Logos/', f'src="{logo_path.parent}/')
+
+    page = context.new_page()
+    page.set_content(html, wait_until="load")
+    page.pdf(
+        path=str(output_path),
+        format="A4",
+        print_background=True,
+        margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
+    )
+    page.close()
+
     return output_path

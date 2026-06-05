@@ -43,6 +43,51 @@ class TriataClient:
         except Exception:
             raise TriataLoginError("Campo de login ainda visível após tentativa.")
 
+    def ativar_modo_teste(self) -> None:
+        """Clica no botão Modo Teste e aceita o diálogo de confirmação."""
+        logger.info("Ativando Modo Teste...")
+        self.page.on("dialog", lambda dialog: dialog.accept())
+
+        self.page.wait_for_timeout(5_000)
+
+        clicado = False
+
+        btn = self.page.locator(".btn_ativa_modo_teste")
+        try:
+            btn.wait_for(state="attached", timeout=10_000)
+            btn.click()
+            clicado = True
+            logger.info("Modo Teste clicado na página principal.")
+        except Exception:
+            pass
+
+        if not clicado:
+            logger.info("Botão não encontrado. Chamando ModoTeste('I') via JavaScript...")
+            try:
+                self.page.evaluate("""
+                    () => {
+                        if (typeof ModoTeste === 'function') {
+                            ModoTeste('I');
+                        } else {
+                            // Procurar o botão no DOM e clicar via JS
+                            const btn = document.querySelector('.btn_ativa_modo_teste');
+                            if (btn) btn.click();
+                        }
+                    }
+                """)
+                clicado = True
+                logger.info("ModoTeste('I') chamado via JS.")
+            except Exception as e:
+                logger.warning("Falha ao ativar via JS: %s", e)
+
+        if not clicado:
+            logger.warning("Não foi possível ativar Modo Teste.")
+
+        self.page.wait_for_load_state("networkidle", timeout=30_000)
+        self.page.wait_for_timeout(3_000)
+        self.page.wait_for_selector('td[id^="tarefa_"]', timeout=20_000)
+        logger.info("Modo Teste processado.")
+
     def find_task(self) -> tuple[str, str]:
         """Encontra e clica na primeira tarefa de confecção.
 
@@ -125,6 +170,7 @@ class TriataClient:
     def run(self) -> dict | None:
         try:
             self.login()
+            self.ativar_modo_teste()
             nome_tarefa, processo_id = self.find_task()
             dados = self.extract_form()
 

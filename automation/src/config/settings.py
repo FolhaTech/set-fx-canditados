@@ -42,7 +42,7 @@ class Settings(BaseSettings):
 
     # Browser
     HEADLESS: bool = False
-    SLOW_MO: int = 50  # ms active slow mode
+    SLOW_MO: int = 500  # ms active slow mode
     VIEWPORT_WIDTH: int = 1920
     VIEWPORT_HEIGHT: int = 1080
     BROWSER_LOCALE: str = "pt-BR"

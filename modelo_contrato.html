@@ -5,155 +5,321 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instrumento de Contrato Particular de Prestação de Serviços Financeiros</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+        @page {
+    size: A4;
+    margin: 20mm 25mm 35mm 25mm;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    @bottom-center {
+    content: "Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000\A Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446\A E-mail – contato@arantesarimura.adv.br\A Site – WWW.ARANTESARIMURA.ADV.BR";
+    white-space: pre;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 8pt;
+    color: #000;
+    text-align: center;
+    border-top: 1px solid #000;
+    padding-top: 3mm;
+    width: 100%;
+    }
 
-        body {
-          font-family: 'Times New Roman', Times, serif;
-          font-size: 12pt;
-          line-height: 1.6;
-          color: #000;
-          background: #fff;
-        }
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
 
-        .page {
-          width: 210mm;
-          min-height: 297mm;
-          margin: 0 auto;
-          padding: 20mm 25mm 25mm 25mm;
-          position: relative;
-          page-break-after: always;
-          box-sizing: border-box;
-        }
+    body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #000;
+    background: #fff;
+    hyphens: none;
+    }
 
-        .header {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          margin-bottom: 8mm;
-          border-bottom: 1px solid #000;
-          padding-bottom: 4mm;
-          min-height: 15mm;
-          max-height: 20mm;
-          overflow: hidden;
-        }
+    .page {
+    margin: 0 auto;
+    position: relative;
+    page-break-after: always;
+    break-after: page;
+    orphans: 3;
+    widows: 3;
+    }
 
-        .logo-area {
-          text-align: right;
-        }
+    .header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 8mm;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4mm;
+    min-height: 15mm;
+    max-height: 20mm;
+    overflow: hidden;
+    }
 
-        .logo-text-main {
-          font-size: 16pt;
-          font-weight: bold;
-          letter-spacing: 2px;
-          font-family: Arial, sans-serif;
-        }
+    .logo-area {
+    text-align: right;
+    }
 
-        .logo-text-sub {
-          font-size: 8pt;
-          letter-spacing: 4px;
-          font-family: Arial, sans-serif;
-        }
+    .logo-text-main {
+    font-size: 16pt;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-family: Arial, sans-serif;
+    }
 
-        .footer {
-          position: absolute;
-          bottom: 8mm;
-          left: 0;
-          right: 0;
-          text-align: center;
-          font-size: 8pt;
-          border-top: 1px solid #000;
-          padding-top: 3mm;
-          margin: 0 25mm;
-        }
+    .logo-text-sub {
+    font-size: 8pt;
+    letter-spacing: 4px;
+    font-family: Arial, sans-serif;
+    }
 
-        .footer a { color: #000; text-decoration: underline; }
+    h1.title {
+    font-size: 13pt;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin: 8mm 0 6mm;
+    font-family: Arial, sans-serif;
+    }
 
-        h1.title {
-          font-size: 13pt;
-          font-weight: bold;
-          text-align: center;
-          text-decoration: underline;
-          text-transform: uppercase;
-          margin: 8mm 0 6mm;
-          font-family: Arial, sans-serif;
-        }
+    p {
+    margin-bottom: 4mm;
+    text-align: justify;
+    orphans: 3;
+    widows: 3;
+    }
 
-        p { margin-bottom: 4mm; text-align: justify; }
+    .bold {
+    font-weight: bold;
+    }
 
-        .bold { font-weight: bold; }
+    h2.clause {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin: 6mm 0 4mm;
+    font-family: Arial, sans-serif;
+    }
 
-        h2.clause {
-          font-size: 12pt;
-          font-weight: bold;
-          text-align: center;
-          text-decoration: underline;
-          text-transform: uppercase;
-          margin: 6mm 0 4mm;
-          font-family: Arial, sans-serif;
-        }
+    .clause-item {
+    margin-bottom: 3mm;
+    text-align: justify;
+    }
 
-        .clause-item { margin-bottom: 3mm; text-align: justify; }
-        .clause-item .item-num { font-weight: bold; }
+    .clause-item .item-num {
+    font-weight: bold;
+    }
 
-        .sub-item {
-          margin: 3mm 0 3mm 15mm;
-          text-align: justify;
-        }
+    .sub-item {
+    margin: 3mm 0 3mm 15mm;
+    text-align: justify;
+    }
 
-        .sub-item .sub-num { font-weight: bold; }
+    .sub-item .sub-num {
+    font-weight: bold;
+    }
 
-        .para-unico { margin-bottom: 3mm; text-align: justify; }
-        .para-unico .pu-label { font-weight: bold; text-decoration: underline; }
+    .para-unico {
+    margin-bottom: 3mm;
+    text-align: justify;
+    }
 
-        .considering { margin-bottom: 3mm; text-align: justify; }
-        .considering .c-label { font-weight: bold; text-decoration: underline; }
+    .para-unico .pu-label {
+    font-weight: bold;
+    text-decoration: underline;
+    }
 
-        .portanto { margin-bottom: 3mm; text-align: justify; }
+    .considering {
+    margin-bottom: 3mm;
+    text-align: justify;
+    }
 
-        .bank-info { margin: 3mm 0; }
-        .bank-info p { margin-bottom: 1mm; text-decoration: none; }
+    .considering .c-label {
+    font-weight: bold;
+    text-decoration: underline;
+    }
 
-        .signature-block { margin-top: 10mm; }
-        .sig-date { text-align: center; margin-bottom: 8mm; }
-        .sig-party { margin-bottom: 6mm; }
-        .sig-party .party-label { font-weight: bold; text-decoration: underline; font-family: Arial, sans-serif; }
-        .sig-party .party-name { font-weight: bold; text-align: center; margin-top: 10mm; border-top: 1px solid #000; padding-top: 2mm; }
+    .portanto {
+    margin-bottom: 3mm;
+    text-align: justify;
+    }
 
-        .witnesses {
-          margin-top: 6mm;
-          display: flex;
-          gap: 20mm;
-        }
-        .witness { flex: 1; }
-        .witness-line { border-top: 1px solid #000; padding-top: 2mm; margin-top: 8mm; }
+    .bank-info {
+    margin: 3mm 0;
+    }
 
-        .annex-title {
-          font-size: 12pt;
-          font-weight: bold;
-          text-align: center;
-          text-decoration: underline;
-          font-family: Arial, sans-serif;
-          margin: 6mm 0 4mm;
-        }
+    .bank-info p {
+    margin-bottom: 1mm;
+    text-decoration: none;
+    }
 
-        .list-alpha { margin: 2mm 0 2mm 10mm; }
-        .list-alpha li { margin-bottom: 2mm; text-align: justify; }
+    .signature-block {
+    margin-top: 10mm;
+    }
 
-        @media print {
-          .page { margin: 0; width: 100%; }
-          body { background: white; }
-        }
+    .sig-date {
+    text-align: center;
+    margin-bottom: 8mm;
+    }
 
-        @media screen {
-          body { background: #e0e0e0; }
-          .page {
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            margin: 10mm auto;
-            background: #fff;
-          }
-        }
+    .sig-party {
+    margin-bottom: 6mm;
+    }
+
+    .sig-party .party-label {
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: Arial, sans-serif;
+    }
+
+    .sig-party .party-name {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10mm;
+    border-top: 1px solid #000;
+    padding-top: 2mm;
+    }
+
+    .witnesses {
+    margin-top: 6mm;
+    display: flex;
+    gap: 20mm;
+    }
+
+    .witness {
+    flex: 1;
+    }
+
+    .witness-line {
+    border-top: 1px solid #000;
+    padding-top: 2mm;
+    margin-top: 8mm;
+    }
+
+    .annex-title {
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    font-family: Arial, sans-serif;
+    margin: 6mm 0 4mm;
+    }
+
+    .list-alpha {
+    margin: 2mm 0 2mm 10mm;
+    }
+
+    .list-alpha li {
+    margin-bottom: 2mm;
+    text-align: justify;
+    }
+
+    /* Evitar quebra dentro de blocos importantes */
+    h1.title,
+    h2.clause,
+    .annex-title,
+    .signature-block,
+    .sig-party,
+    .witnesses,
+    .witness,
+    .bank-info,
+    .clause-item,
+    .sub-item,
+    .para-unico,
+    .considering,
+    .list-alpha li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    }
+
+    h1.title,
+    h2.clause,
+    .annex-title {
+    break-after: avoid;
+    page-break-after: avoid;
+    }
+
+    /* Impressão */
+    @media print {
+    .footer {
+     display: none !important;
+    }
+
+    .page {
+     width: auto !important;
+     min-height: auto !important;
+     padding: 0 !important;
+     margin: 0 !important;
+    }
+
+    body {
+     background: white;
+     -webkit-print-color-adjust: exact;
+     print-color-adjust: exact;
+    }
+
+    h1.title,
+    h2.clause,
+    .annex-title,
+    .signature-block,
+    .sig-party,
+    .witnesses,
+    .witness,
+    .bank-info,
+    .clause-item,
+    .sub-item,
+    .para-unico,
+    .considering,
+    .list-alpha li {
+     break-inside: avoid;
+     page-break-inside: avoid;
+    }
+
+    h1.title,
+    h2.clause,
+    .annex-title {
+     break-after: avoid;
+     page-break-after: avoid;
+    }
+    }
+
+    /* Tela */
+    @media screen {
+    body {
+     background: #e0e0e0;
+    }
+
+    .page {
+     width: 210mm;
+     min-height: 297mm;
+     padding: 20mm 25mm 25mm 25mm;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+     margin: 10mm auto;
+     background: #fff;
+    }
+
+    .footer {
+     position: absolute;
+     bottom: 8mm;
+     left: 0;
+     right: 0;
+     text-align: center;
+     font-size: 8pt;
+     border-top: 1px solid #000;
+     padding-top: 3mm;
+     margin: 0 25mm;
+    }
+
+    .footer a {
+     color: #000;
+     text-decoration: underline;
+    }
+    }
     </style>
 </head>
 <body>

@@ -28,6 +28,13 @@ ASSINATURA_POR_EMPRESA: dict[Enterprise, str] = {
 }
 
 
+LOGO_POR_EMPRESA: dict[Enterprise, str] = {
+    Enterprise.ARANTES: "logo-v2.png",
+    Enterprise.GENTER: "logo.png",
+    Enterprise.FOLHA_TECH: "logo.png",
+}
+
+
 def get_theme(empresa: Enterprise) -> dict[str, str]:
     return EMPRESA_TEMAS.get(empresa, EMPRESA_TEMAS[Enterprise.GENTER])
 
@@ -36,6 +43,12 @@ def find_logo(empresa: Enterprise) -> Path | None:
     pasta = settings.logos_dir_path / empresa.value
     if not pasta.exists():
         return None
+
+    nome_arquivo = LOGO_POR_EMPRESA.get(empresa)
+    if nome_arquivo:
+        caminho = pasta / nome_arquivo
+        if caminho.exists():
+            return caminho
 
     for ext in ("*.png", "*.jpg", "*.jpeg", "*.webp"):
         arquivos = list(pasta.glob(ext))

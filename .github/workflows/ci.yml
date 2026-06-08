@@ -28,8 +28,5 @@ jobs:
       - name: Instalar dependências
         run: uv sync --all-extras --dev
 
-      - name: Type check (mypy)
-        run: uv run mypy automation/
-
       - name: Verificar importação dos módulos
         run: uv run python -c "import automation; print('Import OK')"

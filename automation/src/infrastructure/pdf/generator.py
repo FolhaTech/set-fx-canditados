@@ -1,9 +1,8 @@
-from logging import DEBUG
+import base64
 import re
 from datetime import datetime
 from pathlib import Path
 
-from playwright.sync_api import HttpCredentials
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
@@ -24,7 +23,6 @@ from automation.src.application.services.branding_service import (
 )
 from automation.src.domain.models import Proposal
 from automation.src.domain.validators import clean_value, format_currency
-from automation.src.infrastructure.browser.actions import wait_for_spinners
 from automation.src.infrastructure.pdf.styles import build_styles
 
 
@@ -354,23 +352,29 @@ def generate_contract_html(
     context,
     logo_path: Path | None = None,
 ) -> Path | None:
+    if not template_path.exists():
+        return None
+
     with open(template_path, encoding="utf-8") as f:
         html = f.read()
 
     placeholders = re.findall(r"\{\{(.*?)\}\}", html)
     for p in placeholders:
         chave = p.strip()
+        if chave == "LOGO":
+            continue
+
         valor = clean_value(dados.get(chave, ""))
 
         if "honorario" in chave.lower() or "valor" in chave.lower():
             valor = format_currency(valor)
         html = html.replace(f"{{{{{p}}}}}", valor)
 
-    if logo_path and logo_path.exists():
-        html = html.replace('src="Logos/', f'src="{logo_path.parent}/')
+    logo_htm = _build_logo_html(logo_path)
+    html = html.replace("{{LOGO}}", logo_htm)
 
     page = context.new_page()
-    page.set_content(html, wait_until="load")
+    page.set_content(html, wait_until="networkidle")
     page.pdf(
         path=str(output_path),
         format="A4",
@@ -380,3 +384,51 @@ def generate_contract_html(
     page.close()
 
     return output_path
+
+
+def _build_logo_html(logo_path: Path | None) -> str:
+    fallback = (
+        '<div style="display:flex;align-items:center;gap:8px;justify-content:flex-end;">'
+        '<div style="font-size:28pt;font-weight:bold;color:#8B7355;font-family:serif;line-height:1;">AAA</div>'
+        "<div>"
+        '<div style="font-size:16pt;font-weight:bold;letter-spacing:2px;font-family:Arial,sans-serif;">ARANTES ARIMURA</div>'
+        '<div style="font-size:8pt;letter-spacing:4px;font-family:Arial,sans-serif;">ADVOCACIA</div>'
+        "</div>"
+        "</div>"
+    )
+
+    if not logo_path:
+        return fallback
+
+    if logo_path.is_dir():
+        logo_file = None
+        for ext in ("*.png", "*.jpg", "*.jpeg", "*.webp"):
+            encontrados = list(logo_path.glob(ext))
+            if encontrados:
+                logo_file = encontrados[0]
+                break
+            if not logo_file:
+                return fallback
+    elif logo_path.is_file():
+        logo_file = logo_path
+    else:
+        return fallback
+
+    ext = logo_file.suffix.lower().lstrip(".")
+    mime_map = {
+        "png": "image/png",
+        "jpg": "image/jpeg",
+        "jpeg": "image/jpeg",
+        "webp": "image/webp",
+    }
+    mime = mime_map.get(ext, "image/jpeg")
+
+    with open(logo_file, "rb") as f:
+        b64 = base64.b64encode(f.read()).decode()
+
+    data_url = f"data:{mime};base64,{b64}"
+
+    return (
+        f'<img src="{data_url}" '
+        f'style="max-height:60px; max-width:250px; display:block; margin-left:auto;">'
+    )

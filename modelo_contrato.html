@@ -1,362 +1,1487 @@
-<!doctype html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Contrato de Prestação de Serviços</title>
-        <style>
-            body {
-                background-color: #e8e8e8;
-                font-family: "Times New Roman", Times, serif;
-                margin: 0;
-                padding: 20px;
-            }
-            .pagina {
-                width: 210mm;
-                min-height: 297mm;
-                padding: 25mm;
-                background-color: #fff;
-                margin: 10px auto;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                box-sizing: border-box;
-                position: relative;
-            }
-            .ph {
-                background: #fff3cd;
-                color: #856404;
-                padding: 0 3px;
-                border-radius: 2px;
-                border: 1px dashed #ffc107;
-            }
-            h1 {
-                font-size: 14pt;
-                text-align: center;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
-            h2 {
-                font-size: 11pt;
-                font-weight: bold;
-                text-transform: uppercase;
-                margin-top: 18px;
-                margin-bottom: 6px;
-            }
-            p {
-                font-size: 11pt;
-                text-align: justify;
-                line-height: 1.5;
-                margin-bottom: 8px;
-            }
-            .indent {
-                padding-left: 25px;
-            }
-            .indent-2 {
-                padding-left: 50px;
-            }
-            .assinaturas {
-                margin-top: 40px;
-                page-break-inside: avoid;
-            }
-            .linha-assinatura {
-                border-top: 1px solid #000;
-                margin-top: 50px;
-                padding-top: 4px;
-                text-align: center;
-                font-size: 10pt;
-            }
-            .testemunhas {
-                display: flex;
-                justify-content: space-between;
-                gap: 30px;
-                margin-top: 40px;
-            }
-            .testemunha {
-                flex: 1;
-                text-align: center;
-                font-size: 10pt;
-            }
-            .rodape {
-                margin-top: 30px;
-                padding-top: 10px;
-                border-top: 1px solid #ccc;
-                font-size: 9pt;
-                text-align: center;
-                color: #555;
-            }
-            .quebra {
-                page-break-before: always;
-            }
-            @media print {
-                body {
-                    background-color: #fff;
-                }
-                .pagina {
-                    box-shadow: none;
-                    margin: 0;
-                    padding: 0;
-                }
-                .rodape {
-                    position: fixed;
-                    bottom: 0;
-                    width: 100%;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="pagina">
-            <h1>
-                INSTRUMENTO DE CONTRATO PARTICULAR DE PRESTAÇÃO DE SERVIÇOS
-                FINANCEIROS
-            </h1>
-            <p>Pelo presente instrumento particular, de um lado:</p>
-            <p>
-                <b>CONTRATANTE:</b> RAPHAELLA ARANTES ARIMURA SOCIEDADE
-                INDIVIDUAL DE ADVOCACIA, sociedade individual de advocacia,
-                inscrita no CNPJ/MF sob o nº 33.373.103/0001-56, com sede na Rua
-                Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé, São
-                Paulo/SP – CEP 03315-000, neste ato representada por sua titular
-                Raphaella Arantes Arimura, portadora do RG nº 44.982.186-9
-                SSP/SP e inscrita no CPF/MF sob o nº 357.205.748-59.
-            </p>
-            <p>E de outro lado:</p>
-            <p>
-                <b>CONTRATADA:</b> <span class="ph">{{EMPRESA}}</span>, com sede
-                em <span class="ph">{{ENDERECO}}</span>,
-                <span class="ph">{{CIDADE_ESTADO}}</span>, inscrita no CNPJ/MF
-                sob o nº <span class="ph">{{CNPJ_CONTRATADA}}</span>, neste ato
-                representada por <span class="ph">{{NOME_REPRESENTANTE}}</span>,
-                <span class="ph">{{ESTADO_CIVIL}}</span>, nascido(a) em
-                <span class="ph">{{DATA_NASCIMENTO}}</span>, portador(a) do RG
-                nº <span class="ph">{{RG}}</span> e inscrito(a) no CPF/MF sob o
-                nº <span class="ph">{{CPF}}</span>.
-            </p>
-            <p>
-                As partes acima qualificadas têm entre si justo e contratado o
-                presente Instrumento Particular de Prestação de Serviços, que se
-                regerá pelas seguintes cláusulas e condições:
-            </p>
-            <h2>CLÁUSULA PRIMEIRA - DO OBJETO</h2>
-            <p>
-                1.1. O presente contrato tem por objeto a prestação de serviços
-                de consultoria administrativa e financeira pela CONTRATADA em
-                favor da CONTRATANTE.
-            </p>
-            <p>
-                1.2. Os serviços serão prestados de forma autônoma, NÃO HAVENDO
-                QUALQUER VÍNCULO EMPREGATÍCIO entre as partes.
-            </p>
-            <h2>CLÁUSULA SEGUNDA - DO TRATAMENTO DE DADOS PESSOAIS (LGPD)</h2>
-            <p>
-                2.1. As partes comprometem-se a observar integralmente a Lei
-                Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD).
-            </p>
-            <p>
-                2.2. Para fins deste contrato: a) A CONTRATANTE figura como
-                CONTROLADORA dos dados pessoais tratados; b) A CONTRATADA figura
-                como OPERADORA, realizando o tratamento conforme instruções da
-                CONTRATANTE.
-            </p>
-            <p>
-                2.3. A CONTRATADA obriga-se a manter sigilo e segurança sobre
-                todos os dados pessoais acessados.
-            </p>
-            <h2>
-                CLÁUSULA TERCEIRA - DA ALTERAÇÃO DO REGIME PRESENCIAL PARA O
-                DOMICILIAR
-            </h2>
-            <p>
-                3.1. Diante do contexto da pandemia de COVID-19, fica autorizada
-                a transição do regime presencial para o regime de teletrabalho
-                (home office).
-            </p>
-            <p>
-                3.2. Os equipamentos tecnológicos necessários poderão ser
-                disponibilizados pela CONTRATANTE.
-            </p>
-            <h2>CLÁUSULA QUARTA - DO PREÇO E FORMA DE PAGAMENTO</h2>
-            <p>
-                4.1. Pela prestação dos serviços, a CONTRATANTE pagará à
-                CONTRATADA o valor mensal de R$ 4.000,00 (quatro mil reais).
-            </p>
-            <p>
-                4.2. O pagamento será efetuado todo dia 10 (dez) de cada mês
-                mediante apresentação da respectiva nota fiscal.
-            </p>
-            <p>
-                4.3. Os pagamentos serão realizados nos seguintes dados
-                bancários: Banco: <span class="ph">{{BANCO}}</span>, Agência:
-                <span class="ph">{{AGENCIA}}</span>, Tipo de Conta:
-                <span class="ph">{{TIPO_CONTA}}</span>, Nº Conta:
-                <span class="ph">{{NUMERO_CONTA}}</span>, Titularidade:
-                <span class="ph">{{TITULARIDADE}}</span>, Chave PIX:
-                <span class="ph">{{PIX}}</span>.
-            </p>
-            <h2>CLÁUSULA QUINTA - DOS TRIBUTOS E DESPESAS</h2>
-            <p>
-                5.1. Cada parte arcará com os tributos incidentes sobre sua
-                respectiva atividade.
-            </p>
-            <p>
-                5.2. A CONTRATADA é exclusivamente responsável pelo recolhimento
-                dos tributos sobre os serviços prestados.
-            </p>
-            <h2>CLÁUSULA SEXTA - DO PRAZO E DA RESCISÃO</h2>
-            <p>
-                6.1. O contrato vigorará por prazo indeterminado, iniciando-se
-                na data de sua assinatura.
-            </p>
-            <p>
-                6.2. Qualquer das partes poderá rescindir o contrato mediante
-                comunicação prévia por escrito.
-            </p>
-            <h2>CLÁUSULA SÉTIMA - DAS RESPONSABILIDADES E GARANTIAS</h2>
-            <p>
-                7.1. A CONTRATADA garante a execução dos serviços com
-                diligência, qualidade técnica e ética profissional.
-            </p>
-            <p>
-                7.2. A CONTRATADA responde por danos causados em decorrência de
-                dolo ou culpa na prestação dos serviços.
-            </p>
-            <h2>CLÁUSULA OITAVA - DA CONFIDENCIALIDADE</h2>
-            <p>
-                8.1. A CONTRATADA obriga-se a manter SIGILO ABSOLUTO sobre todas
-                as informações da CONTRATANTE, seus clientes e parceiros,
-                durante e após o término do contrato.
-            </p>
-            <p>
-                8.2. A violação de confidencialidade sujeitará a parte infratora
-                às penalidades previstas neste contrato.
-            </p>
-            <h2>CLÁUSULA NONA - DA PROPRIEDADE INTELECTUAL</h2>
-            <p>
-                9.1. Todos os trabalhos, ideias, fórmulas, métodos, processos,
-                documentos e demais criações desenvolvidas pela CONTRATADA
-                durante a vigência deste contrato pertencerão EXCLUSIVAMENTE à
-                CONTRATANTE.
-            </p>
-            <p>
-                9.2. A CONTRATADA cede, em caráter definitivo e irrevogável,
-                todos os direitos patrimoniais sobre as obras desenvolvidas.
-            </p>
-            <h2>CLÁUSULA DÉCIMA - NÃO CONCORRÊNCIA</h2>
-            <p>
-                10.1. Durante a vigência do contrato e pelo prazo de 12 (doze)
-                meses após seu término, a CONTRATADA fica impedida de prestar
-                serviços a concorrentes diretos da CONTRATANTE.
-            </p>
-            <p>
-                10.2. A violação desta cláusula sujeitará a CONTRATADA ao
-                pagamento das penalidades previstas neste contrato.
-            </p>
-            <h2>CLÁUSULA DÉCIMA PRIMEIRA - NÃO DIFAMAÇÃO E NÃO SOLICITAÇÃO</h2>
-            <p>
-                11.1. As partes comprometem-se a não praticar atos de difamação
-                contra a outra parte.
-            </p>
-            <p>
-                11.2. A CONTRATADA compromete-se a não aliciar, contratar ou
-                induzir colaboradores, clientes ou parceiros da CONTRATANTE
-                durante a vigência do contrato e por 12 (doze) meses após seu
-                término.
-            </p>
-            <h2>CLÁUSULA DÉCIMA SEGUNDA - DAS PENALIDADES</h2>
-            <p>
-                12.1. O descumprimento de qualquer cláusula contratual sujeitará
-                a parte infratora ao pagamento de multa, sem prejuízo das perdas
-                e danos apurados.
-            </p>
-            <p>
-                12.2. As penalidades poderão ser cumuladas conforme a gravidade
-                da infração.
-            </p>
-            <h2>CLÁUSULA DÉCIMA TERCEIRA - DAS DISPOSIÇÕES GERAIS</h2>
-            <p>
-                13.1. Este contrato obriga as partes, seus sucessores e
-                cessionários.
-            </p>
-            <p>
-                13.2. Qualquer alteração deste instrumento deverá ser realizada
-                por escrito e assinada por ambas as partes.
-            </p>
-            <p>
-                13.3. A tolerância de uma parte quanto ao descumprimento de
-                obrigação pela outra não constituirá novação ou renúncia.
-            </p>
-            <h2>CLÁUSULA DÉCIMA QUARTA - DO FORO</h2>
-            <p>
-                14.1. Fica eleito o foro da Comarca de São Paulo/SP, com
-                renúncia expressa a qualquer outro, por mais privilegiado que
-                seja, para dirimir quaisquer dúvidas ou controvérsias oriundas
-                do presente contrato.
-            </p>
-            <p>
-                E, por estarem justas e contratadas, as partes assinam o
-                presente instrumento em 02 (duas) vias de igual teor e forma, na
-                presença das testemunhas abaixo identificadas.
-            </p>
-            <p>São Paulo, <span class="ph">{{DATA_ATUAL}}</span>.</p>
-            <div class="assinaturas">
-                <div class="linha-assinatura">
-                    Raphaella Arantes Arimura<br />RAPHAELLA ARANTES ARIMURA
-                    SOCIEDADE INDIVIDUAL DE ADVOCACIA
-                </div>
-                <div class="linha-assinatura">
-                    <span class="ph">{{NOME_REPRESENTANTE}}</span><br /><span
-                        class="ph"
-                        >{{EMPRESA}}</span
-                    >
-                </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumento de Contrato Particular de Prestação de Serviços Financeiros</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+          font-family: 'Times New Roman', Times, serif;
+          font-size: 12pt;
+          line-height: 1.6;
+          color: #000;
+          background: #fff;
+        }
+
+        .page {
+          width: 210mm;
+          min-height: 297mm;
+          margin: 0 auto;
+          padding: 20mm 25mm 25mm 25mm;
+          position: relative;
+          page-break-after: always;
+        }
+
+        .header {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 8mm;
+          border-bottom: 1px solid #000;
+          padding-bottom: 4mm;
+        }
+
+        .logo-area {
+          text-align: right;
+        }
+
+        .logo-text-main {
+          font-size: 16pt;
+          font-weight: bold;
+          letter-spacing: 2px;
+          font-family: Arial, sans-serif;
+        }
+
+        .logo-text-sub {
+          font-size: 8pt;
+          letter-spacing: 4px;
+          font-family: Arial, sans-serif;
+        }
+
+        .footer {
+          position: absolute;
+          bottom: 8mm;
+          left: 0;
+          right: 0;
+          text-align: center;
+          font-size: 8pt;
+          border-top: 1px solid #000;
+          padding-top: 3mm;
+          margin: 0 25mm;
+        }
+
+        .footer a { color: #000; text-decoration: underline; }
+
+        h1.title {
+          font-size: 13pt;
+          font-weight: bold;
+          text-align: center;
+          text-decoration: underline;
+          text-transform: uppercase;
+          margin: 8mm 0 6mm;
+          font-family: Arial, sans-serif;
+        }
+
+        p { margin-bottom: 4mm; text-align: justify; }
+
+        .bold { font-weight: bold; }
+
+        h2.clause {
+          font-size: 12pt;
+          font-weight: bold;
+          text-align: center;
+          text-decoration: underline;
+          text-transform: uppercase;
+          margin: 6mm 0 4mm;
+          font-family: Arial, sans-serif;
+        }
+
+        .clause-item { margin-bottom: 3mm; text-align: justify; }
+        .clause-item .item-num { font-weight: bold; }
+
+        .sub-item {
+          margin: 3mm 0 3mm 15mm;
+          text-align: justify;
+        }
+
+        .sub-item .sub-num { font-weight: bold; }
+
+        .para-unico { margin-bottom: 3mm; text-align: justify; }
+        .para-unico .pu-label { font-weight: bold; text-decoration: underline; }
+
+        .considering { margin-bottom: 3mm; text-align: justify; }
+        .considering .c-label { font-weight: bold; text-decoration: underline; }
+
+        .portanto { margin-bottom: 3mm; text-align: justify; }
+
+        .bank-info { margin: 3mm 0; }
+        .bank-info p { margin-bottom: 1mm; text-decoration: underline; }
+
+        .signature-block { margin-top: 10mm; }
+        .sig-date { text-align: center; margin-bottom: 8mm; }
+        .sig-party { margin-bottom: 6mm; }
+        .sig-party .party-label { font-weight: bold; text-decoration: underline; font-family: Arial, sans-serif; }
+        .sig-party .party-name { font-weight: bold; text-align: center; margin-top: 10mm; border-top: 1px solid #000; padding-top: 2mm; }
+
+        .witnesses {
+          margin-top: 6mm;
+          display: flex;
+          gap: 20mm;
+        }
+        .witness { flex: 1; }
+        .witness-line { border-top: 1px solid #000; padding-top: 2mm; margin-top: 8mm; }
+
+        .annex-title {
+          font-size: 12pt;
+          font-weight: bold;
+          text-align: center;
+          text-decoration: underline;
+          font-family: Arial, sans-serif;
+          margin: 6mm 0 4mm;
+        }
+
+        .list-alpha { margin: 2mm 0 2mm 10mm; }
+        .list-alpha li { margin-bottom: 2mm; text-align: justify; }
+
+        @media print {
+          .page { margin: 0; width: 100%; }
+          body { background: white; }
+        }
+
+        @media screen {
+          body { background: #e0e0e0; }
+          .page {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin: 10mm auto;
+            background: #fff;
+          }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ PÁGINA 1 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <h1 class="title">Instrumento de Contrato Particular de Prestação<br>de Serviços Financeiros</h1>
+
+    <p>Por este instrumento particular de Contrato de Prestação de Serviços ("Contrato"), entre as <span class="bold">PARTES</span>
+        adiante qualificadas:</p>
+
+    <p><span class="bold">RAPHAELLA ARANTES ARIMURA SOCIEDADE INDIVIDUAL DE ADVOCACIA</span>, pessoa jurídica de direito
+        privado, regularmente inscrita no CNPJ/MF sob o nº 33.373.103/0001-56, com sede na Rua Padre Estevam Pernet, nº
+        718, 7º Andar, Sala 704, Tatuapé, São Paulo/SP – CEP. 03315-000, neste ato representado por sua sócia <span
+                class="bold">Raphaella Arantes Arimura</span>, brasileira, casada, advogada, portadora de cédula de
+        identidade RG nº 44.982.186-9 SSP/SP e inscrita no CPF/MF sob o nº 357.205.748-59, doravante designada "<span
+                class="bold">CONTRATANTE</span>"; e</p>
+
+    <p>{{solicitante_empresa}}, com sede em {{ENDEREÇO}}, {{CIDADE/ESTADO}}, inscrita no CNPJ/MF sob o nº {{CNPJ/MF}},
+        neste ato
+        representada por seu sócio, {{NOME}}, brasileira, {{ESTADO CIVIL}}, nascida em {{DATA DE NASCIMENTO}}, portadora
+        da cédula de identidade RG nº {{RG}}, e inscrita no CPF/MF sob o nº {{CPF/MF}}, doravante denominados
+        simplesmente CONTRATADA.</p>
+
+    <p>A <span class="bold">CONTRATANTE</span> e a <span class="bold">CONTRATADA</span> são individualmente doravante
+        denominados "<span class="bold">PARTE</span>" e, conjuntamente, "<span class="bold">PARTES</span>".</p>
+
+    <p class="considering"><span class="c-label">CONSIDERANDO:</span></p>
+
+    <p>(a) que a <span class="bold">CONTRATANTE</span> tem interesse de que a <span class="bold">CONTRATADA</span> lhe
+        forneça consultoria em serviços administrativos e financeiros de forma contínua, dentro do território nacional,
+        com vigência imediata, em que a <span class="bold">CONTRATANTE</span> figure como representante/patrocinadora de
+        serviços de natureza jurídica.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 2 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p>(b) que a <span class="bold">CONTRATANTE</span> aceita a colaboração da <span class="bold">CONTRATADA</span> para
+        a prestação desses serviços;</p>
+
+    <p>(c) que o presente Contrato corresponde ao resultado de negociação entre as <span class="bold">PARTES</span> e
+        fundamenta-se no princípio de liberdade das <span class="bold">PARTES</span> contratantes, e que os honorários,
+        suas nomenclaturas, formas e condições de concessão não têm por finalidade o estabelecimento de vínculo
+        empregatício e, portanto, não caberá essa interpretação para os efeitos deste Contrato, firmando desde já as
+        <span class="bold">PARTES</span> este Contrato, para evitar controvérsia futura quanto à natureza jurídica do
+        mesmo.</p>
+
+    <p class="portanto"><span class="bold">PORTANTO,</span> têm as <span class="bold">PARTES</span> entre si justas e
+        acordadas as cláusulas e condições seguintes:</p>
+
+    <h2 class="clause">Cláusula Primeira - Do Objeto</h2>
+
+    <p class="clause-item"><span class="item-num">1.1.</span> A <span class="bold">CONTRATADA</span> colocará à
+        disposição da <span class="bold">CONTRATANTE,</span> sem exclusividade, os seus serviços especializados em
+        consultoria administrativa e financeira.</p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Único</span> - Reconhece, expressamente, a <span
+            class="bold">CONTRATADA</span> que, pela faculdade contida na cláusula 1.1., caso venha a prestar os
+        Serviços unicamente para a <span class="bold">CONTRATANTE</span>, não poderá este fato ser interpretado como
+        obrigação ou mesmo a existência de modalidade contratual de vínculo de emprego ou de qualquer outra relação que
+        não a prevista neste Contrato.</p>
+
+    <p class="clause-item"><span class="item-num">1.2.</span> A <span class="bold">CONTRATADA</span> declara,
+        expressamente ser capacitada para a prestação dos Serviços, objeto deste Contrato, e que sempre teve e manterá
+        infraestrutura, materiais e experiência suficientes e adequados para atender as necessidades da <span
+                class="bold">CONTRATANTE</span>, as quais são de seu conhecimento pleno nesta data, e garante que não
+        precisará fazer qualquer investimento específico para atender as necessidades da <span
+                class="bold">CONTRATANTE</span>.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 3 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <h2 class="clause">Cláusula Segunda - Do Tratamento de Dados Pessoais (LGPD)</h2>
+
+    <p class="clause-item"><span class="item-num">2.1.</span> Nos termos da Lei nº 13.709/2018 (Lei Geral de Proteção de
+        Dados), a <span class="bold">CONTRATADA</span> expressamente declara ciência e anuência, que atuando no papel de
+        Operador, se responsabilizará pela atuação de seu sócio, já que esse será detentor de dados pessoais confiados
+        pelo Controlador, ora <span class="bold">CONTRATANTE</span>.</p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Primeiro</span> – A <span class="bold">CONTRATADA</span>
+        consente que seus dados e os dados pessoais de seu sócio sejam ou possam ser objeto de coleta, armazenamento,
+        manutenção e/ou qualquer outra ação de tratamento, seja em sistema próprio da <span
+                class="bold">CONTRATANTE</span> ou de terceiros, em território nacional ou estrangeiro.</p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Segundo</span> – A <span class="bold">CONTRATADA</span>
+        deverá obter a assinatura de todas as pessoas físicas ou jurídicas coligadas (sócios, empregados, funcionários,
+        parceiros comerciais, empresas coligadas ou terceiros necessários à prestação do serviço contratado pela <span
+                class="bold">CONTRATANTE</span>) que tenham acesso aos dados pessoais, no Termo de Confidencialidade –
+        Anexo III – que passa a fazer parte integrante deste Contrato. O modelo de Termo de Confidencialidade será
+        enviado pela <span class="bold">CONTRATANTE</span>, e deverá ser assinada por todos os sócios, subcontratados,
+        prestadores de serviços e parceiros da <span class="bold">CONTRATADA</span> sem quaisquer alterações ou
+        ressalvas.</p>
+
+    <p class="clause-item"><span class="item-num">2.2.</span> Para as finalidades do presente contrato, dados pessoais
+        incluem, mas não se limitam a: nome, endereço físicos e eletrônicos, contatos telefônicos, data de nascimento,
+        gênero, filiação, estado civil, naturalidade, nacionalidade, composição do agregado familiar, identificação
+        civil, identificação e enquadramento fiscal, autorização de residência, passaporte, currículo profissional,
+        profissão, habilitações acadêmicas, formação profissional e ainda dados biométricos, plano de saúde, dentário,
+        seguro de vida e demais, para a correta execução do contrato de prestação de serviços e benefícios a ele
+        inerentes, enquanto este durar e após eventual encerramento.</p>
+
+    <p class="clause-item"><span class="item-num">2.3.</span> A <span class="bold">CONTRATADA</span> e seu sócio terão
+        acesso e obrigam-se a conservar e tratar os dados pessoais, sigilosos e/ou confidenciais da <span class="bold">CONTRATANTE</span>,
+        de</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 4 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p>colaboradores do <span class="bold">CONTRATANTE</span>, clientes da <span class="bold">CONTRATANTE</span> e/ou
+        terceiros envolvidos com estes clientes, aos quais a <span class="bold">CONTRATADA</span> tenha acesso por
+        intermédio da <span class="bold">CONTRATANTE</span>, suas controladoras, controladas, coligadas, fornecedores,
+        parceiros e/ou clientes, conforme o caso, para cumprimento do contrato de prestação de serviço, obrigando-se a
+        preservar a higidez, o sigilo e a confidencialidade de tais dados.</p>
+
+    <p class="clause-item"><span class="item-num">2.4.</span> Nos termos da Cláusula 2.3 acima, a <span class="bold">CONTRATADA</span>
+        se compromete e se responsabilizará pelo tratamento dado por seu sócio aos dados pessoais disponibilizados pela
+        <span class="bold">CONTRATANTE</span> nos estritos limites da lei e aqui previstos e exclusivamente para
+        cumprimento do contrato de prestação de serviço.</p>
+
+    <p class="clause-item"><span class="item-num">2.5.</span> A <span class="bold">CONTRATADA</span> deverá manter
+        sigilo e confidencialidade absolutos em relação os dados pessoais tratados em virtude do contrato de prestação
+        de serviço, garantindo que nenhum terceiro tenha acesso aos referidos dados pessoais, exceto a própria <span
+                class="bold">CONTRATANTE</span> e exclusivamente para cumprimento do contrato de prestação de serviço.
+    </p>
+
+    <p class="clause-item"><span class="item-num">2.6.</span> Sem prejuízo do disposto nas cláusulas anteriores, a <span
+            class="bold">CONTRATADA</span> será responsável por eventual acesso indevido, não autorizado e do vazamento
+        ou perda dos dados pessoais relacionados ao exercício do contrato de prestação de serviço quando por ela
+        causado.</p>
+
+    <p class="clause-item"><span class="item-num">2.7.</span> Caso a <span class="bold">CONTRATADA</span> tome
+        conhecimento de incidente de acesso indevido, não autorizado e do vazamento ou perda de dados pessoais tratados
+        no exercício do contrato de prestação de serviço, independentemente do motivo que o tenha ocasionado, deverá
+        comunicar imediatamente à <span class="bold">CONTRATANTE</span> por escrito a esse respeito.</p>
+
+    <p class="clause-item"><span class="item-num">2.8.</span> A <span class="bold">CONTRATANTE</span> poderá transferir
+        em parte ou na sua totalidade os dados pessoais da <span class="bold">CONTRATADA</span> a entidades públicas e
+        ou privadas sempre que tal transferência decorra de obrigação legal e/ou seja necessária para cumprimento deste
+        ou outros contratos, ficando para tal, desde já, expressamente autorizada pela <span
+                class="bold">CONTRATADA</span>.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 5 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">2.9.</span> A <span class="bold">CONTRATADA</span> deverá assegurar à
+        <span class="bold">CONTRATANTE</span> os direitos de: (a) acesso aos dados que lhe digam respeito; (b)
+        retificação ou exclusão; limitação do tratamento; (c) oposição ao tratamento; (d) portabilidade dos dados; e (e)
+        retirada de consentimento em qualquer momento, sem comprometer a licitude do tratamento efetuado com base no
+        cumprimento de obrigações legais ou com base no consentimento previamente dado.</p>
+
+    <p class="clause-item"><span class="item-num">2.10.</span> A <span class="bold">CONTRATADA</span> se compromete com
+        as obrigações ora assumidas, assegurando o cumprimento das disposições legais aplicáveis em matéria de proteção
+        de dados pessoais, não fornecendo ou divulgando tais dados pessoais à terceiros, nem deles fazendo uso para
+        quaisquer fins que não os estritamente consentidos através do presente contrato.</p>
+
+    <h2 class="clause">Cláusula Terceira - Da Alteração do Regime Presencial para o<br>Domiciliar</h2>
+
+    <p class="clause-item"><span class="item-num">3.1.</span> Na elaboração do presente Contrato Particular de Prestação
+        de Serviços Advocatícios celebrado entre as <span class="bold">PARTES</span> foram consideradas enfrentamento do
+        estado de calamidade pública e da emergência de saúde pública de importância internacional decorrente do
+        coronavírus (covid-19);</p>
+
+    <p class="clause-item"><span class="item-num">3.2.</span> Por mútuo acordo entre as <span class="bold">PARTES</span>,
+        a partir da assinatura do presente contrato, passa a ser regido pelas normas do teletrabalho, a seguir
+        relacionadas.</p>
+
+    <p class="clause-item"><span class="item-num">3.3.</span> A partir da data de assinatura do presente instrumento, a
+        <span class="bold">CONTRATADA</span> passará a desenvolver suas funções no endereço reconhecidamente declarado
+        como seu domicílio à <span class="bold">CONTRATANTE</span>, consignando a obrigação de sempre comunicar,
+        previamente, e por escrito, ao gestor da área jurídica da <span class="bold">CONTRATANTE</span> acerca de
+        qualquer alteração do aludido endereço ou realização de atividades laborais em endereço distinto.</p>
+
+    <p class="clause-item"><span class="item-num">3.4.</span> A <span class="bold">CONTRATADA</span> exercerá as
+        atividades atinentes ao contrato de prestação de serviços já avençado entre as <span class="bold">PARTES</span>.
+    </p>
+
+    <p class="clause-item"><span class="item-num">3.5.</span> A <span class="bold">CONTRATANTE</span> poderá determinar
+        o retorno da <span class="bold">CONTRATADA</span> ao regime presencial, mediante comunicação simples por
+        escrito, via e-mail.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 6 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">3.6.</span> A <span class="bold">CONTRATADA</span>, declara que o
+        <span class="bold">CONTRATANTE</span> lhe cedeu todo equipamento tecnológico necessário ao desenvolvimento do
+        trabalho remoto, nos termos do Anexo I. Caso a <span class="bold">CONTRATANTE</span> não lhe tenha cedido,
+        declara que a eventual utilização de equipamento pessoal decorre, exclusivamente, de opção da <span
+                class="bold">CONTRATADA</span>, que anui, nesta hipótese, com as restrições previstas na Cláusula 2.8
+        acima.</p>
+
+    <p class="clause-item"><span class="item-num">3.7.</span> A <span class="bold">CONTRATADA</span> declara que demais
+        itens que compõem a infraestrutura, necessária e adequada à prestação do serviço contratado preexistem em sua
+        residência e não adicionam qualquer custo à <span class="bold">CONTRATADA</span>, consentindo, deste modo, que
+        não haverá qualquer reembolso de despesa por parte da <span class="bold">CONTRATANTE</span>.</p>
+
+    <p class="clause-item"><span class="item-num">3.8.</span> A <span class="bold">CONTRATANTE</span> comunicará a <span
+            class="bold">CONTRATADA</span> com a antecedência necessária quando do retorno do contrato de trabalho ao
+        regime presencial, uma vez que a situação nacional permita a reversão sem qualquer prejuízo à saúde e segurança
+        da <span class="bold">CONTRATADA</span>.</p>
+
+    <p class="clause-item"><span class="item-num">3.9.</span> Fica vedado à <span class="bold">CONTRATADA</span>
+        proceder a qualquer mudança, alteração ou manutenção dos equipamentos e <em>softwares</em> cedidos pela <span
+                class="bold">CONTRATANTE</span>. Qualquer problema ou pedido de suporte deverá ser diretamente
+        endereçado ao Departamento de tecnologia da <span class="bold">CONTRATANTE</span>.</p>
+
+    <p class="clause-item"><span class="item-num">3.10.</span> O presente Contrato Particular de Prestação de Serviços
+        Advocatícios, mediante o qual as <span class="bold">PARTES</span> acordaram a adoção do regime de prestação de
+        serviço domiciliar pela <span class="bold">CONTRATADA</span>, vigorará por prazo indeterminado, mediante a
+        prestação de serviços preponderantemente fora das dependências da <span class="bold">CONTRATANTE</span>, com a
+        utilização de tecnologias de informação e comunicação.</p>
+
+    <h2 class="clause">Cláusula Quarta - Do Preço e Forma de Pagamento</h2>
+
+    <p class="clause-item"><span class="item-num">4.1.</span>&nbsp;&nbsp;&nbsp;&nbsp;A remuneração da <span
+            class="bold">CONTRATADA</span> pelo desempenho das suas atividades será determinada com base nos critérios e
+        objetivos estabelecidos no <u>Anexo II</u></p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 7 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p>ao presente Contrato, sendo que essa remuneração será paga mediante a apresentação, pela <span class="bold">CONTRATADA</span>
+        à <span class="bold">CONTRATANTE</span>, da nota fiscal referente aos Serviços prestados ao final de cada mês,
+        durante a vigência do presente contrato, conforme item 4.1.1 abaixo, e cujo pagamento será realizado todo dia 10
+        cada mês.</p>
+
+    <div class="sub-item">
+        <p><span class="sub-num">4.1.1.</span> As notas fiscais deverão ser apresentadas pela <span class="bold">CONTRATADA</span>
+            à <span class="bold">CONTRATANTE</span> até o dia 2 (dois) do mês subsequente da competência a ser recebida,
+            sendo que o atraso na observância de tal prazo poderá ensejar a postergação do pagamento da <span
+                    class="bold">CONTRATANTE</span> à <span class="bold">CONTRATANTE</span> pelo mesmo período.</p>
+    </div>
+
+    <div class="sub-item">
+        <p><span class="sub-num">4.1.2.</span>&nbsp;&nbsp;&nbsp;&nbsp;Caso a data especificada para o pagamento recaia
+            em dia não útil, este vencimento será prorrogado para o primeiro dia útil subsequente a tal data. Para fins
+            deste Contrato, dia útil significará qualquer dia da semana, exceto sábado, domingo ou qualquer outro dia no
+            qual as instituições financeiras brasileiras estejam autorizadas ou exigidas pelas Leis do Brasil a não
+            funcionar na cidade de São Paulo, Estado de São Paulo.</p>
+    </div>
+
+    <p class="clause-item"><span class="item-num">4.2.</span>&nbsp;&nbsp;&nbsp;&nbsp;Todos os pagamentos realizados à
+        <span class="bold">CONTRATADA</span> pela <span class="bold">CONTRATANTE</span>, relacionados a este Contrato,
+        deverão ser realizados em moeda corrente nacional, na seguinte conta bancária de titularidade da <span
+                class="bold">CONTRATADA</span>, ou em qualquer outra conta bancária em nome da <span class="bold">CONTRATADA</span>
+        cujos dados tenham sido fornecidos pelo mesmo com até 5 (cinco) dias úteis de antecedência da data do pagamento:
+    </p>
+
+    <div class="bank-info">
+        <p>Banco: {{BANCO}}</p>
+        <p>Agencia: {{AGENCIA}}</p>
+        <p>Tipo de conta: {{TIPO DE CONTA}}</p>
+        <p>Nº Conta: {{CONTA}}</p>
+        <p>Titularidade: {{TITULARIDADE}}</p>
+        <p>PIX: {{PIX}}</p>
+        <p>CPF: {{CPF}}</p>
+        <p>CNPJ: {{CNPJ}}</p>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 8-9 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">4.3.</span>&nbsp;&nbsp;&nbsp;&nbsp;O recebimento, por parte da <span
+            class="bold">CONTRATADA</span>, de todos os montantes pagos em observância a esta Cláusula deverão liberar a
+        <span class="bold">CONTRATANTE</span> com relação a suas correspondentes obrigações de pagamento de tais
+        valores, de forma que nenhuma formalidade adicional será requerida para esse fim, outorgando a <span
+                class="bold">CONTRATADA</span> a mais plena, geral irrevogável e irretratável quitação com relação aos
+        valores por ela recebidos em cumprimento às obrigações de pagamento da <span class="bold">CONTRATANTE</span> sob
+        o presente Contrato.</p>
+
+    <p class="clause-item"><span class="item-num">4.4.</span>&nbsp;&nbsp;&nbsp;&nbsp;Os pagamentos devidos pela <span
+            class="bold">CONTRATANTE</span> à <span class="bold">CONTRATADA</span> feitos em atraso, nos termos do item
+        4.1 acima e desse item 4.4, deverão ser realizados sempre acrescidos de juros de mora de 3% (três por cento) ao
+        mês e multa moratória de 1% (um por cento) sobre o valor devido e atualizado pela variação positiva do IGP-M/FGV
+        desde a data do vencimento até a data de seu efetivo pagamento.</p>
+
+    <h2 class="clause">Cláusula Quinta - Dos Tributos e Despesas</h2>
+
+    <p class="clause-item"><span class="item-num">5.1.</span> A <span class="bold">CONTRATADA</span> será responsável
+        pela retenção e plena quitação dos ônus fiscais, previdenciários, securitários e outros encargos, decorrentes do
+        exercício das atividades exercidas e inerentes a prestação do presente contrato.</p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Único</span> – Em razão da exigência supra, fica a <span
+            class="bold">CONTRATADA</span>, obrigada a apresentar mensalmente todos os comprovantes de recolhimento
+        previdenciário e fiscal de seus colaboradores, caso esses existam.</p>
+
+    <p class="clause-item"><span class="item-num">5.2.</span> O <span class="bold">CONTRATANTE</span> deverá conforme
+        ora pactuado entre as <span class="bold">PARTES</span>, reembolsar a <span class="bold">CONTRATADA</span> as
+        despesas que a <span class="bold">CONTRATADA</span> vier a incorrer exclusivamente em decorrência do cumprimento
+        do objeto do presente Contrato. As despesas que deverão ser reembolsadas serão as despesas referentes à eventual
+        hospedagem, passagens aéreas, deslocamentos e alimentação, e eventuais custos com fotocópia ou aquisição de
+        material de referência, desde que tais despesas tenham sido previamente autorizadas, por escrito, pela <span
+                class="bold">CONTRATANTE</span>. O custeio de tais despesas será feito na forma de reembolso, mediante a
+        apresentação dos respectivos comprovantes de despesas pela <span class="bold">CONTRATADA</span>.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA 10 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">5.3.</span> Independentemente do disposto acima, a <span class="bold">CONTRATADA</span>
+        deverá prestar os Serviços de que trata este Contrato de maneira diligente, econômica e eficiente a fim de
+        mitigar quaisquer custos e despesas à <span class="bold">CONTRATANTE</span>.</p>
+
+    <h2 class="clause">Cláusula Sexta - Do Prazo e da Rescisão</h2>
+
+    <p class="clause-item"><span class="item-num">6.1.</span> O presente Contrato entrará em vigor na data de sua
+        assinatura e vigorará por indeterminado, sendo que, findo o prazo, ou com antecedência mínima de 30 (trinta)
+        dias corridos de aviso prévio por escrito, considerar-se-á rescindido.</p>
+
+    <p class="clause-item"><span class="item-num">6.2.</span> Qualquer das <span class="bold">PARTES</span> poderá
+        rescindir o presente contrato, em qualquer momento, mesmo antes do término de sua vigência, sem necessidade do
+        pagamento de qualquer indenização, desde que precedida de notificação informando a decisão com 30 (trinta) dias
+        de antecedência, salvaguardando-se as obrigações de recebimento de valores pendentes à título de direitos e
+        garantias estipulados no presente contrato, em conformidade com a cláusula sétima do contrato principal e
+        aditivo.</p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Único</span> – Será devida indenização no valor de 01 (hum)
+        mês de remuneração pela <span class="bold">CONTRATANTE</span> à <span class="bold">CONTRATADA</span>, somente,
+        no caso de rescisão contratual imediata promovida pela <span class="bold">CONTRATANTE</span>.</p>
+
+    <p class="clause-item"><span class="item-num">6.3.</span> Fica convencionado que a <span
+            class="bold">CONTRATANTE</span> não fará jus a qualquer reembolso de pagamentos por ela efetuados, em
+        hipótese de rescisão causada por ela.</p>
+
+    <p class="clause-item"><span class="item-num">6.4.</span> Mediante qualquer hipótese de rescisão segundo este
+        contrato, a <span class="bold">CONTRATADA</span> cessará imediatamente o uso de todas as informações e dados que
+        estiver em seu poder, bem como não receberá as suas atualizações.</p>
+
+    <p class="clause-item"><span class="item-num">6.5.</span> Nenhuma remuneração ou indenização será devida às <span
+            class="bold">PARTES</span>, inclusive, mas sem limitação, seja a título de lucros cessantes, fundo de
+        comércio ou formação de carteira de clientes, não sendo devida tampouco indenização a título de custos de
+        publicidade e/ou investimentos ou quaisquer outros custos,</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINAS 11-13 CLÁUSULAS 6-7 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p>em razão da denúncia prevista na cláusula 4.2. supra, cujo prazo as <span class="bold">PARTES</span> asseguram
+        ser suficiente para atender às suas necessidades.</p>
+
+    <p class="clause-item"><span class="item-num">6.6.</span> Qualquer das <span class="bold">PARTES</span> poderá
+        rescindir imediatamente o presente Contrato, caso a <span class="bold">PARTE</span> contrária deixe de cumprir
+        com as respectivas obrigações decorrentes deste Contrato. A <span class="bold">PARTE</span> inadimplente em tal
+        sentido, arcará com as perdas e danos a que der causa, sem prejuízo, ainda, da <span class="bold">PARTE</span>
+        inadimplente ficar obrigada ao pagamento de multa no valor correspondente a 10% (dez por cento) do valor total
+        já pago a <span class="bold">CONTRATADA</span>, sendo certo que a multa é valor mínimo a ser pago, sendo direito
+        da <span class="bold">PARTE</span> prejudicada a quantificação do valor integral de seu prejuízo e seu devido
+        pagamento pela <span class="bold">PARTE</span> infratora no caso concreto.</p>
+
+    <h2 class="clause">Cláusula Sétima - Das Responsabilidades e Garantias</h2>
+
+    <p>Sem prejuízo de qualquer outra obrigação legal ou ora pactuada, as <span class="bold">PARTES</span> acordam que:
+    </p>
+
+    <p class="clause-item"><span class="item-num">7.1.</span> Em decorrência deste Contrato, sob nenhuma hipótese ou em
+        qualquer situação, se presumirá a eventual existência, ou se estabelecerá a presunção de qualquer vínculo
+        empregatício, ou obrigações de caráter trabalhista e previdenciário entre a <span class="bold">CONTRATADA</span>
+        e a <span class="bold">CONTRATANTE</span>; nem a <span class="bold">CONTRATANTE</span> será fiadora das
+        obrigações, encargos e ônus da <span class="bold">CONTRATADA</span> a qual, assume neste ato integral
+        responsabilidade por tais obrigações, inclusive civis e penais.</p>
+
+    <p class="clause-item"><span class="item-num">7.2.</span> As <span class="bold">PARTES</span> declaram e garantem
+        que a assinatura e execução deste Contrato não constitui e não constituirá (i) uma violação ou um conflito com
+        qualquer outro acordo firmado por uma delas com outra pessoa ou entidade, ou qualquer obrigação legal,
+        incluindo, mas sem limitação, qualquer dever de fidúcia ou ordem judicial; (ii) violação de qualquer direito de
+        exclusividade de qualquer pessoa; e (iii) violação de qualquer direito de propriedade intelectual de terceiros.
+    </p>
+
+    <p class="clause-item"><span class="item-num">7.3.</span> A <span class="bold">CONTRATADA</span> obriga-se,
+        periodicamente, e sempre que solicitado pela <span class="bold">CONTRATANTE</span>, a prestar informações sobre
+        o andamento dos Serviços, observando ainda, a antecedência necessária à análise da <span class="bold">CONTRATANTE</span>.
+    </p>
+
+    <p class="clause-item"><span class="item-num">7.4.</span> Não é permitido à <span class="bold">CONTRATADA</span> que
+        os Serviços, ora pactuados, sejam subcontratados, em parte ou integralmente, a terceiros.</p>
+
+    <p class="clause-item"><span class="item-num">7.5.</span> A <span class="bold">CONTRATADA</span> se obriga a prestar
+        os Serviços, objeto do presente Contrato, em estrita observância às regras contidas nas normas regulamentadoras
+        e normas técnicas oficiais vigentes no país ou, na ausência destas normas internacionais vigentes, que forem
+        aplicáveis em relação aos Serviços objeto do presente.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - Responsabilidades cont. ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Primeiro</span> - São obrigações e responsabilidades
+        exclusivas da <span class="bold">CONTRATADA</span>:</p>
+
+    <div class="sub-item">
+        <p><span class="bold">a)</span> Executar os serviços contratados utilizando a melhor técnica e visando sempre
+            atingir o melhor resultado, sob sua exclusiva responsabilidade, sendo-lhe vedada a transferência dos mesmos
+            a terceiros, sem prévia e expressa concordância da <span class="bold">CONTRATANTE</span>;</p>
+        <p style="margin-top:3mm;"><span class="bold">b)</span> Executar os trabalhos de maneira criteriosa na forma de
+            orientações escritas que serão encaminhadas pela <span class="bold">CONTRATANTE</span>;</p>
+        <p style="margin-top:3mm;"><span class="bold">c)</span> A total responsabilidade pelos atos e/ou omissões
+            praticados por seus empregados/prepostos, bem como pelos danos de qualquer natureza que os mesmos venham a
+            sofrer ou causar para a <span class="bold">CONTRATANTE</span>, e seus clientes ou terceiros em geral, em
+            decorrência da prestação dos serviços prestados neste contrato;</p>
+        <p style="margin-top:3mm;"><span class="bold">d)</span> O pagamento da remuneração de seus empregados/prepostos,
+            sendo responsável por todos e quaisquer ônus e encargos decorrentes da legislação trabalhista, fiscal e
+            previdenciária, além dos impostos, taxas, obrigações, despesas e afins, que venham a ser reclamados ou
+            tornados obrigatórios em decorrência das obrigações assumidas neste contrato;</p>
+        <p style="margin-top:3mm;"><span class="bold">e)</span> A responsabilidade única e exclusiva por qualquer
+            espécie de indenização pleiteada por seus empregados/prepostos, principalmente no tocante a reclamações
+            trabalhistas e acidentes do trabalho;</p>
+        <p style="margin-top:3mm;"><span class="bold">f)</span> O cumprimento de todas as determinações impostas pelas
+            autoridades públicas competentes, relativas aos serviços aqui contratos, bem como o pagamento de todos os
+            tributos federais, estaduais e municipais que incidam ou venham a incidir sobre os mesmos;</p>
+        <p style="margin-top:3mm;"><span class="bold">g)</span> A total responsabilidade pelas despesas decorrentes dos
+            serviços ora contratados, por exigência legal, nada podendo ser cobrado ou exigido da <span class="bold">CONTRATANTE</span>,
+            desde que não haja qualquer outra expressa previsão contratual em contrário.</p>
+    </div>
+
+    <p class="clause-item"><span class="item-num">7.6.</span> A <span class="bold">CONTRATANTE</span> se compromete a
+        efetuar o pagamento à <span class="bold">CONTRATADA</span> dos valores pactuados na cláusula segunda, nas datas
+        estabelecidas pelas <span class="bold">PARTES</span>, observados, contudo, os termos e condições deste Contrato.
+    </p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Único</span> - São também obrigações e responsabilidades
+        exclusivas da <span class="bold">CONTRATANTE</span>:</p>
+
+    <div class="sub-item">
+        <p><span class="bold">a)</span> Comunicar a <span class="bold">CONTRATADA</span> sobre as reclamações feitas
+            contra seus empregados/prepostos, bem como com relação a danos por eles causados;</p>
+        <p style="margin-top:3mm;"><span class="bold">b)</span> Fornecer a <span class="bold">CONTRATADA</span> a
+            documentação solicitada, colocar à disposição da contratada as necessárias verbas pecuniárias que podem ser
+            necessárias para desenvolver o trabalho;</p>
+        <p style="margin-top:3mm;"><span class="bold">c)</span> Reembolsar a <span class="bold">CONTRATADA</span> as
+            despesas que vier a incorrer exclusivamente em decorrência do cumprimento do objeto do presente Contrato; e
+        </p>
+        <p style="margin-top:3mm;"><span class="bold">d)</span> Fornecer a <span class="bold">CONTRATADA</span>, período
+            de descanso anual de 22 (vinte e dois) dias úteis, para repouso e lazer, podendo referido período ser
+            retirados integralmente ou parcelados, em conformidade conforme alinhamento prévio e interesse das Partes.
+        </p>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 7.7 a 8.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">7.7.</span> Reconhecem as Partes, que outras garantias e direitos não
+        dispostos no instrumento particular de contrato de prestação de serviços advocatícios e aditivos, estarão
+        relacionados no corpo de diretrizes (Diretrizes - Grupos Empresariais – Pessoas Jurídicas), formulado pelos
+        sócios e gestores de área, com o intuito de complementar regulamentação das disposições sociais.</p>
+
+    <p class="para-unico"><span class="pu-label">Parágrafo Único</span> – As diretrizes serão revistas anualmente, na
+        primeira reunião anual do grupo de sócios e gestores (STAFF) com o intento de avaliar, alterar, modificar e
+        acrescentar garantias e direitos, estabelecendo-se, desde já, que não ocorra redução ou exclusão desses. A
+        suspensão temporária será possível, desde que precedida de justificativa plausível e que impacte sobremaneira na
+        saúde financeira da empresa, associados, funcionários ou prestadores de serviço.</p>
+
+    <p class="clause-item"><span class="item-num">7.8.</span> Reconhece a <span class="bold">CONTRATADA</span> que todos
+        os documentos, projetos e quaisquer materiais arquivados e registrados de qualquer forma, sejam originais ou
+        cópias, da <span class="bold">CONTRATANTE</span> ou que sejam revelados para a <span
+                class="bold">CONTRATADA</span> durante o período de vigência deste Contrato, são de propriedade
+        exclusiva da <span class="bold">CONTRATANTE</span> ou de seus associados, comprometendo-se a <span class="bold">CONTRATADA</span>,
+        se na posse de tais documentos e materiais, em devolvê-los imediatamente na rescisão deste Contrato ou conforme
+        for solicitado, a qualquer tempo pela <span class="bold">CONTRATANTE</span>, devendo a <span class="bold">CONTRATADA</span>
+        manter toda e qualquer informação ou dado revelado pela <span class="bold">CONTRATANTE</span> e/ou obtido pela
+        <span class="bold">CONTRATADA</span> em razão ou em decorrência do presente instrumento em estrito sigilo e
+        confidencialidade, a qualquer tempo, mesmo após o término deste Contrato, qualquer que seja a causa.</p>
+
+    <p class="clause-item"><span class="item-num">7.9.</span> As <span class="bold">PARTES</span> neste ato concordam
+        que serão tratadas como confidenciais e sigilosas toda e qualquer informação, de qualquer forma (gráfica,
+        eletrônica ou qualquer outro modo), referente ou de propriedade da <span class="bold">CONTRATANTE</span>,
+        incluindo dados e informações de seus associados, de negócios seus ou de seus clientes, operações, produtos e
+        assuntos financeiros, inclusive, mas sem limitação, toda informação compilada ou gerada pela <span class="bold">CONTRATADA</span>
+        na execução deste Contrato.</p>
+
+    <p class="clause-item"><span class="item-num">7.10.</span> Todas as informações obtidas pela <span class="bold">CONTRATADA</span>,
+        direta ou indiretamente, em decorrência de sua relação com a <span class="bold">CONTRATANTE</span>, serão e
+        permanecerão de propriedade da <span class="bold">CONTRATANTE</span>.</p>
+
+    <h2 class="clause">Cláusula Oitava - Da Confidencialidade</h2>
+
+    <p class="clause-item"><span class="item-num">8.1.</span> A <span class="bold">CONTRATADA</span> reconhece que no
+        desenvolvimento de suas funções, terão acesso a informações sigilosas e confidenciais da <span class="bold">CONTRATANTE</span>,
+        bem como informações de seus clientes (doravante denominados "<u>clientes</u>"), as quais, se indevidamente
+        reveladas e/ou utilizadas, trarão prejuízos irreparáveis à <span class="bold">CONTRATANTE</span> e/ou a seus
+        clientes.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - Confidencialidade cont. ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <div class="sub-item">
+        <p><span class="sub-num">8.1.1.</span> Para fins do presente Contrato, caracterizam-se como Informações
+            Confidenciais todas aquelas fontes, físicas ou virtuais, que digam respeito à <span
+                    class="bold">CONTRATANTE</span>, físicas ou virtuais, sejam de caráter técnico ou não, que esteja em
+            poder da <span class="bold">CONTRATANTE</span>, e que seja revelada à <span class="bold">CONTRATADA</span>.
+            Também será considerada "informação", toda e qualquer informação desenvolvida pela <span class="bold">CONTRATADA</span>
+            que contenha, em parte ou na íntegra, a informação revelada, incluindo, mas não se limitando a:</p>
+        <p style="margin-top:3mm;"><span class="bold">a)</span> todas e quaisquer técnicas de produção utilizadas na
+            condução dos negócios da <span class="bold">CONTRATANTE</span>;</p>
+        <p style="margin-top:3mm;"><span class="bold">b)</span> relatórios, documentos em geral e os contábeis,
+            inclusive, desenhos e fotografias;</p>
+        <p style="margin-top:3mm;"><span class="bold">c)</span> invenções, projetos, segredos industriais, fórmulas
+            secretas, novos produtos, descobertas de "know-how", métodos e processos, patenteados ou não pela <span
+                    class="bold">CONTRATANTE</span> ou por quaisquer de seus associados presentes ou passados;</p>
+        <p style="margin-top:3mm;"><span class="bold">d)</span> clientes e listas de clientes;</p>
+        <p style="margin-top:3mm;"><span class="bold">e)</span> todos os trabalhos, métodos, processos, tecnologias e
+            segredos de mercado, práticas comerciais e administrativas, planos societários, finanças, práticas
+            jurídicas, novas oportunidades de negócio, métodos contábeis, métodos gerenciais, estrutura de preços e
+            custos, técnicas de propaganda e marketing, informações pessoais ou de pessoal não acessíveis ao público;
+        </p>
+        <p style="margin-top:3mm;"><span class="bold">f)</span> qualquer informação, material ou documento que a <span
+                class="bold">CONTRATANTE</span>, bem como informações de seus clientes presentes e passados identifiquem
+            ou tratem como sendo confidencial, ou com relação às quais tenham obrigação de confidencialidade perante
+            terceiros, quer estejam ou não gravadas em forma documental, em receptáculo de armazenamento físico (e.g.
+            disquete, CD, DVD, pendrive e etc) ou digital (doravante denominadas simplesmente "<u>Informações
+                Confidenciais</u>").</p>
+    </div>
+
+    <p class="clause-item"><span class="item-num">8.2.</span>&nbsp;&nbsp;&nbsp;&nbsp;A <span
+            class="bold">CONTRATADA</span> reconhece que as estratégias da <span class="bold">CONTRATANTE</span>, bem
+        como seus arquivos, registros, documentos, informações técnicas referentes a seus produtos, equipamentos,
+        serviços, processos, procedimentos, o nome e quaisquer outras informações referentes tanto à <span class="bold">CONTRATANTE</span>
+        quanto aos seus clientes devem, também, ser tratadas como confidenciais, devendo, ainda, serem considerados
+        segredos comerciais.</p>
+
+    <p class="clause-item"><span class="item-num">8.3.</span> A <span class="bold">CONTRATADA</span> reconhece que é de
+        suma importância que as Informações Confidenciais sejam protegidas contra divulgação ou reprodução não
+        autorizada.</p>
+
+    <div class="sub-item">
+        <p><span class="sub-num">8.3.1.</span> Somente serão feitas cópias de quaisquer Informações Confidenciais ou de
+            qualquer parte delas se for absolutamente necessário; a confidencialidade dessas cópias será mantida como se
+            estas originais fossem.</p>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 8.4 a 9.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">8.4.</span> Durante o período de vigência do presente Contrato e após
+        o seu término, por qualquer motivo que seja, a <span class="bold">CONTRATADA</span> se compromete a:</p>
+    <div class="sub-item">
+        <p><span class="bold">a)</span> não divulgar a identidade de qualquer sócio e clientes presente ou passado da
+            <span class="bold">CONTRATANTE</span> sem que seja expressamente autorizado pela <span class="bold">CONTRATANTE</span>;
+        </p>
+        <p style="margin-top:3mm;"><span class="bold">b)</span> não revelar a qualquer pessoa física ou jurídica sem que
+            seja expressamente autorizado pela <span class="bold">CONTRATANTE</span>, quaisquer Informações
+            Confidenciais, às quais tenha tido acesso em função das atividades desenvolvidas para a <span class="bold">CONTRATANTE</span>,
+            ainda que não tenha sido firmado qualquer compromisso expresso de confidencialidade entre a <span
+                    class="bold">CONTRATANTE</span> e os clientes;</p>
+        <p style="margin-top:3mm;"><span class="bold">c)</span> destruir imediatamente após a utilização todas as cópias
+            ou reproduções feitas de qualquer material ou documento que contenha Informações Confidenciais, salvo se
+            expressamente permitido por sócio da <span class="bold">CONTRATANTE</span>; e</p>
+        <p style="margin-top:3mm;"><span class="bold">d)</span> não usar as Informações Confidenciais em benefício
+            próprio ou em benefício de qualquer terceiro pessoa física ou jurídica que não seja a <span class="bold">CONTRATANTE</span>
+            e/ou seus clientes relacionados a tais informações, e, em nenhum caso, para fins não autorizados pela <span
+                    class="bold">CONTRATANTE</span>.</p>
+    </div>
+
+    <p class="clause-item"><span class="item-num">8.5.</span> Salvo mediante expressa autorização em contrário, a <span
+            class="bold">CONTRATADA</span> deverá considerar que todas as informações recebidas pela <span class="bold">CONTRATANTE</span>,
+        de seus clientes ou de quaisquer outras fontes deverão ser tratadas como Informações Confidenciais.</p>
+    <p class="clause-item"><span class="item-num">8.6.</span> A <span class="bold">CONTRATADA</span>, neste ato,
+        compromete-se a proteger todas as Informações Confidenciais a que tenha acesso, assegurando-se de que as mesmas
+        permanecerão em local seguro, e que jamais serão disponibilizadas a pessoas não autorizadas.</p>
+    <p class="clause-item"><span class="item-num">8.7.</span> Não serão consideradas confidenciais as informações
+        disponíveis ao público em geral.</p>
+    <p class="clause-item"><span class="item-num">8.8.</span> Se as Informações Confidenciais tiverem de ser usadas ou
+        divulgadas, em razão de decisão judicial, a <span class="bold">CONTRATADA</span> notificará a <span
+                class="bold">CONTRATANTE</span> imediatamente para que esta tome todas as medidas necessárias para
+        garantir a confidencialidade das informações, recorrendo a qualquer medida, judicial ou não, aplicável ao caso,
+        e a <span class="bold">CONTRATADA</span>, ainda, se compromete a prestar (sem necessidade de pagamento) toda a
+        assistência necessária para que a <span class="bold">CONTRATANTE</span> venha a proteger os seus direitos.</p>
+    <p class="clause-item"><span class="item-num">8.9.</span> A finalidade dos parágrafos precedentes é a proteção do
+        segredo e propriedade das Informações Confidenciais, e nada neste instrumento será considerada licença nem
+        obrigará a <span class="bold">CONTRATANTE</span> a conceder a <span class="bold">CONTRATADA</span> ou a qualquer
+        outra pessoa física ou jurídica licença de uso das Informações Confidenciais para qualquer finalidade, à exceção
+        daquelas autorizadas e expressamente definidas, por escrito, pela <span class="bold">CONTRATANTE</span>.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 8.10 a 9.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">8.10.</span> A <span class="bold">CONTRATADA</span> garante à <span
+            class="bold">CONTRATANTE</span> que não divulgará nem usará quaisquer Informações Confidenciais de
+        terceiros, as quais ela tenha adquirido previamente ou as quais estejam protegidas nos termos de qualquer
+        obrigação contratual de segredo, e que isentará a <span class="bold">CONTRATANTE</span> de responsabilidades por
+        quaisquer reivindicações, ações, indenizações, prejuízos, custos e perdas caso a <span
+                class="bold">CONTRATADA</span> não cumpra qualquer compromisso assumido nos termos do presente
+        instrumento.</p>
+    <p class="clause-item"><span class="item-num">8.11.</span> A confidencialidade prevista nessa cláusula quarta deverá
+        ser mantida após o término do Contrato de Prestação de Serviços e respectivos Aditivos, independentemente do
+        motivo da rescisão contratual.</p>
+    <p class="clause-item"><span class="item-num">8.12.</span> Os dados relativos à <span
+            class="bold">CONTRATANTE</span> estão sob os cuidados da <span class="bold">CONTRATADA</span> ou terceiros
+        designados pela <span class="bold">CONTRATADA</span>, nos termos da Lei nº 13.709/2018, tendo a <span
+                class="bold">CONTRATADA</span>, tanto na vigência do presente Contrato de Prestação de Serviços, e
+        respectivos Aditivos, quanto por até 12 (doze) meses a contar da rescisão deste contrato, seja por iniciativa da
+        <span class="bold">CONTRATANTE</span> ou da <span class="bold">CONTRATADA</span>, o dever de não divulgação, sob
+        as penas da aludida lei.</p>
+
+    <h2 class="clause">Cláusula Nona - Da Propriedade Intelectual</h2>
+
+    <p class="clause-item"><span class="item-num">9.1.</span> A <span class="bold">CONTRATANTE</span> declara e
+        reconhece que na execução do escopo do presente instrumento, a <span class="bold">CONTRATADA</span>, criará ou
+        ainda poderá criar certas obras ou produtos que poderão ser protegidos por direitos de propriedade industrial ou
+        direitos exclusivos de autor ("Obras") incluindo, mas não se limitando, a ideias, teses jurídicas, fórmulas,
+        produtos, métodos, processos, informações aplicáveis à indústria, sugestões de nomes, títulos ou expressões,
+        obras audiovisuais, <em>lay-outs</em>, composições, ilustrações, desenhos, códigos fonte, know-how, slogans e,
+        ainda, quaisquer modificações, melhorias ou derivações nos mesmos, quer reduzidos a forma tangível, postos em
+        prática ou não.</p>
+
+    <div class="sub-item">
+        <p><span class="sub-num">9.1.1.</span> Na medida em que quaisquer dessas obras sejam desenvolvidas ou criadas,
+            estas serão consideradas como criadas sob encomenda da <span class="bold">CONTRATANTE</span>. Assim a <span
+                    class="bold">CONTRATADA</span> declara e reconhece que a <span class="bold">CONTRATANTE</span> terá
+            a propriedade exclusiva sobre tais obras, incluindo direitos de propriedade industrial e autoral, os
+            direitos patrimoniais e de exploração, sobre quando desenvolvidas e/ou criadas em razão ou decorrência do
+            escopo dos serviços ora contratados, pela <span class="bold">CONTRATANTE</span>, e/ou das informações de
+            propriedade da <span class="bold">CONTRATANTE</span> de caráter confidencial, proprietário ou exclusivo,
+            sendo direito da <span class="bold">CONTRATANTE</span>, a seu exclusivo critério, explorar economicamente
+            referidas Obras, direta ou indiretamente, licenciar e/ou ceder a terceiros os direitos sobre estas, de forma
+            exclusiva e sem qualquer espécie de restrição ou limitação, em especial no que se refere à forma de
+            utilização, exploração, distribuição ou circulação das mesmas. A <span class="bold">CONTRATADA</span> também
+            concorda que não criará, utilizará e/ou autorizará o uso, tanto durante quanto após o término deste Contrato
+            e/ou dos serviços, de qualquer Obra e/ou de qualquer propriedade intelectual relacionada direta ou
+            indiretamente com as Obras.</p>
+        <p style="margin-top:3mm;"><span class="sub-num">9.1.2.</span> As <span class="bold">PARTES</span> acordam
+            expressamente que as Obras pertencerão exclusivamente à <span class="bold">CONTRATANTE</span>, mesmo que
+            criadas fora das suas dependências, se vinculadas ou decorrerem do cumprimento do escopo deste Contrato e/ou
+            dos serviços que foram contratados com a <span class="bold">CONTRATADA</span> e/ou das informações de
+            propriedade da <span class="bold">CONTRATANTE</span> de caráter confidencial ou exclusivo. A <span
+                    class="bold">CONTRATADA</span> se obriga a não reclamar, a qualquer tempo, as Obras como de sua
+            propriedade e/ou titularidade.</p>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 9.2 a 10.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">9.2.</span> A <span class="bold">CONTRATADA</span> reconhece ainda que
+        a <span class="bold">CONTRATANTE</span> poderá, a seu exclusivo critério e a qualquer tempo, no Brasil ou no
+        exterior, na qualidade de única e exclusiva titular dos direitos de propriedade sobre as Obras, requerer e obter
+        em nome exclusivo da <span class="bold">CONTRATANTE</span>, junto aos órgãos e entidades governamentais
+        competentes, todos os registros que julgue necessários ou convenientes para: (i) assegurar a proteção dos
+        direitos de propriedade sobre tais Obras, e/ou (ii) a comercialização das vantagens econômicas que delas possa
+        ser obtida (incluindo registros correlatos, tais como marcas e nomes de domínio), comprometendo-se, assim, a
+        colaborar pronta e completamente com a <span class="bold">CONTRATANTE</span>, incluindo mediante o fornecimento
+        de todas as informações e assinatura de todos os documentos que sejam necessários para tanto.</p>
+    <p class="clause-item"><span class="item-num">9.3.</span> É vedado a <span class="bold">CONTRATADA</span>, durante
+        ou após a vigência deste Contrato (i) requerer ou obter, em nome próprio ou de terceiros, a titularidade ou o
+        registro em relação a qualquer Obra, incluindo, sem limitação, perante o Instituto Nacional de Propriedade
+        Intelectual - INPI ou qualquer outro órgão competente, no Brasil ou no exterior; e (ii) ceder total ou
+        parcialmente, doar, licenciar, bem como oferecer em garantia gratuita ou onerosa qualquer das Obras.</p>
+    <p class="clause-item"><span class="item-num">9.4.</span> Para todos os propósitos e intenções, a <span
+            class="bold">CONTRATADA</span> ratifica que todos os direitos de propriedade, inclusive os patrimoniais de
+        autor e os de natureza industrial, são cedidos à <span class="bold">CONTRATANTE</span> completa, exclusiva e
+        definitivamente, incluindo direitos de participação, titularidade, uso e exploração sobre todos e quaisquer
+        Obras, e garantem que não usará tais direitos e/ou que não contribuirá para seu uso por terceiros com quais
+        mantiverem relações a qualquer tempo. Fica expressamente acordado que a cessão dos direitos de propriedade,
+        incluindo direitos de participação, titularidade, uso e exploração sobre as Obras, será válida dentro e fora do
+        território brasileiro, em caráter irrevogável, exclusivo e de forma total e definitiva, e sem qualquer ônus para
+        a <span class="bold">CONTRATANTE</span>, concedendo à <span class="bold">CONTRATANTE</span> o direito de
+        modificar, traduzir para outros idiomas, editar, publicar, mostrar, reproduzir, adaptar, distribuir, praticar,
+        transmitir e/ou divulgar, licenciar e/ou ceder para terceiros as referidas Obras e/ou os referidos direitos,
+        incluindo-os como parte de trabalho derivado e/ou coletivo organizado por terceiros ou pela <span class="bold">CONTRATANTE</span>,
+        em qualquer ocasião e incondicionalmente, e a <span class="bold">CONTRATANTE</span> poderá usá-los em qualquer
+        processo, meio ou técnica, como reproduções, fotografias, audiovisuais, áudios, comunicações a cabo,
+        transmissões (rádio e televisão) por satélite ou qualquer outro processo, seja ou não digital, eletromagnético,
+        incluindo comunicação on-line pela Internet.</p>
+    <p class="clause-item"><span class="item-num">9.5.</span> Mediante a expiração ou rescisão deste Contrato, por
+        qualquer motivo, ou mediante solicitação da <span class="bold">CONTRATANTE</span>, em qualquer ocasião, a <span
+                class="bold">CONTRATADA</span> devolverá prontamente para a <span class="bold">CONTRATANTE</span> todas
+        as propriedades intelectuais desta e qualquer trabalho executado, concluído ou não, incluindo desenhos, modelos,
+        rascunhos, ideias, conceitos, ilustrações, filmes, dados, arquivos e informações digitais, cópias ou outros
+        itens, informações ou qualquer criação feita no curso do desenvolvimento das referidas Obras e/ou no curso das
+        suas atividades para a <span class="bold">CONTRATANTE</span>.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 9.6 a 10.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">9.6.</span> Em consequência do acordo estabelecido neste instrumento,
+        incluindo o valor fixado neste Contrato, a <span class="bold">CONTRATADA</span> concorda em não ajuizar qualquer
+        reivindicação ou demanda de indenização contra a <span class="bold">CONTRATANTE</span> em decorrência da cessão
+        aqui acordada e/ou do uso de qualquer Obra ou direito de propriedade pela <span class="bold">CONTRATANTE</span>.
+    </p>
+    <p class="clause-item"><span class="item-num">9.7.</span> A <span class="bold">CONTRATADA</span> e a <span
+            class="bold">CONTRATANTE</span>, neste ato, previamente acordam que será facultado à <span class="bold">CONTRATANTE</span>
+        reproduzir, incondicionalmente, qualquer Obra, mesmo que a reprodução não seja absolutamente igual ao trabalho
+        original. Também será permitido que o nome da <span class="bold">CONTRATADA</span> como autora não seja citado,
+        exceto nos casos em que isso for proibido por lei aplicável à jurisdição do Contrato.</p>
+    <p class="clause-item"><span class="item-num">9.8.</span> Se a <span class="bold">CONTRATADA</span> for considerada,
+        nos termos da lei ou de qualquer outro dispositivo, a detentora de qualquer um dos direitos acima sobre qualquer
+        Obra, a <span class="bold">CONTRATADA</span> concorda em: (i) cooperar com a <span
+                class="bold">CONTRATANTE</span> e assisti-la, sem custos, na tentativa de obter e manter qualquer
+        proteção governamental sobre a referida Obra, e assinar qualquer documento que a <span
+                class="bold">CONTRATANTE</span> venha a necessitar para esse fim; e (ii) assinar todo e qualquer
+        documento exigido para a efetiva satisfação dos termos, condições e garantias aqui acordadas, incluindo a
+        cessão, sem custos para a <span class="bold">CONTRATANTE</span>, da titularidade, direitos patrimoniais e
+        direitos de prática do autor, direitos de patente e qualquer outro direito exclusivo ao que a <span
+                class="bold">CONTRATADA</span> tiver direito ou do qual a <span class="bold">CONTRATADA</span> venha a
+        ser considerada a detentora com relação a tais Obras.</p>
+
+    <h2 class="clause">Cláusula Décima - Não Concorrência</h2>
+
+    <p class="clause-item"><span class="item-num">10.1.</span> Exceto nos casos em que a <span
+            class="bold">CONTRATANTE</span> manifeste seu consentimento prévio e por escrito, a <span class="bold">CONTRATADA</span>
+        não poderá e não deverá, em âmbito mundial, direta ou indiretamente, por si mesmo ou por interpostas pessoas e
+        por seus sócios, administradores ou terceiros, durante o prazo em que estiver prestando serviços para a <span
+                class="bold">CONTRATANTE</span> e pelo Período de Restrição (conforme definido abaixo), competir ("<u>Atividade
+            Concorrente</u>") com a <span class="bold">CONTRATANTE</span> e suas Afiliadas, inclusive mediante o
+        exercício das seguintes atividades ("<u>Compromisso de Não-Concorrência</u>"):</p>
+    <div class="sub-item">
+        <p><span class="bold">a)</span> operar, envolver-se com ou por qualquer meio participar ou atuar, seja na
+            qualidade de quotista, acionista, sócio, empregado, agente, colaborador, parte contratada, prestador de
+            serviços e outras formas, em benefício de qualquer pessoa física ou jurídica que realize, direta ou
+            indiretamente, quaisquer Atividades Concorrentes dentro do mercado jurídico, conforme definição abaixo;</p>
+        <p style="margin-top:3mm;"><span class="bold">b)</span> constituir qualquer pessoa jurídica ou entidade,
+            independentemente de sua forma legal, com ou sem personalidade jurídica, que, direta ou indiretamente,
+            totalmente ou parcialmente, realize atividades similares às Atividades Concorrentes, conforme definição
+            abaixo.</p>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 10.2 a 11.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">10.2.</span> Para os fins do presente, será considerada "<u>Atividade
+        Concorrente</u>" qualquer atividade explorada dentro do mercado jurídico conforme objeto deste contrato, ou que
+        venha a ser futuramente explorada pela Sociedade e por suas Afiliadas. Para fins deste Contrato,
+        "<u>Afiliada</u>" significará, com relação a uma <span class="bold">PARTE</span>, toda e qualquer sociedade
+        controlada, controladora ou sob controle comum, direta ou indiretamente, a ela, e conforme definição de "<u>controle</u>"
+        trazida pelo artigo 116 da Lei nº 6.404/76, conforme alterada.</p>
+    <p class="clause-item"><span class="item-num">10.3.</span>&nbsp;&nbsp;&nbsp;&nbsp;As <span
+            class="bold">PARTES</span> acordam que diante dos pagamentos que já serão efetuados pela <span class="bold">CONTRATANTE</span>
+        à <span class="bold">CONTRATADA</span> nos termos da cláusula segunda acima, a <span
+                class="bold">CONTRATADA</span> assume de forma incondicional e irrestrita, independentemente do tempo em
+        que o presente Contrato permanecer vigente e dos valores já recebidos como indenização pelo Compromisso de Não
+        Concorrência, a obrigação de observar este compromisso pelo período de 12 (doze) meses após o término da
+        vigência deste Contrato (juntamente com o prazo de vigência do Contrato, o "<u>Período de Restrição Inicial</u>").
+    </p>
+    <p class="clause-item"><span class="item-num">10.4.</span> Nenhuma parcela da indenização para à <span class="bold">CONTRATADA</span>
+        como remuneração pelo seu compromisso de não concorrência aqui previsto (conforme a cláusula segunda acima)
+        deverá ser restituída à <span class="bold">CONTRATANTE</span> após o término da vigência do Contrato, exceto se
+        a <span class="bold">CONTRATADA</span> descumprir seu Compromisso de Não-Concorrência, hipótese em que a <span
+                class="bold">CONTRATADA</span> deverá restituir a <span class="bold">CONTRATANTE</span> o valor da
+        compensação pelo Período de Restrição de forma proporcional ao período não cumprido, não obstante a aplicação
+        das demais penalidades cabíveis nos termos do presente Contrato.</p>
+    <p class="clause-item"><span class="item-num">10.5.</span> Nenhum valor, além do valor correspondente à compensação
+        pelo Período de Restrição, conforme os termos do Contrato serão devidos a <span class="bold">CONTRATANTE</span>
+        para fins de cumprimento do Compromisso de Não-Concorrência pelo período em que a <span
+                class="bold">CONTRATADA</span> estiver vinculada à <span class="bold">CONTRATANTE</span> e o Contrato
+        estiver vigente.</p>
+    <p class="clause-item"><span class="item-num">10.6.</span> A <span class="bold">CONTRATADA</span> reconhece e
+        concorda que o inadimplemento do Compromisso de Não-Concorrência estabelecido conforme os termos desta Cláusula
+        Oitava resultará em dano irreparável à <span class="bold">CONTRATANTE</span>, e que todos e quaisquer eventos de
+        inadimplemento deverão sujeitar a <span class="bold">CONTRATADA</span> ao pagamento de multa cominatória no
+        valor de 05 (cinco) vezes o valor da última Remuneração Mensal fixa paga a <span class="bold">CONTRATADA</span>
+        pela prestação dos Serviços, para cada evento de inadimplemento. O pagamento da multa cominatória prevista acima
+        não obsta a obrigação da <span class="bold">CONTRATADA</span> quanto ao pagamento de indenização por todas as
+        perdas e danos que venham a ser causados à Contratante em virtude do inadimplemento do Compromisso de
+        Não-Concorrência, e não impedirá a <span class="bold">CONTRATANTE</span> de buscar, mediante o ajuizamento das
+        medidas judiciais cabíveis, a execução específica da obrigação de não concorrência assumida pela <span
+                class="bold">CONTRATADA</span> nos termos deste instrumento.</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 10.8 a 11.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">10.8.</span> A <span class="bold">CONTRATADA</span> expressamente
+        reconhece e concorda que as disposições desta Cláusula Oitava são justas, equitativas, legítimas e plenamente
+        válidas, vinculando as <span class="bold">PARTES</span> na integralidade de seus termos, e que o valor da
+        compensação pelo Período de Restrição pelo cumprimento do Compromisso de Não-Concorrência pago pela <span
+                class="bold">CONTRATANTE</span> conforme o presente instrumento constitui compensação suficiente para
+        que se possa exigir a estrita observância de todos os termos e condições desta Cláusula Oitava pela <span
+                class="bold">CONTRATADA</span>. As obrigações assumidas pela <span class="bold">CONTRATADA</span> na
+        presente Cláusula Oitava não lhe impedem de exercer suas atividades na qualidade de prestadora de serviços ou
+        outra forma com vistas a se utilizar de sua expertise no setor em que atua, mas apenas e tão somente lhe impedem
+        de praticar atividades concorrentes com as da <span class="bold">CONTRATANTE</span>, conforme aqui definidas,
+        pelo que a compensação para pelo Período de Restrição é compensação suficiente e equitativa para o que se exige
+        de contraprestação da <span class="bold">CONTRATADA</span> sob a presente Cláusula Oitava [vide Anexo I]. A
+        <span class="bold">CONTRATANTE</span> fica desde já autorizada a divulgar para terceiros a existência desta
+        Cláusula e seu conteúdo.</p>
+
+    <h2 class="clause">Cláusula Décima Primeira - Não Difamação e Não Solicitação</h2>
+
+    <p class="clause-item"><span class="item-num">11.1.</span> A <span class="bold">CONTRATADA</span> declara e assegura
+        que não tentará, a qualquer tempo, inclusive mesmo após o término do presente contrato, diretas ou
+        indiretamente, pessoalmente ou através de qualquer pessoa física e/ou sociedade, corporação ou outra entidade,
+        fazer qualquer comentário a qualquer pessoa que importe em demérito para a <span class="bold">CONTRATANTE</span>,
+        seus sócios, Afiliadas, diretores, empregados, consultores, representantes, clientes ou qualquer pessoa
+        vinculada à <span class="bold">CONTRATANTE</span>, em relação a qualquer circunstância ou fato.</p>
+
+    <p class="clause-item"><span class="item-num">11.2.</span> Não obstante e independentemente de qualquer outra
+        disposição deste Contrato, a <span class="bold">CONTRATADA</span> expressamente reconhece e concorda estar
+        impedido, durante a totalidade do prazo referido na cláusula 9.3 abaixo, direta ou indiretamente, por si mesmo
+        ou por interpostas pessoas, incluindo-se, mas não a tanto se limitando, seu cônjuge, filhos e parentes até o
+        terceiro grau (conforme aplicável), de:</p>
+    <div class="sub-item">
+        <p><span class="bold">a)</span> tomar qualquer medida que tenha por finalidade, direta ou indiretamente, motivar
+            ou incentivar qualquer cliente, fornecedor ou outro parceiro comercial da <span
+                    class="bold">CONTRATANTE</span> a terminar suas relações comerciais com a <span class="bold">CONTRATANTE</span>;
+            e/ou</p>
+        <p style="margin-top:3mm;"><span class="bold">b)</span> dirigir, solicitar, induzir, forçar, pedir ou propor a
+            qualquer empregado ou cliente da <span class="bold">CONTRATANTE</span> ou de qualquer das suas Afiliadas que
+            (i) termine seu contrato de trabalho ou prestação de serviços com a <span class="bold">CONTRATANTE</span>;
+            (ii) suporte, assista ou auxilie sob qualquer forma qualquer pessoa física, pessoa jurídica ou entidade,
+            existente nesta data ou constituída no futuro, que exerça atividades que sejam consideradas Atividades
+            Concorrentes (sendo as hipóteses previstas neste subitem "a" e no subitem "b" acima doravante denominadas
+            "<u>Compromisso de Não-Aliciamento</u>", explicitadas no item 8.1 do presente Contrato).</p>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 11.3 a 12.x ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <p class="clause-item"><span class="item-num">11.3.</span> Para os fins do disposto nesta Cláusula Nona, fica
+        estabelecido que o Compromisso de Não-Aliciamento deverá vigorar pela integralidade do prazo em que este
+        Contrato permanecer vigente e pelo período de 12 (doze) meses após o término do Contrato ("<u>Período de
+            Não-Aliciamento</u>"), independentemente do prazo em que a <span class="bold">CONTRATANTE</span> optar por
+        fazer valer o Compromisso de Não-Concorrência previsto na Cláusula Oitava, uma vez que tais obrigações não são
+        relacionadas ou interdependentes.</p>
+
+    <p class="clause-item"><span class="item-num">11.4.</span> Fica expressamente estabelecido que nenhuma remuneração
+        ou compensação será devida a <span class="bold">CONTRATADA</span> em virtude do cumprimento do Compromisso de
+        Não-Aliciamento durante o Período de Não-Aliciamento. Não obstante, a <span class="bold">CONTRATADA</span>
+        reconhece e concorda que o inadimplemento do Compromisso de Não-Aliciamento estabelecido conforme os termos
+        desta Cláusula Nona resultarão em dano irreparável à <span class="bold">CONTRATANTE</span>, e que todos e
+        quaisquer eventos de inadimplemento a tal título deverão sujeitar a <span class="bold">CONTRATADA</span> ao
+        pagamento de multa cominatória no valor de 50 (cinquenta) salários mínimos, para cada evento. O pagamento da
+        multa cominatória prevista acima não obsta a obrigação da <span class="bold">CONTRATADA</span> quanto ao
+        pagamento de indenização por todas as perdas e danos que venham a ser causados à <span
+                class="bold">CONTRATANTE</span> em virtude do inadimplemento do Compromisso de Não-Aliciamento, e não
+        impedirá a <span class="bold">CONTRATANTE</span> de buscar, mediante o ajuizamento das medidas judiciais
+        cabíveis, a execução específica do Compromisso de Não-Aliciamento assumido pela Contratada nos termos deste
+        instrumento.</p>
+
+    <p class="clause-item"><span class="item-num">11.5.</span> A <span class="bold">CONTRATADA</span> expressamente
+        reconhece e concorda que as disposições desta Cláusula Nona são justas, equitativas, legítimas e plenamente
+        válidas, vinculando as <span class="bold">PARTES</span> na integralidade de seus termos, e que os valores da
+        remuneração a ser recebida pela <span class="bold">CONTRATADA</span> ao longo do prazo de vigência de seu
+        vínculo com a <span class="bold">CONTRATANTE</span> constituem compensação suficiente para que se possa exigir a
+        estrita observância de todos os termos e condições desta Cláusula Nona pela <span class="bold">CONTRATADA</span>.
+        A <span class="bold">CONTRATANTE</span> fica desde já autorizada a divulgar para terceiros a existência desta
+        Cláusula e seu conteúdo.</p>
+
+    <h2 class="clause">Cláusula Décima Segunda – Das Penalidades</h2>
+
+    <p class="clause-item"><span class="item-num">12.1.</span> Toda e qualquer infração, inadimplemento ou inobservância
+        de qualquer das obrigações estabelecidas neste Contrato, dará à <span class="bold">PARTE</span> prejudicada o
+        direito de exigir judicialmente o cumprimento da obrigação, nos termos dos artigos 497, 815 e seguintes do
+        Código de Processo Civil, sem prejuízo de apuração das eventuais perdas e danos comprovados na forma da
+        legislação em vigor.</p>
+
+    <p class="clause-item"><span class="item-num">12.2.</span> O descumprimento de obrigações previstas neste Contrato,
+        exceto aquelas disposições que contenham penalidades específicas, sujeitará a <span class="bold">PARTE</span>
+        infratora ao pagamento, à outra <span class="bold">PARTE</span>, de uma multa não compensatória no montante
+        equivalente a 10% (dez por cento) do valor pago à <span class="bold">CONTRATADA</span>, sem prejuízo das perdas
+        e danos a que der causa (vide item 6.7).</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 13 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <h2 class="clause">Cláusula Décima Terceira - Das Disposições Gerais</h2>
+
+    <p class="clause-item"><span class="item-num">13.1.</span> Reconhecem, expressamente, as <span
+            class="bold">PARTES</span> que a <span class="bold">CONTRATADA</span> não é empregada da <span class="bold">CONTRATANTE</span>,
+        sendo mantido nesta cláusula o pacto estabelecido no item "c" das Considerações acima, e, em consequência, não
+        poderá a <span class="bold">CONTRATADA</span> assumir qualquer obrigação em nome da <span class="bold">CONTRATANTE</span>,
+        sob pena de serem considerados gestores de negócios.</p>
+    <p class="clause-item"><span class="item-num">13.2.</span> É vedado a <span class="bold">CONTRATADA</span> ceder ou
+        transferir os direitos e obrigações resultantes deste Contrato.</p>
+    <p class="clause-item"><span class="item-num">13.3.</span> O uso não autorizado ou inadequado da razão social da
+        <span class="bold">CONTRATANTE</span> sujeitará a <span class="bold">CONTRATADA</span> às medidas legais
+        cabíveis.</p>
+    <p class="clause-item"><span class="item-num">13.4.</span> A <span class="bold">CONTRATADA</span> declara e garante
+        que a assinatura e execução deste Contrato não constitui e não constituirá (i) uma violação ou um conflito com
+        qualquer outro acordo entre a <span class="bold">CONTRATADA</span> e outra pessoa ou entidade, ou qualquer
+        obrigação legal, incluindo, mas sem limitação, qualquer dever de fidúcia ou ordem judicial; (ii) violação de
+        qualquer direito de exclusividade de qualquer pessoa; e (iii) violação de qualquer direito de propriedade
+        intelectual de terceiros.</p>
+    <p class="clause-item"><span class="item-num">13.5.</span> A tolerância de uma <span class="bold">PARTE</span> com a
+        outra, relativamente a qualquer violação ou descumprimento de quaisquer obrigações ora assumidas, não será
+        considerada moratória, novação ou renúncia a qualquer direito, constituindo mera liberalidade que não impedirá a
+        <span class="bold">PARTE</span> tolerante de exigir da outra o fiel cumprimento deste Contrato, a qualquer
+        tempo.</p>
+    <p class="clause-item"><span class="item-num">13.6.</span> As <span class="bold">PARTES</span> declaram e garantem
+        que a execução e cumprimento do presente não conflitam com qualquer contrato, compromisso, acordo, entendimento,
+        tratativa ou restrição, ou qualquer adjudicação, ordem, liminar, ou prova de qualquer tipo por qualquer
+        tribunal, autoridade governamental ou terceiro, em relação às quais as <span class="bold">PARTES</span> podem
+        ser uma parte ou aos quais as <span class="bold">PARTES</span> podem estar vinculadas.</p>
+    <p class="clause-item"><span class="item-num">13.7.</span> Caso alguma cláusula ou condição do presente venha a ser
+        considerada nula ou inválida isto não afetará o restante do presente contrato. Neste caso, as <span
+                class="bold">PARTES</span> obrigam-se a substituí-la por outra, o mais semelhante possível à inválida,
+        visando o restabelecimento das condições e equilíbrio originais deste instrumento.</p>
+    <p class="clause-item"><span class="item-num">13.8.</span> <u>Notificações</u>. Todas as notificações,
+        requerimentos, demandas e outras comunicações entre as <span class="bold">PARTES</span> serão feitos por escrito
+        e serão consideradas devidamente realizadas (i) se entregues em mãos com o protocolo de recebimento; ou (ii) se
+        postadas, 03 (três) dias após sua postagem, por carta certificada ou registrada, com o porte pago, e aviso de
+        recebimento; ou (iii) se entregues por serviço de entrega rápida de renome nacional (sendo necessária prova de
+        recebimento pela outra <span class="bold">PARTE</span>); ou (iv) por e-mail.</p>
+    <p>(a) Se para a <span class="bold"><u>CONTRATANTE</u></span>:</p>
+    <p>Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé, São Paulo/SP – CEP. 03315-000<br>At.: <span
+            class="bold">Raphaella Arantes Arimura</span></p>
+    <p>(b) Se para a <span class="bold"><u>CONTRATADA</u></span>:</p>
+    <p>{{ENDEREÇO}}, {{CIDADE/ESTADO}} - CEP: {{CEP}} At.: {{NOME}}:</p>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ PÁGINA - 13.8.1 a 14 ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <div class="sub-item">
+        <p><span class="sub-num">13.8.1.</span> A notificação realizada por meio de serviço de entrega em 24 (vinte e
+            quatro) horas ou pelo correio será considerada válida mediante o efetivo recebimento. A notificação enviada
+            por fac-símile será considerada válida mediante o efetivo recebimento se recebida durante o horário
+            comercial do destinatário, ou no início do dia útil seguinte, se não recebida durante o horário comercial
+            normal do destinatário.</p>
+    </div>
+
+    <p class="clause-item"><span class="item-num">13.9.</span> <u>Interpretação</u>. Quando neste Contrato é feita
+        alguma referência a Capítulos ou Cláusulas, tal referência será a um Capítulo ou Cláusula deste Contrato, salvo
+        se indicado de modo contrário. Os títulos constantes deste Contrato servem apenas de referência e não afetam, de
+        nenhum modo, o significado ou a interpretação deste Contrato. Em caso de divergência entre as disposições deste
+        Contrato e o conteúdo dos Anexos ao presente, prevalecerão às disposições deste Contrato, salvo expressamente
+        afirmado em contrário no Anexo em questão.</p>
+
+    <p class="clause-item"><span class="item-num">13.10.</span> <u>Cessão</u>. Nem este Contrato nem quaisquer direitos,
+        participações ou obrigações previstos nos termos do presente poderão ser cedidos por uma das <span class="bold">PARTES</span>
+        deste Contrato (seja por força da lei ou de outro modo) sem o consentimento prévio por escrito das outras <span
+                class="bold">PARTES</span>, exceto se a <span class="bold">CONTRATANTE</span> desejar, a seu exclusivo
+        critério, mas mediante notificação por escrito à <span class="bold">CONTRATADA</span> informando-a acerca de tal
+        cessão, ceder sua posição contratual e/ou os direitos e obrigações por ela assumidos no presente Contrato para
+        outras sociedades que sejam de seu mesmo grupo econômico. Observada a disposição anterior, este Contrato
+        obrigará, beneficiará e será exequível pelas <span class="bold">PARTES</span> e seus respectivos sucessores e
+        cessionários autorizados.</p>
+
+    <p class="clause-item"><span class="item-num">13.11.</span> Este Contrato deverá ser o contrato integral entre as
+        <span class="bold">PARTES</span> e se sobrepõe a quaisquer outros acordos entre elas, orais ou escritos, com
+        relação ao objeto aqui contido. Quaisquer alterações, para serem válidas, deverão ser feitas por escrito e
+        devidamente assinadas pelas <span class="bold">PARTES</span>, via aditamento.</p>
+
+    <h2 class="clause">Cláusula Décima Quarta - Do Foro</h2>
+
+    <p class="clause-item"><span class="item-num">14.1.</span> Qualquer ação ou procedimento a ser instaurado com
+        relação a este Contrato, deverá ser submetido ao Foro da Comarca de São Paulo para fins de apreciação.</p>
+
+    <p>E, por estarem assim justas e acertadas, as <span class="bold">PARTES</span> firmam o presente instrumento em 02
+        (duas) vias de igual teor, juntamente com 02 (duas) testemunhas instrumentárias e presenciais abaixo assinadas
+        para todos os fins e efeitos de direito.</p>
+
+    <div class="signature-block">
+        <div class="sig-date">{{DATA ATUAL}}</div>
+
+        <p class="sig-party"><span class="party-label">CONTRATANTE:</span></p>
+        <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;">
+            RAPHAELLA ARANTES ARIMURA SOCIEDADE INDIVIDUAL DE ADVOCACIA<br><span style="font-weight:normal;">Raphaella Arantes Arimura (Sócia)</span>
+        </p>
+
+        <p class="sig-party" style="margin-top:8mm;"><span class="party-label">CONTRATADA:</span></p>
+        <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;">
+            {{EMPRESA}}<br><span style="font-weight:normal;">{{NOME}}</span></p>
+
+        <p style="margin-top:6mm;">Testemunhas:</p>
+        <div class="witnesses">
+            <div class="witness">
+                <div class="witness-line">1. ___________________</div>
+                <p>Nome: Karla Schipani</p>
+                <p>CPF: 269.375.108-02</p>
             </div>
-            <div class="testemunhas">
-                <div class="testemunha">
-                    ___________<br />Karla Schipani<br />CPF: 269.375.108-02
-                </div>
-                <div class="testemunha">
-                    ___________<br />Luana Lidia<br />CPF: 293.342.578-57
-                </div>
-            </div>
-            <div class="rodape">
-                Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé,
-                São Paulo/SP – CEP 03315-000
+            <div class="witness">
+                <div class="witness-line">2. ___________________</div>
+                <p>Nome: Luana Lidia</p>
+                <p>CPF: 293.342.578-57</p>
             </div>
         </div>
-        <div class="pagina quebra">
-            <h2>ANEXO II - DA REMUNERAÇÃO</h2>
-            <p>
-                - Valor mensal: R$ 4.000,00 (quatro mil reais)<br />-
-                Vencimento: dia 10 de cada mês<br />- Forma de pagamento:
-                transferência bancária ou PIX<br />- Dados bancários: conforme
-                Cláusula Quarta, item 4.3
-            </p>
-            <div class="rodape">
-                Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé,
-                São Paulo/SP – CEP 03315-000
-            </div>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ ANEXO II ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
         </div>
-        <div class="pagina quebra">
-            <h2>ANEXO III - TERMO DE CONFIDENCIALIDADE</h2>
-            <p>
-                A CONTRATADA, identificada na qualificação inicial deste
-                contrato, declara estar ciente e assumir o compromisso de manter
-                sigilo absoluto sobre todas as informações, dados, documentos e
-                materiais aos quais tiver acesso em razão da prestação de
-                serviços à CONTRATANTE. Este termo permanece em vigor durante
-                toda a vigência do contrato principal e por prazo indeterminado
-                após seu término, no que diz respeito a informações
-                classificadas como confidenciais.
-            </p>
-            <div class="assinaturas">
-                <div class="linha-assinatura">
-                    <span class="ph">{{data_nascimento}}</span> /
-                    <span class="ph">{{EMPRESA}}</span> / CNPJ:
-                    <span class="ph">{{CNPJ_CONTRATADA}}</span>
+    </div>
+
+    <div class="annex-title">Anexo II</div>
+
+    <p><span class="bold">1. Determinação de <u>Remuneração mensal pelos serviços e indenização pelo período de restrição</u> (contrato de prestação de serviços com exclusividade parcial), descritos no <u>CONSIDERANDO e cláusula primeira do Instrumento de Contrato Particular de Prestação de Serviço</u>.</span>
+    </p>
+
+    <p>A remuneração mensal devida à <span class="bold">CONTRATADA</span> pela <span class="bold">CONTRATANTE</span>
+        pela prestação de serviço fica estabelecida no montante de R$ 4.000,00 (quatro mil reais) que deverá ser pago
+        nos moldes estabelecidos na cláusula quarta do Instrumento de Contrato Particular de Prestação de Serviço,
+        mediante apresentação de nota fiscal.</p>
+
+    <div class="signature-block">
+        <div class="sig-date">{{DATA ATUAL}}</div>
+        <div style="display:flex;gap:40mm;margin-top:8mm;">
+            <div style="flex:1;text-align:center;">
+                <div style="border-top:1px solid #000;padding-top:2mm;margin-top:15mm;font-weight:bold;">Raphaella
+                    Arantes Arimura Soc. Ind. Advocacia
                 </div>
             </div>
-            <div class="rodape">
-                Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé,
-                São Paulo/SP – CEP 03315-000
+            <div style="flex:1;text-align:center;">
+                <div style="border-top:1px solid #000;padding-top:2mm;margin-top:15mm;font-weight:bold;">{{EMPRESA}}<br><span
+                        style="font-weight:normal;">{{NOME}} (Sócia)</span></div>
             </div>
         </div>
-    </body>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+<!-- ============ ANEXO III ============ -->
+<div class="page">
+    <div class="header">
+        <div class="logo-area">
+            {{LOGO}}
+        </div>
+    </div>
+
+    <div class="annex-title">Anexo III – Termo de Confidencialidade<br>Atrelado ao Contrato de Prestação de Serviço<br>entre
+        Raphaella Arantes Arimura Sociedade Individual de<br>Advocacia e Daniela Arimura Solis
+    </div>
+
+    <p>Os abaixo assinados <span class="bold">DANIELA ARIMURA SOLIS</span>, nos termos da Lei nº 13.709/2018, declaram
+        que manterão sob sigilo confidencial, os seguintes dados pessoais ora recebidos da <span class="bold">RAPHAELLA ARANTES ARIMURA SOCIEDADE INDIVIDUAL DE ADVOCACIA</span>,
+        utilizando as informações recebidas apenas para uso exclusivo no desempenho de suas atividades para o empregador
+        ou contratante <span class="bold">DANIELA ARIMURA SOLIS</span>, sob pena de rescisão por justa causa do contrato
+        com o empregador ou o contratante, sem prejuízo de sanções cíveis e criminais – estando cientes que, de acordo
+        com os artigos 153 e 154 do Código Penal Brasileiro, a divulgação de segredo da empresa é crime.</p>
+
+    <div class="signature-block">
+        <div class="sig-date">{{DATA ATUAL}}</div>
+        <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;max-width:200px;margin-left:auto;margin-right:auto;">
+            {{NOME}}</p>
+
+        <p style="margin-top:8mm;">Testemunhas:</p>
+        <div class="witnesses">
+            <div class="witness">
+                <div class="witness-line">1. ___________________</div>
+                <p>Nome: Karla Schipani</p>
+                <p>CPF: 269.375.108-02</p>
+            </div>
+            <div class="witness">
+                <div class="witness-line">2. ___________________</div>
+                <p>Nome: Luana Lidia</p>
+                <p>CPF: 293.342.578-57</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Rua Padre Estevão Pernet, 718 – sala 104 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
+        Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446<br>
+        E-mail – <a href="mailto:contato@arantesarimura.adv.br">contato@arantesarimura.adv.br</a><br>
+        Site – <span style="font-weight:bold;">WWW.ARANTESARIMURA.ADV.BR</span>
+    </div>
+</div>
+
+</body>
 </html>

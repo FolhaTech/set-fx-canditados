@@ -55,6 +55,23 @@ def executar() -> str | None:
 
             output = settings.pdf_dir_path / f"Contrato_{nome_arquivo}.pdf"
             dados["data_atual"] = datetime.now().strftime("%d/%m/%Y")
+            dados["endereco_formatado"] = (
+                f"{dados.get('endereco_completo', '')}, "
+                f"{dados.get('numero_endereco', '')} "
+                f"{dados.get('complemento_endereco', '')} - "
+                f"{dados.get('bairro_prestador', '')}"
+            )
+            dados["cidade_estado"] = f"{dados.get('cidade_prestador', '')}/SP"
+
+            valor_raw = float(dados.get("honorario_novo_colaborador", "0"))
+            valor_int = int(valor_raw)
+            centavos = int(round((valor_raw - valor_int) * 100))
+            valor_formatado = f"R$ {valor_int:,}".replace(",", ".")
+            if centavos:
+                valor_formatado += f",{centavos:02d}"
+            else:
+                valor_formatado += ",00"
+            dados["valor_remuneracao"] = valor_formatado
 
             logo_empresa = find_logo(Enterprise.ARANTES)
 

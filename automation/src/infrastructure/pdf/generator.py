@@ -407,8 +407,8 @@ def _build_logo_html(logo_path: Path | None) -> str:
             if encontrados:
                 logo_file = encontrados[0]
                 break
-            if not logo_file:
-                return fallback
+        if not logo_file:
+            return fallback
     elif logo_path.is_file():
         logo_file = logo_path
     else:
@@ -430,5 +430,5 @@ def _build_logo_html(logo_path: Path | None) -> str:
 
     return (
         f'<img src="{data_url}" '
-        f'style="max-height:60px; max-width:250px; display:block; margin-left:auto;">'
+        f'style="max-height:50px; max-width:200px; display:block; margin-left:auto;">'
     )

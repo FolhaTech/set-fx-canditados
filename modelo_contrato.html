@@ -24,14 +24,19 @@
           padding: 20mm 25mm 25mm 25mm;
           position: relative;
           page-break-after: always;
+          box-sizing: border-box;
         }
 
         .header {
           display: flex;
           justify-content: flex-end;
+          align-items: center;
           margin-bottom: 8mm;
           border-bottom: 1px solid #000;
           padding-bottom: 4mm;
+          min-height: 15mm;
+          max-height: 20mm;
+          overflow: hidden;
         }
 
         .logo-area {
@@ -108,7 +113,7 @@
         .portanto { margin-bottom: 3mm; text-align: justify; }
 
         .bank-info { margin: 3mm 0; }
-        .bank-info p { margin-bottom: 1mm; text-decoration: underline; }
+        .bank-info p { margin-bottom: 1mm; text-decoration: none; }
 
         .signature-block { margin-top: 10mm; }
         .sig-date { text-align: center; margin-bottom: 8mm; }
@@ -173,10 +178,14 @@
         identidade RG nº 44.982.186-9 SSP/SP e inscrita no CPF/MF sob o nº 357.205.748-59, doravante designada "<span
                 class="bold">CONTRATANTE</span>"; e</p>
 
-    <p>{{solicitante_empresa}}, com sede em {{ENDEREÇO}}, {{CIDADE/ESTADO}}, inscrita no CNPJ/MF sob o nº {{CNPJ/MF}},
+    <p>{{solicitante_empresa}}, com sede em {{endereco_formatado}}, CEP {{cep_prestador}} - {{cidade_estado}}, inscrita
+        no CNPJ/MF sob o nº
+        {{cnpj_candidato}},
         neste ato
-        representada por seu sócio, {{NOME}}, brasileira, {{ESTADO CIVIL}}, nascida em {{DATA DE NASCIMENTO}}, portadora
-        da cédula de identidade RG nº {{RG}}, e inscrita no CPF/MF sob o nº {{CPF/MF}}, doravante denominados
+        representada por seu sócio, {{nome_completo}}, brasileira, {{estado_civil}}, nascida em {{data_nascimento}},
+        portadora
+        da cédula de identidade RG nº {{rg_candidato}}, e inscrita no CPF/MF sob o nº {{cpf_candidato}}, doravante
+        denominados
         simplesmente CONTRATADA.</p>
 
     <p>A <span class="bold">CONTRATANTE</span> e a <span class="bold">CONTRATADA</span> são individualmente doravante
@@ -481,14 +490,14 @@
     </p>
 
     <div class="bank-info">
-        <p>Banco: {{BANCO}}</p>
-        <p>Agencia: {{AGENCIA}}</p>
-        <p>Tipo de conta: {{TIPO DE CONTA}}</p>
-        <p>Nº Conta: {{CONTA}}</p>
-        <p>Titularidade: {{TITULARIDADE}}</p>
-        <p>PIX: {{PIX}}</p>
-        <p>CPF: {{CPF}}</p>
-        <p>CNPJ: {{CNPJ}}</p>
+        <p>Banco: {{qual_banco}}</p>
+        <p>Agencia: {{agencia_banco}}</p>
+        <p>Tipo de conta: {{tipo_conta}}</p>
+        <p>Nº Conta: {{conta_banco}}</p>
+        <p>Titularidade: {{titularidade_banco}}</p>
+        <p>PIX: {{pix_banco}}</p>
+        <p>CPF: {{cpf_candidato}}</p>
+        <p>CNPJ: {{cnpj_candidato}}</p>
     </div>
 
     <div class="footer">
@@ -1303,7 +1312,7 @@
     <p>Rua Padre Estevam Pernet, nº 718, 7º Andar, Sala 704, Tatuapé, São Paulo/SP – CEP. 03315-000<br>At.: <span
             class="bold">Raphaella Arantes Arimura</span></p>
     <p>(b) Se para a <span class="bold"><u>CONTRATADA</u></span>:</p>
-    <p>{{ENDEREÇO}}, {{CIDADE/ESTADO}} - CEP: {{CEP}} At.: {{NOME}}:</p>
+    <p>{{endereco_formatado}}, {{cidade_estado}} - CEP: {{cep_prestador}} At.: {{nome_completo}}:</p>
 
     <div class="footer">
         Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000<br>
@@ -1370,7 +1379,7 @@
 
         <p class="sig-party" style="margin-top:8mm;"><span class="party-label">CONTRATADA:</span></p>
         <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;">
-            {{EMPRESA}}<br><span style="font-weight:normal;">{{NOME}}</span></p>
+            {{empresa_colaborador_novo}}<br><span style="font-weight:normal;">{{nome_completo}}</span></p>
 
         <p style="margin-top:6mm;">Testemunhas:</p>
         <div class="witnesses">
@@ -1409,7 +1418,7 @@
     </p>
 
     <p>A remuneração mensal devida à <span class="bold">CONTRATADA</span> pela <span class="bold">CONTRATANTE</span>
-        pela prestação de serviço fica estabelecida no montante de R$ 4.000,00 (quatro mil reais) que deverá ser pago
+        pela prestação de serviço fica estabelecida no montante de {{valor_remuneracao}} que deverá ser pago
         nos moldes estabelecidos na cláusula quarta do Instrumento de Contrato Particular de Prestação de Serviço,
         mediante apresentação de nota fiscal.</p>
 
@@ -1422,8 +1431,9 @@
                 </div>
             </div>
             <div style="flex:1;text-align:center;">
-                <div style="border-top:1px solid #000;padding-top:2mm;margin-top:15mm;font-weight:bold;">{{EMPRESA}}<br><span
-                        style="font-weight:normal;">{{NOME}} (Sócia)</span></div>
+                <div style="border-top:1px solid #000;padding-top:2mm;margin-top:15mm;font-weight:bold;">
+                    {{empresa_colaborador_novo}}<br><span
+                        style="font-weight:normal;">{{nome_completo}} (Sócia)</span></div>
             </div>
         </div>
     </div>
@@ -1458,7 +1468,7 @@
     <div class="signature-block">
         <div class="sig-date">{{DATA ATUAL}}</div>
         <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;max-width:200px;margin-left:auto;margin-right:auto;">
-            {{NOME}}</p>
+            {{nome_completo}}</p>
 
         <p style="margin-top:8mm;">Testemunhas:</p>
         <div class="witnesses">

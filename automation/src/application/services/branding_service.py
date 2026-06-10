@@ -22,13 +22,6 @@ EMPRESA_TEMAS: dict[Enterprise, dict[str, str]] = {
     },
 }
 
-ASSINATURA_POR_EMPRESA: dict[Enterprise, str] = {
-    Enterprise.GENTER: "AssArimura.svg",
-    Enterprise.ARANTES: "AssArimura.svg",
-    Enterprise.FOLHA_TECH: "AssArimura.svg",
-}
-
-
 LOGO_POR_EMPRESA: dict[Enterprise, str] = {
     Enterprise.ARANTES: "logo-v2.png",
     Enterprise.GENTER: "logo.png",
@@ -65,15 +58,6 @@ def find_logo(empresa: Enterprise) -> Path | None:
             return arquivos[0]
 
     return None
-
-
-def find_signature(empresa: Enterprise) -> Path | None:
-    nome_arquivo = ASSINATURA_POR_EMPRESA.get(empresa)
-    if not nome_arquivo:
-        return None
-
-    caminho = settings.assinaturas_dir_path / nome_arquivo
-    return caminho if caminho.exists() else None
 
 
 def find_signature_by_role(empresa: Enterprise, papel: str) -> Path | None:

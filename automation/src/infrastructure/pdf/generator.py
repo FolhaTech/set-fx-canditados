@@ -18,7 +18,6 @@ from reportlab.platypus import (
 
 from automation.src.application.services.branding_service import (
     find_logo,
-    find_signature,
     get_theme,
     find_signature_by_role,
     find_all_signatures_for_company,
@@ -257,7 +256,7 @@ def generate_proposal_pdf(proposta: Proposal, output_path: Path) -> Path:
     story.append(Spacer(1, 0.7 * cm))
 
     # Signature for image
-    caminho_ass = find_signature(empresa)
+    caminho_ass = find_signature(empresa, "responsavel")
     if caminho_ass:
         img_ass = Image(str(caminho_ass), width=4.5 * cm, height=1.8 * cm)
         img_ass.hAlign = "LEFT"

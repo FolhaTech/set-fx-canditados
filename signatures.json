@@ -18,10 +18,16 @@
       "arquivo": "signatures/AssArimura.svg",
       "papeis_por_empresa": {
         "arantes": [
-          "contratante"
+          "contratante",
+          "responsavel"
         ],
         "genter": [
-          "contratante"
+          "contratante",
+          "responsavel"
+        ],
+        "folha_tech": [
+          "contratante",
+          "responsavel"
         ]
       }
     },

@@ -3,7 +3,7 @@ from enum import Enum
 
 
 class Enterprise(Enum):
-    FOLHA_TECH = "Folha Tech"
+    FOLHA_TECH = "folha_tech"
     GENTER = "genter"
     ARANTES = "arantes"
 

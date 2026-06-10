@@ -6,10 +6,8 @@
       "arquivo": "signatures/AssRapha.svg",
       "papeis_por_empresa": {
         "arantes": [
-          "contratante"
-        ],
-        "genter": [
-          "contratante"
+          "contratante",
+          "responsavel"
         ]
       }
     },
@@ -26,7 +24,6 @@
           "responsavel"
         ],
         "folha_tech": [
-          "contratante",
           "responsavel"
         ]
       }
@@ -68,7 +65,16 @@
       "arquivo": "signatures/AssFernando.svg",
       "papeis_por_empresa": {
         "folha_tech": [
-          "representante"
+          "contratante",
+          "responsavel"
+        ],
+        "arantes": [
+          "testemunha",
+          "responsavel"
+        ],
+        "genter": [
+          "testemunha",
+          "responsavel"
         ]
       }
     }

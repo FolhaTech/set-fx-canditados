@@ -188,7 +188,7 @@ Todas as configurações estão centralizadas em `automation/src/config/settings
 | Config            | Padrão                                                                                                            | Descrição                          | Impacto                                        |
 |-------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------|------------------------------------------------|
 | `HEADLESS`        | `false`                                                                                                           | Executar navegador em modo visível | Útil para debug; em servidores, definir `true` |
-| `SLOW_MO`         | `50`                                                                                                              | Atraso entre ações (ms)            | Aumenta se a rede estiver lenta                |
+| `SLOW_MO`         | `500`                                                                                                             | Atraso entre ações (ms)            | Aumenta se a rede estiver lenta                |
 | `VIEWPORT_WIDTH`  | `1920`                                                                                                            | Largura da viewport                | Deve refletir resolução comum do usuário       |
 | `VIEWPORT_HEIGHT` | `1080`                                                                                                            | Altura da viewport                 | Deve refletir resolução comum do usuário       |
 | `BROWSER_LOCALE`  | `pt-BR`                                                                                                           | Locale do navegador                | Afeta formatação de datas, números             |
@@ -200,8 +200,8 @@ Todas as configurações estão centralizadas em `automation/src/config/settings
 |---------------------|-------------------------------|-----------|---------------------------------------------------|
 | `PDF_DIR`           | `pdfs_gerados`                | Diretório | Onde os PDFs são salvos                           |
 | `LOGOS_DIR`         | `logos`                       | Diretório | Logos por empresa (subdiretórios)                 |
-| `ASSINATURAS_DIR`   | `assinatura`                  | Diretório | Imagens de assinatura digital                     |
-| `TEMPLATE_CONTRATO` | `modelo_contrato.txt`         | Arquivo   | Template de contrato com placeholders `{{campo}}` |
+| `ASSINATURAS_DIR`   | `assinatura`                  | Diretório | (não usado atualmente — ver `signatures.json`)    |
+| `TEMPLATE_CONTRATO_HTML` | `modelo_contrato.html`   | Arquivo   | Template HTML de contrato com placeholders `{{campo}}` |
 | `JSON_FILE`         | `dados_formulario_atual.json` | Arquivo   | Último candidato extraído                         |
 | `EXCEL_FILE`        | `dados_formularios.xlsx`      | Arquivo   | Histórico de candidatos (append)                  |
 
@@ -281,18 +281,21 @@ set-fx-candidatos/
 ├── dados_formularios.xlsx        # Histórico de candidatos (append)
 ├── pdfs_gerados/                 # PDFs gerados (carta proposta ou contrato)
 │
-├── Logos/                        # [opcional] Imagens de logo por empresa
-│   ├── Folha Tech/               #   → Qualquer .png/.jpg/.webp (primeiro encontrado)
-│   ├── Genter/
-│   └── Arantes/
+├── logos/                        # [opcional] Logos por empresa (subdiretórios)
+│   ├── arantes/
+│   ├── folha_tech/
+│   └── genter/
 │
-├── assinatura/                   # [opcional] Imagens de assinatura digital
-│   ├── AssArimura.png            #   → Genter
-│   ├── AssRapha.png              #   → Arantes
-│   └── AssFernando.png           #   → Folha Tech
+├── signatures/                   # Arquivos .svg de assinatura digital
+│   ├── AssArimura.svg
+│   ├── AssFernando.svg
+│   ├── AssKarla.svg
+│   └── AssRapha.svg
 │
-├── modelo_contrato.txt           # [opcional] Template para tarefas tipo "08" (contrato)
-│                                   #   → Placeholders: {{nome_do_campo}}
+├── signatures.json               # Mapeia signatários por empresa/papel
+│
+├── modelo_contrato.html          # Template HTML para tarefas tipo "08" (contrato)
+│                                   #   → Placeholders: {{campo}}, {{LOGO}}, {{ASSINATURA_CONTRATANTE}}
 │
 └── automation/                   # Pacote principal
     ├── __main__.py               # CLI dispatcher (entrypoint)
@@ -326,7 +329,7 @@ set-fx-candidatos/
             │   ├── triata_client.py   # TriataClient: login → find_task → extract_form
             │   └── zapsign_client.py  # ZapSignClient: login → upload → config → sign → link
             ├── pdf/
-            │   ├── generator.py  # generate_proposal_pdf(), generate_contract_pdf()
+            │   ├── generator.py  # generate_proposal_pdf(), generate_contract_html()
             │   └── styles.py     # Estilos tipográficos (build_styles)
             └── storage/
                 ├── json_repository.py  # load, save, update, save_signature_link, get_field
@@ -377,9 +380,9 @@ set-fx-candidatos/
          Tarefa "04.1"              Tarefa "08"
               │                       │
               ▼                       ▼
-    ┌─────────────────┐    ┌──────────────────────┐
-    │ generate_proposal│    │ generate_contract_pdf│
-    │ _pdf()           │    │ (template {{fields}})│
+     ┌─────────────────┐    ┌──────────────────────────┐
+     │ generate_proposal│    │ generate_contract_html() │
+     │ _pdf()           │    │ (HTML+Playwright page.pdf)│
     └────────┬────────┘    └──────────┬─────────┘
              │                         │
              ▼                         ▼
@@ -440,7 +443,12 @@ O `TriataClient.login()` executa:
 6. Aguarda o campo de login sumir (`state="hidden"`, timeout 30s)
 7. Se o campo continuar visível, levanta `TriataLoginError`
 
-#### 3. Busca de Tarefa
+#### 3. Ativação do Modo Teste
+
+O `TriataClient.ativar_modo_teste()` clica no botão `.btn_ativa_modo_teste`, aceita o diálogo de confirmação,
+e aguarda a listagem de tarefas. Fallback via `ModoTeste('I')` via JavaScript se o botão não for encontrado.
+
+#### 4. Busca de Tarefa
 
 O `TriataClient.find_task()`:
 
@@ -455,7 +463,7 @@ O `TriataClient.find_task()`:
 6. Aceita qualquer diálogo (`dialog.accept()`)
 7. Clica na tarefa e aguarda o formulário `#TriareProcessoForm` (timeout 20s)
 
-#### 4. Extração do Formulário
+#### 5. Extração do Formulário
 
 O `TriataClient.extract_form()` executa JavaScript no browser para extrair todos os campos do formulário
 `#TriareProcessoForm`:
@@ -477,12 +485,12 @@ elements.forEach((el) => {
 
 O resultado é um dict com ~40-50 campos, incluindo metadados `extraido_em` e `url`.
 
-#### 5. Persistência
+#### 6. Persistência
 
 - **JSON**: `save(settings.json_path, dados)` — sobrescreve o arquivo anterior
 - **Excel**: `append_excel(settings.excel_path, dados)` — achata dicts aninhados e concatena com planilha existente
 
-#### 6. Montagem do Modelo Proposal
+#### 7. Montagem do Modelo Proposal
 
 A função `build_proposal(dados)` (em `proposta_service.py`) realiza:
 
@@ -494,7 +502,7 @@ A função `build_proposal(dados)` (em `proposta_service.py`) realiza:
 - **Equipamentos e Sistemas**: Extração de itens com checkbox `[x]` marcado dos grupos `equipamentos` e `sistemas`
 - **Metadados**: `processo_id`, `tarefa_nome`, `modelo_nome`
 
-#### 7. Geração de PDF
+#### 8. Geração de PDF
 
 A decisão de qual PDF gerar é baseada em `tarefa_nome`:
 
@@ -517,16 +525,16 @@ A decisão de qual PDF gerar é baseada em `tarefa_nome`:
 **Se a tarefa contém "08":**
 
 - Gera `Contrato_{nome_sanitizado}.pdf`
-- Lê o arquivo `modelo_contrato.txt`
-- Substitui todos os placeholders `{{campo}}` pelos valores extraídos do JSON
+- Lê o arquivo `modelo_contrato.html` e substitui placeholders `{{campo}}`
+- Insere logo via base64 em `{{LOGO}}` e assinaturas em `{{ASSINATURA_CONTRATANTE}}` / `{{ASSINATURA_TESTEMUNHA_N}}`
 - Campos com "honorario" ou "valor" no nome são formatados como moeda
-- Renderiza como texto justificado com quebra de linhas
+- Renderiza via Playwright `page.pdf()` (HTML→PDF com CSS A4, rodapé fixo nas @page)
 
 **Se a tarefa não contém nem "04.1" nem "08":**
 
 - Gera log informativo e retorna `None`
 
-#### 8. Encerramento
+#### 9. Encerramento
 
 - Fecha o browser (`page.context.browser.close()`)
 - Retorna o caminho absoluto do PDF gerado
@@ -689,21 +697,22 @@ A função `Enterprise.from_string()` normaliza o texto e retorna:
 
 ### Logos
 
-- **Local**: `Logos/<Nome da Empresa>/`
+- **Local**: `logos/<empresa>/` (ex: `logos/arantes/`)
 - **Formatos suportados**: `.png`, `.jpg`, `.jpeg`, `.webp`
-- **Comportamento**: Pega o primeiro arquivo encontrado (ordem do sistema de arquivos)
+- **Comportamento**: Busca por nome predefinido (`logo-v2.png`, `logo.png`), fallback para primeiro arquivo encontrado
 - **Fallback**: Se não houver logo, o nome da empresa é renderizado em texto grande e centralizado
 
 ### Assinaturas Digitais
 
-| Empresa    | Arquivo Esperado             |
-|------------|------------------------------|
-| Genter     | `assinatura/AssArimura.png`  |
-| Arantes    | `assinatura/AssRapha.png`    |
-| Folha Tech | `assinatura/AssFernando.png` |
+Configuradas via `signatures.json` na raiz. Mapeia signatários por empresa e papel (contratante, testemunha, responsavel). Arquivos `.svg` em `signatures/`.
 
-- **Fallback**: Se não houver imagem, a assinatura é renderizada como linha de texto
-- **Dimensões no PDF**: 4.5cm × 1.8cm
+Exemplo de estrutura:
+- `signatures/AssRapha.svg` — contratante (arantes, genter)
+- `signatures/AssArimura.svg` — contratante/responsavel (todas)
+- `signatures/AssFernando.svg` — representante (folha_tech)
+- `signatures/AssKarla.svg` — testemunha (todas)
+
+- **Dimensões no PDF (carta proposta)**: 4.5cm × 1.8cm
 
 ---
 
@@ -847,7 +856,7 @@ Valores marcados são identificados por `is_checked()` que verifica se o valor c
 
 ```python
 class Enterprise(Enum):
-    FOLHA_TECH = "Folha Tech"
+    FOLHA_TECH = "folha_tech"
     GENTER = "genter"
     ARANTES = "arantes"
 ```
@@ -991,7 +1000,7 @@ AutomationError (Exception)
 ├── PDFError
 │   ├── PDFGenerationError         — Erro genérico na geração de PDF
 │   ├── PDFNotFoundError           — PDF não encontrado no diretório
-│   └── TemplateNotFoundError     — Arquivo modelo_contrato.txt não encontrado
+│   └── TemplateNotFoundError     — Arquivo modelo_contrato.html não encontrado
 │
 ├── ZapSignError
 │   ├── ZapSignLoginError          — Falha no login do ZapSign
@@ -1308,17 +1317,17 @@ ZAPSIGN_PASSWORD=sua_senha
 
 **Causa:**
 
-- Diretório `logos/<Empresa>/` não existe ou está vazio
+- Diretório `logos/<empresa>/` não existe ou está vazio
 
 **Solução:**
 
 ```
-Logos/
-├── Folha Tech/
+logos/
+├── arantes/
+│   └── logo-v2.png   # ← Adicione aqui
+├── folha_tech/
 │   └── logo.png      # ← Adicione aqui
-├── Genter/
-│   └── logo.jpg      # ← Adicione aqui
-└── Arantes/
+└── genter/
     └── logo.png      # ← Adicione aqui
 ```
 
@@ -1326,26 +1335,27 @@ Logos/
 
 **Causa:**
 
-- `modelo_contrato.txt` não existe ou o placeholder está escrito incorretamente
+- `modelo_contrato.html` não existe ou o placeholder está escrito incorretamente
 - O nome do campo no placeholder não corresponde ao nome do campo no JSON
 
 **Solução:**
 
-1. Verifique se `modelo_contrato.txt` existe na raiz
+1. Verifique se `modelo_contrato.html` existe na raiz
 2. Os placeholders devem usar `{{nome_exato_do_campo}}` (ex: `{{nome_completo}}`)
-3. Verifique os nomes dos campos no `dados_formulario_atual.json`
+3. Placeholders especiais: `{{LOGO}}`, `{{ASSINATURA_CONTRATANTE}}`, `{{ASSINATURA_TESTEMUNHA_1}}`, `{{ASSINATURA_TESTEMUNHA_2}}`
+4. Verifique os nomes dos campos no `dados_formulario_atual.json`
 
 ### Execução muito lenta
 
 **Causas:**
 
-- `SLOW_MO` muito alto (padrão: 50ms)
+- `SLOW_MO` muito alto (padrão: 500ms)
 - Rede lenta
 - Timeouts muito longos
 
 **Soluções:**
 
-1. Reduza `SLOW_MO` para 0 (ou comente) em `settings.py`
+1. Reduza `SLOW_MO` (ex: 50ms) ou comente em `settings.py`
 2. Verifique a conectividade com `workflow.folhatech.com.br` e `app.zapsign.com.br`
 3. Considere executar em ambiente com melhor banda
 
@@ -1529,21 +1539,14 @@ $env:SLOW_MO = "100"
 
 ### Modificar o Template de Contrato
 
-Edite `modelo_contrato.txt` na raiz do projeto. Use placeholders no formato `{{nome_do_campo}}`:
+Edite `modelo_contrato.html` na raiz do projeto. Template HTML com CSS para A4, rodapé fixo via `@page @bottom-center`.
+Use placeholders `{{nome_do_campo}}`, mais placeholders especiais:
 
-```
-CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+- `{{LOGO}}` — substituído por tag `<img>` com logo em base64
+- `{{ASSINATURA_CONTRATANTE}}` — substituído por assinatura do contratante (base64)
+- `{{ASSINATURA_TESTEMUNHA_1}}`, `{{ASSINATURA_TESTEMUNHA_2}}` — assinaturas de testemunhas
 
-Contratante: {{empresa_solicitante}}
-Contratado: {{nome_completo}}
-CPF: {{cpf_candidato}}
-
-Honorários: {{honorario_novo_colaborador}}
-
-Data: {{amb_data_hora_formatada}}
-```
-
-Campos com "honorario" ou "valor" no nome são automaticamente formatados como `R$ 1.234,56`.
+Campos com "honorario" ou "valor" no nome são formatados como `R$ 1.234,56`.
 
 ### Adicionar uma Nova Empresa
 
@@ -1552,7 +1555,7 @@ Campos com "honorario" ou "valor" no nome são automaticamente formatados como `
    ```python
    class Enterprise(Enum):
        # ... existentes
-       NOVA_EMPRESA = "Nova Empresa"
+       NOVA_EMPRESA = "nova_empresa"
    ```
 
 2. Atualize `from_string()` para reconhecer a nova empresa.
@@ -1567,13 +1570,15 @@ Campos com "honorario" ou "valor" no nome são automaticamente formatados como `
    }
    ```
 
-4. Adicione a imagem de assinatura:
+4. Adicione a entrada em `LOGO_POR_EMPRESA`:
 
    ```python
-   Enterprise.NOVA_EMPRESA: "AssNovaEmpresa.png"
+   Enterprise.NOVA_EMPRESA: "logo.png"
    ```
 
-5. Crie o diretório de logo: `Logos/Nova Empresa/`
+5. Adicione o signatário em `signatures.json` e crie o arquivo `.svg` em `signatures/`.
+
+6. Crie o diretório de logo: `logos/nova_empresa/`
 
 ---
 
@@ -1616,20 +1621,16 @@ CI em `.github/workflows/ci.yml` (GitHub Actions, Ubuntu, Python 3.12):
 ```bash
 uv lock --check                    # verificar lock file
 uv sync --all-extras --dev         # instalar deps + dev
-uv run ruff check .                # lint
-uv run ruff format --check .       # checar formatação
-uv run mypy automation/            # type check
 uv run python -c "import automation; print('Import OK')"  # importação
 ```
 
-**Ruff** (`pyproject.toml`): line-length 100, double quotes, space indent, regras E/F/I/W/UP.  
-**Mypy**: `strict = false`, ignora imports faltantes de `reportlab.*`, `playwright.*`, `pandas.*`, `openpyxl.*`,
-`pydantic_settings.*`.
-
-Instalar dev tools localmente:
+Lint/typecheck rodam apenas localmente (não no CI):
 
 ```bash
-uv sync --all-extras --dev
+uv run ruff check .                # line-length 100, double quotes, space indent, regras E/F/I/W/UP
+uv run ruff format --check .
+uv run mypy automation/            # strict=false, ignora reportlab.*, playwright.*, pandas.*, openpyxl.*, pydantic_settings.*
+uv sync --all-extras --dev         # instalar dev deps
 ```
 
 ---
@@ -1650,8 +1651,7 @@ uv sync --all-extras --dev
 
 5. **Execução Sequencial**: Não há paralelismo. Cada candidato é processado um por vez.
 
-6. **PDF de Contrato Simples**: O template de contrato é um texto simples com substituição de placeholders. Não suporta
-   layouts complexos, tabelas ou condicionais.
+6. **PDF de Contrato via HTML+Playwright**: O template `modelo_contrato.html` usa CSS para layout A4 com rodapé fixo. Placeholders são substituídos e o HTML é renderizado via `page.pdf()`.
 
 7. **Resolução de Empresa por Heurística**: `Enterprise.from_string()` usa matching por substring. Empresas com nomes
    similares podem ser classificadas incorretamente.

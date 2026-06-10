@@ -1,0 +1,70 @@
+{
+  "signatarios": {
+    "raphaella_arimura": {
+      "nome": "Raphaella Arantes Arimura",
+      "cpf": "357.205.748-59",
+      "arquivo": "signatures/AssRapha.svg",
+      "papeis_por_empresa": {
+        "arantes": [
+          "contratante"
+        ],
+        "genter": [
+          "contratante"
+        ]
+      }
+    },
+    "arimura": {
+      "nome": "Arimura",
+      "arquivo": "signatures/AssArimura.svg",
+      "papeis_por_empresa": {
+        "arantes": [
+          "contratante"
+        ],
+        "genter": [
+          "contratante"
+        ]
+      }
+    },
+    "karla_schipani": {
+      "nome": "Karla Schipani",
+      "cpf": "269.375.108-02",
+      "arquivo": "signatures/AssKarla.svg",
+      "papeis_por_empresa": {
+        "arantes": [
+          "testemunha"
+        ],
+        "genter": [
+          "testemunha"
+        ],
+        "folha_tech": [
+          "testemunha"
+        ]
+      }
+    },
+    "luana_lidia": {
+      "nome": "Luana Lidia",
+      "cpf": "293.342.578-57",
+      "arquivo": "signatures/AssKarla.svg",
+      "papeis_por_empresa": {
+        "arantes": [
+          "testemunha"
+        ],
+        "genter": [
+          "testemunha"
+        ],
+        "folha_tech": [
+          "testemunha"
+        ]
+      }
+    },
+    "fernando": {
+      "nome": "Fernando",
+      "arquivo": "signatures/AssFernando.svg",
+      "papeis_por_empresa": {
+        "folha_tech": [
+          "representante"
+        ]
+      }
+    }
+  }
+}

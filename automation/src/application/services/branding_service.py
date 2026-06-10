@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from automation.src.config import settings
@@ -22,9 +23,9 @@ EMPRESA_TEMAS: dict[Enterprise, dict[str, str]] = {
 }
 
 ASSINATURA_POR_EMPRESA: dict[Enterprise, str] = {
-    Enterprise.GENTER: "AssArimura.png",
-    Enterprise.ARANTES: "AssRapha.png",
-    Enterprise.FOLHA_TECH: "AssFernando.png",
+    Enterprise.GENTER: "AssArimura.svg",
+    Enterprise.ARANTES: "AssArimura.svg",
+    Enterprise.FOLHA_TECH: "AssArimura.svg",
 }
 
 
@@ -33,6 +34,14 @@ LOGO_POR_EMPRESA: dict[Enterprise, str] = {
     Enterprise.GENTER: "logo.png",
     Enterprise.FOLHA_TECH: "logo.png",
 }
+
+
+def _load_signature_config() -> dict:
+    config_path = settings.PROJECT_ROOT / "signatures.json"
+    if not config_path.exists():
+        return {}
+    with open(config_path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 def get_theme(empresa: Enterprise) -> dict[str, str]:
@@ -65,3 +74,34 @@ def find_signature(empresa: Enterprise) -> Path | None:
 
     caminho = settings.assinaturas_dir_path / nome_arquivo
     return caminho if caminho.exists() else None
+
+
+def find_signature_by_role(empresa: Enterprise, papel: str) -> Path | None:
+    config = _load_signature_config()
+    for _key, info in config.get("signatarios", {}).items():
+        papeis = info.get("papeis_por_empresa", {}).get(empresa.value, [])
+        if papel in papeis:
+            caminho = settings.PROJECT_ROOT / info["arquivo"]
+            if caminho.exists():
+                return caminho
+    return None
+
+
+def find_all_signatures_for_company(empresa: Enterprise) -> dict[str, Path]:
+    config = _load_signature_config()
+    resultado: dict[str, Path] = {}
+
+    for _key, info in config.get("signatarios", {}).items():
+        papeis = info.get("papeis_por_empresa", {}).get(empresa.value, [])
+        for papel in papeis:
+            caminho = settings.PROJECT_ROOT / info["arquivo"]
+            if not caminho.exists():
+                continue
+            base_key = papel
+            candidate_key = base_key
+            idx = 1
+            while candidate_key in resultado:
+                candidate_key = f"{base_key}_{idx}"
+                idx += 1
+            resultado[candidate_key] = caminho
+    return resultado

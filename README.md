@@ -37,33 +37,45 @@
 
 ## Visão Geral
 
-Este projeto automatiza o fluxo completo de contratação de candidatos em duas pipelines independentes mas complementares:
+Este projeto automatiza o fluxo completo de contratação de candidatos em duas pipelines independentes mas
+complementares:
 
-1. **Pipeline de Proposta** — Acessa o sistema **Triata** (plataforma de workflow interna da Folha Tech), extrai os dados do formulário do candidato, gera um documento PDF (carta proposta ou contrato, conforme o tipo de tarefa) e persiste os dados em JSON e Excel para rastreabilidade.
+1. **Pipeline de Proposta** — Acessa o sistema **Triata** (plataforma de workflow interna da Folha Tech), extrai os
+   dados do formulário do candidato, gera um documento PDF (carta proposta ou contrato, conforme o tipo de tarefa) e
+   persiste os dados em JSON e Excel para rastreabilidade.
 
-2. **Pipeline de Assinatura** — Envia o PDF gerado para a plataforma **ZapSign** (serviço de assinatura digital), configura o documento (autenticação avançada, signatário, vistos em todas as páginas, campo de assinatura) e captura o link público para o candidato assinar eletronicamente.
+2. **Pipeline de Assinatura** — Envia o PDF gerado para a plataforma **ZapSign** (serviço de assinatura digital),
+   configura o documento (autenticação avançada, signatário, vistos em todas as páginas, campo de assinatura) e captura
+   o link público para o candidato assinar eletronicamente.
 
-Ambas as pipelines são executadas via **Playwright** (API síncrona) em navegador Chromium, com múltiplas estratégias de resiliência para lidar com modais, timeouts e elementos dinâmicos.
+Ambas as pipelines são executadas via **Playwright** (API síncrona) em navegador Chromium, com múltiplas estratégias de
+resiliência para lidar com modais, timeouts e elementos dinâmicos.
 
 ---
 
 ## Contexto e Motivação
 
-A contratação de candidatos na Folha Tech e empresas do grupo (Genter, Arantes) envolve um processo multi-etapas no sistema Triata:
+A contratação de candidatos na Folha Tech e empresas do grupo (Genter, Arantes) envolve um processo multi-etapas no
+sistema Triata:
 
-- **Tarefa 04.1 — Confecção de Proposta**: Gerar uma carta de proposta com dados do candidato, honorários, equipamentos e sistemas.
-- **Tarefa 08 — Confecção e Assinatura de Contrato**: Gerar um contrato formal e enviar para assinatura digital via ZapSign.
+- **Tarefa 04.1 — Confecção de Proposta**: Gerar uma carta de proposta com dados do candidato, honorários, equipamentos
+  e sistemas.
+- **Tarefa 08 — Confecção e Assinatura de Contrato**: Gerar um contrato formal e enviar para assinatura digital via
+  ZapSign.
 
-Cada execução manual dessas tarefas consumia tempo de operadores de TI, envolvendo: login no Triata, navegação até a tarefa, extração manual dos dados do formulário, preenchimento de templates, formatação de PDF, login no ZapSign, upload de documento, configuração de signatários, aplicação de vistos e assinaturas, e cópia manual do link.
+Cada execução manual dessas tarefas consumia tempo de operadores de TI, envolvendo: login no Triata, navegação até a
+tarefa, extração manual dos dados do formulário, preenchimento de templates, formatação de PDF, login no ZapSign, upload
+de documento, configuração de signatários, aplicação de vistos e assinaturas, e cópia manual do link.
 
-Este projeto elimina 100% das etapas manuais, reduzindo o tempo de processamento de ~15 minutos para ~3 minutos por candidato, com zero erro de transcrição de dados.
+Este projeto elimina 100% das etapas manuais, reduzindo o tempo de processamento de ~15 minutos para ~3 minutos por
+candidato, com zero erro de transcrição de dados.
 
 ---
 
 ## Stack
 
 | Tecnologia                       | Versão / Requisito | Função                                                                 |
-| -------------------------------- | ------------------ | ---------------------------------------------------------------------- |
+|----------------------------------|--------------------|------------------------------------------------------------------------|
 | Python                           | `>= 3.12`          | Linguagem de programação                                               |
 | [uv](https://docs.astral.sh/uv/) | latest             | Gerenciador de pacotes e lockfile (`uv.lock`)                          |
 | Playwright                       | `>= 1.60.0`        | Automação de navegador (API síncrona)                                  |
@@ -144,7 +156,8 @@ uv sync --upgrade
 
 ## Configuração
 
-Todas as configurações estão centralizadas em `automation/src/config/settings.py` e são carregadas via **pydantic-settings** (`BaseSettings` com `SettingsConfigDict`). A configuração é carregada na ordem:
+Todas as configurações estão centralizadas em `automation/src/config/settings.py` e são carregadas via
+**pydantic-settings** (`BaseSettings` com `SettingsConfigDict`). A configuração é carregada na ordem:
 
 1. Variáveis de ambiente (maior prioridade)
 2. Arquivo `.env` na raiz do projeto
@@ -153,7 +166,7 @@ Todas as configurações estão centralizadas em `automation/src/config/settings
 ### Variáveis de Ambiente / `.env`
 
 | Variável           | Padrão                                                                        | Descrição                      | Obrigatório               |
-| ------------------ | ----------------------------------------------------------------------------- | ------------------------------ | ------------------------- |
+|--------------------|-------------------------------------------------------------------------------|--------------------------------|---------------------------|
 | `TRIATA_URL`       | `https://workflow.folhatech.com.br/triata/Sistema.php?area=Processo&m=1&mp=1` | URL do sistema Triata          | Não                       |
 | `TRIATA_USERNAME`  | `robo.cadastro`                                                               | Usuário de serviço para Triata | Não                       |
 | `TRIATA_PASSWORD`  | `Robo@aut2024`                                                                | Senha do usuário Triata        | Não                       |
@@ -164,7 +177,7 @@ Todas as configurações estão centralizadas em `automation/src/config/settings
 ### Timeouts (em milissegundos)
 
 | Config               | Padrão  | Contexto                        | Onde usado                                     |
-| -------------------- | ------- | ------------------------------- | ---------------------------------------------- |
+|----------------------|---------|---------------------------------|------------------------------------------------|
 | `DEFAULT_TIMEOUT`    | 30.000  | Operações gerais do Playwright  | `safe_click`, `safe_fill`, `wait_for_selector` |
 | `UPLOAD_TIMEOUT`     | 180.000 | Upload de PDF no ZapSign        | `apply_verification_marks` (viewer carregar)   |
 | `PDF_VIEWER_TIMEOUT` | 90.000  | Aguardar viewer do PDF carregar | `place_signature_field`                        |
@@ -173,7 +186,7 @@ Todas as configurações estão centralizadas em `automation/src/config/settings
 ### Configurações do Browser
 
 | Config            | Padrão                                                                                                            | Descrição                          | Impacto                                        |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------------------------- |
+|-------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------|------------------------------------------------|
 | `HEADLESS`        | `false`                                                                                                           | Executar navegador em modo visível | Útil para debug; em servidores, definir `true` |
 | `SLOW_MO`         | `50`                                                                                                              | Atraso entre ações (ms)            | Aumenta se a rede estiver lenta                |
 | `VIEWPORT_WIDTH`  | `1920`                                                                                                            | Largura da viewport                | Deve refletir resolução comum do usuário       |
@@ -184,9 +197,9 @@ Todas as configurações estão centralizadas em `automation/src/config/settings
 ### Caminhos de Arquivos
 
 | Config              | Padrão                        | Tipo      | Descrição                                         |
-| ------------------- | ----------------------------- | --------- | ------------------------------------------------- |
+|---------------------|-------------------------------|-----------|---------------------------------------------------|
 | `PDF_DIR`           | `pdfs_gerados`                | Diretório | Onde os PDFs são salvos                           |
-| `LOGOS_DIR`         | `Logos`                       | Diretório | Logos por empresa (subdiretórios)                 |
+| `LOGOS_DIR`         | `logos`                       | Diretório | Logos por empresa (subdiretórios)                 |
 | `ASSINATURAS_DIR`   | `assinatura`                  | Diretório | Imagens de assinatura digital                     |
 | `TEMPLATE_CONTRATO` | `modelo_contrato.txt`         | Arquivo   | Template de contrato com placeholders `{{campo}}` |
 | `JSON_FILE`         | `dados_formulario_atual.json` | Arquivo   | Último candidato extraído                         |
@@ -205,7 +218,7 @@ uv run python -m automation [etapa]
 ### Comandos Disponíveis
 
 | Comando                                  | Descrição                                                           | Requisitos                                    |
-| ---------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------- |
+|------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------|
 | `uv run python -m automation`            | Executa a pipeline de **Proposta** (padrão)                         | Triata acessível                              |
 | `uv run python -m automation proposta`   | Extrai dados do Triata, salva em JSON/Excel e gera PDF              | Triata acessível                              |
 | `uv run python -m automation assinatura` | Lê o último JSON, localiza o PDF e envia para assinatura no ZapSign | `.env` com credenciais ZapSign; PDF existente |
@@ -322,9 +335,12 @@ set-fx-candidatos/
 
 ### Camadas
 
-1. **Domain** (`src/domain/`): Contém entidades (`Candidate`, `Proposal`, `Enterprise`), validadores e exceções. É a camada mais interna, sem dependências de infraestrutura.
-2. **Application** (`src/application/`): Orquestra fluxos de trabalho (workflows) e converte dados brutos (dict) em modelos de domínio (services).
-3. **Infrastructure** (`src/infrastructure/`): Implementa detalhes técnicos: automação de browser, comunicação com APIs externas, geração de PDF, persistência.
+1. **Domain** (`src/domain/`): Contém entidades (`Candidate`, `Proposal`, `Enterprise`), validadores e exceções. É a
+   camada mais interna, sem dependências de infraestrutura.
+2. **Application** (`src/application/`): Orquestra fluxos de trabalho (workflows) e converte dados brutos (dict) em
+   modelos de domínio (services).
+3. **Infrastructure** (`src/infrastructure/`): Implementa detalhes técnicos: automação de browser, comunicação com APIs
+   externas, geração de PDF, persistência.
 4. **Config** (`src/config/`): Centraliza configuração e logging.
 
 ---
@@ -432,16 +448,17 @@ O `TriataClient.find_task()`:
 2. Pega a **primeira tarefa** da lista (assumindo que a ordem é cronológica ou prioritária)
 3. Extrai o atributo `title` e `id` do `<td>`
 4. Classifica o tipo:
-   - Se `"04.1"` no título → `nome_tarefa = "04.1 - Confecção Proposta"`
-   - Se `"08"` no título → `nome_tarefa = "08 - Confecção e assinatura (Contrato)"`
-   - Senão → `TarefaNotFoundError`
+    - Se `"04.1"` no título → `nome_tarefa = "04.1 - Confecção Proposta"`
+    - Se `"08"` no título → `nome_tarefa = "08 - Confecção e assinatura (Contrato)"`
+    - Senão → `TarefaNotFoundError`
 5. Extrai `processo_id` do padrão regex `tarefa_(\d+)_\d+`
 6. Aceita qualquer diálogo (`dialog.accept()`)
 7. Clica na tarefa e aguarda o formulário `#TriareProcessoForm` (timeout 20s)
 
 #### 4. Extração do Formulário
 
-O `TriataClient.extract_form()` executa JavaScript no browser para extrair todos os campos do formulário `#TriareProcessoForm`:
+O `TriataClient.extract_form()` executa JavaScript no browser para extrair todos os campos do formulário
+`#TriareProcessoForm`:
 
 ```javascript
 const form = document.querySelector("#TriareProcessoForm");
@@ -471,7 +488,8 @@ A função `build_proposal(dados)` (em `proposta_service.py`) realiza:
 
 - **Candidate**: Extrai nome, email, CPF, RG, data de nascimento, estado civil, celular, endereço
 - **Address**: Logradouro, número, complemento, bairro, cidade, CEP
-- **Empresa**: Resolve a partir dos campos `empresa_colaborador_novo` ou `empresa_solicitante` via `Enterprise.from_string()`
+- **Empresa**: Resolve a partir dos campos `empresa_colaborador_novo` ou `empresa_solicitante` via
+  `Enterprise.from_string()`
 - **Honorário**: Parse de `honorario_novo_colaborador` (remove pontos, converte vírgula → ponto → float)
 - **Equipamentos e Sistemas**: Extração de itens com checkbox `[x]` marcado dos grupos `equipamentos` e `sistemas`
 - **Metadados**: `processo_id`, `tarefa_nome`, `modelo_nome`
@@ -484,17 +502,17 @@ A decisão de qual PDF gerar é baseada em `tarefa_nome`:
 
 - Gera `Carta_Proposta_{nome_sanitizado}.pdf`
 - PDF estilizado com:
-  - Logo da empresa (se encontrado em `Logos/<Empresa>/`)
-  - Data de São Paulo (formato `dd/MM/yyyy`)
-  - Saudação ao candidato
-  - Tabela "Dados da proposta" (processo, tarefa, modelo, empresa, tipo de vaga, centro de custo, honorário)
-  - Tabela "Dados do candidato" (nome, nascimento, estado civil, RG, CPF, email, celular)
-  - Tabela "Endereço residencial"
-  - Listas de equipamentos e sistemas
-  - Condições (honorário formatado como `R$ 1.234,56`)
-  - Campos de assinatura (candidato + responsável legal)
-  - Imagem de assinatura digital (se encontrada)
-  - Rodapé com mensagem de automação
+    - Logo da empresa (se encontrado em `logos/<Empresa>/`)
+    - Data de São Paulo (formato `dd/MM/yyyy`)
+    - Saudação ao candidato
+    - Tabela "Dados da proposta" (processo, tarefa, modelo, empresa, tipo de vaga, centro de custo, honorário)
+    - Tabela "Dados do candidato" (nome, nascimento, estado civil, RG, CPF, email, celular)
+    - Tabela "Endereço residencial"
+    - Listas de equipamentos e sistemas
+    - Condições (honorário formatado como `R$ 1.234,56`)
+    - Campos de assinatura (candidato + responsável legal)
+    - Imagem de assinatura digital (se encontrada)
+    - Rodapé com mensagem de automação
 
 **Se a tarefa contém "08":**
 
@@ -591,11 +609,11 @@ O `ZapSignClient.apply_verification_marks()`:
 2. Aguarda canvas dentro de cada página (timeout 180s)
 3. Conta o total de páginas
 4. Para cada página:
-   - Fecha modais
-   - Faz scroll até a página
-   - Clica no centro do canvas (`click_canvas_center`)
-   - Seleciona a opção "Visto" (`#zs-options-lines-visto`)
-   - Loga o sucesso
+    - Fecha modais
+    - Faz scroll até a página
+    - Clica no centro do canvas (`click_canvas_center`)
+    - Seleciona a opção "Visto" (`#zs-options-lines-visto`)
+    - Loga o sucesso
 
 #### 9. Inserção de Campo de Assinatura
 
@@ -604,10 +622,10 @@ O `ZapSignClient.place_signature_field()`:
 1. Aguarda `.pdfViewer` (timeout 90s)
 2. Aguarda páginas e canvas dentro do viewer
 3. Para cada viewer:
-   - Faz scroll até o final (`scroll_viewer_to_bottom`)
-   - Conta as páginas
-   - Tenta inserir assinatura na última página (e penúltima, se houver >= 2)
-   - Clica no canvas e seleciona `#zs-options-lines-signature`
+    - Faz scroll até o final (`scroll_viewer_to_bottom`)
+    - Conta as páginas
+    - Tenta inserir assinatura na última página (e penúltima, se houver >= 2)
+    - Clica no canvas e seleciona `#zs-options-lines-signature`
 
 4. Se não encontrar `.pdfViewer`, usa fallback global (todas as páginas do documento)
 
@@ -622,7 +640,8 @@ O `ZapSignClient.save_and_continue()`:
 
 O `ZapSignClient.capture_link()`:
 
-1. Aguarda via `page.wait_for_function()` até encontrar um `input.signer_link` com valor começando com `http` (timeout 120s)
+1. Aguarda via `page.wait_for_function()` até encontrar um `input.signer_link` com valor começando com `http` (timeout
+   120s)
 2. Extrai o valor do input
 3. Valida que começa com `http` (senão, `ZapSignLinkError`)
 4. Loga o link capturado
@@ -655,7 +674,7 @@ Cada empresa do grupo tem identidade visual própria, configurada em `branding_s
 ### Paletas de Cores
 
 | Empresa        | Primária             | Secundária                | Texto     |
-| -------------- | -------------------- | ------------------------- | --------- |
+|----------------|----------------------|---------------------------|-----------|
 | **Folha Tech** | `#F58220` (Laranja)  | `#FFE8D1` (Laranja claro) | `#333333` |
 | **Genter**     | `#9E2F2A` (Vermelho) | `#F6E3E2` (Rosa claro)    | `#333333` |
 | **Arantes**    | `#1D4ED8` (Azul)     | `#DBEAFE` (Azul claro)    | `#333333` |
@@ -678,7 +697,7 @@ A função `Enterprise.from_string()` normaliza o texto e retorna:
 ### Assinaturas Digitais
 
 | Empresa    | Arquivo Esperado             |
-| ---------- | ---------------------------- |
+|------------|------------------------------|
 | Genter     | `assinatura/AssArimura.png`  |
 | Arantes    | `assinatura/AssRapha.png`    |
 | Folha Tech | `assinatura/AssFernando.png` |
@@ -697,7 +716,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Metadados do Processo
 
 | Campo                     | Tipo | Descrição                            | Exemplo                                    |
-| ------------------------- | ---- | ------------------------------------ | ------------------------------------------ |
+|---------------------------|------|--------------------------------------|--------------------------------------------|
 | `extraido_em`             | str  | Timestamp da extração                | `"05/06/2026, 10:41:31"`                   |
 | `url`                     | str  | URL da página no momento da extração | `"https://workflow.folhatech.com.br/..."`  |
 | `processo_id`             | str  | ID do processo (extraído do DOM)     | `"22133"`                                  |
@@ -710,7 +729,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Dados do Solicitante
 
 | Campo                 | Descrição                     |
-| --------------------- | ----------------------------- |
+|-----------------------|-------------------------------|
 | `nome_solicitante`    | Nome de quem abriu o processo |
 | `email_solicitante`   | Email do solicitante          |
 | `solicitante_empresa` | Empresa do solicitante        |
@@ -718,7 +737,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Dados do Candidato
 
 | Campo                     | Descrição                  | Usado em        |
-| ------------------------- | -------------------------- | --------------- |
+|---------------------------|----------------------------|-----------------|
 | `nome_completo`           | Nome completo do candidato | PDF, assinatura |
 | `data_nascimento`         | Data de nascimento         | PDF             |
 | `estado_civil`            | Estado civil               | PDF             |
@@ -734,7 +753,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Endereço
 
 | Campo                  | Descrição   |
-| ---------------------- | ----------- |
+|------------------------|-------------|
 | `endereco_completo`    | Logradouro  |
 | `numero_endereco`      | Número      |
 | `complemento_endereco` | Complemento |
@@ -745,7 +764,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Dados da Proposta
 
 | Campo                        | Descrição                                | Usado em                  |
-| ---------------------------- | ---------------------------------------- | ------------------------- |
+|------------------------------|------------------------------------------|---------------------------|
 | `tipo_vaga`                  | Tipo de vaga ("Aumento de quadro", etc.) | PDF                       |
 | `honorario_novo_colaborador` | Valor do honorário (string)              | PDF (parseado para float) |
 | `centro_custo`               | Centro de custo                          | PDF                       |
@@ -758,7 +777,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Dados Bancários
 
 | Campo                | Descrição        |
-| -------------------- | ---------------- |
+|----------------------|------------------|
 | `qual_banco`         | Nome do banco    |
 | `tipo_conta`         | Tipo de conta    |
 | `agencia_banco`      | Agência          |
@@ -769,7 +788,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Dados Escolares
 
 | Campo                  | Descrição            |
-| ---------------------- | -------------------- |
+|------------------------|----------------------|
 | `grau_escolaridade`    | Grau de escolaridade |
 | `curso_escolaridade`   | Nome do curso        |
 | `data_conclusao_facul` | Data de conclusão    |
@@ -777,7 +796,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Contatos de Emergência
 
 | Campo                 | Descrição          |
-| --------------------- | ------------------ |
+|-----------------------|--------------------|
 | `nome1_emergencia`    | Nome do 1º contato |
 | `grau1_parentesco`    | Parentesco         |
 | `celular1_emergencia` | Celular            |
@@ -788,7 +807,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Contatos de Emergência
 
 | Campo                 | Descrição          |
-| --------------------- | ------------------ |
+|-----------------------|--------------------|
 | `nome1_emergencia`    | Nome do 1º contato |
 | `grau1_parentesco`    | Parentesco         |
 | `celular1_emergencia` | Celular            |
@@ -799,7 +818,7 @@ Os campos a seguir são extraídos automaticamente do formulário `#TriareProces
 #### Checkboxes (Equipamentos e Sistemas)
 
 | Grupo          | Descrição                                                                |
-| -------------- | ------------------------------------------------------------------------ |
+|----------------|--------------------------------------------------------------------------|
 | `equipamentos` | Dict com checkboxes de equipamentos (ex: `notebook`, `mouse`, `monitor`) |
 | `sistemas`     | Dict com checkboxes de sistemas (ex: `email`, `vpn`, `slack`)            |
 
@@ -808,7 +827,7 @@ Valores marcados são identificados por `is_checked()` que verifica se o valor c
 #### Histórico
 
 | Campo                                           | Descrição                                                  |
-| ----------------------------------------------- | ---------------------------------------------------------- |
+|-------------------------------------------------|------------------------------------------------------------|
 | `consideracoes_historico`                       | Campo de texto livre                                       |
 | `consideracoes_historico_historico`             | HTML do histórico de tarefas (com marcadores `{{TAREFA}}`) |
 | `consideracoes_historico_historico_complemento` | Complemento do histórico                                   |
@@ -816,7 +835,7 @@ Valores marcados são identificados por `is_checked()` que verifica se o valor c
 #### Dados do ZapSign (após assinatura)
 
 | Campo                     | Descrição                                |
-| ------------------------- | ---------------------------------------- |
+|---------------------------|------------------------------------------|
 | `zapsign.link_assinatura` | URL pública do documento para assinatura |
 | `zapsign.capturado_em`    | Timestamp da captura do link             |
 
@@ -829,8 +848,8 @@ Valores marcados são identificados por `is_checked()` que verifica se o valor c
 ```python
 class Enterprise(Enum):
     FOLHA_TECH = "Folha Tech"
-    GENTER = "Genter"
-    ARANTES = "Arantes"
+    GENTER = "genter"
+    ARANTES = "arantes"
 ```
 
 Método de fábrica `from_string(name)` normaliza o texto (minúsculas, sem acentos) e retorna:
@@ -920,8 +939,8 @@ Normaliza texto para busca:
 
 ### `clean_filename(name)`
 
-Remove caracteres inválidos para nome de arquivo (`/`, `\`, `:`, `*`, `?`, `"`, `<`, `>`, `|`),
-substitui espaços por `_`, e usa `"Candidato"` como fallback.
+Remove caracteres inválidos para nome de arquivo (`/`, `\`, `:`, `*`, `?`, `"`, `<`, `>`, `|`), substitui espaços por
+`_`, e usa `"Candidato"` como fallback.
 
 ### `clean_value(value)`
 
@@ -1003,9 +1022,11 @@ Tenta 4 estratégias em sequência, fechando modais antes de cada tentativa:
 1. **Normal**: `btn.click(timeout=5000)`
 2. **Force**: `btn.click(force=True, timeout=5000)` — ignora verificação de visibilidade
 3. **JavaScript**: `page.evaluate("document.querySelector('...').click()")` — execução direta no DOM
-4. **Mouse Event**: Simula eventos `mousemove`, `mousedown`, `mouseup`, `click` via `MouseEvent` com coordenadas calculadas do bounding box
+4. **Mouse Event**: Simula eventos `mousemove`, `mousedown`, `mouseup`, `click` via `MouseEvent` com coordenadas
+   calculadas do bounding box
 
-Antes de começar, verifica se o botão está habilitado (loop com deadline de timeout). Se não habilitar, tira screenshot e levanta `ClickFailedError`.
+Antes de começar, verifica se o botão está habilitado (loop com deadline de timeout). Se não habilitar, tira screenshot
+e levanta `ClickFailedError`.
 
 ### `close_modal()` — Fechamento de Modal
 
@@ -1159,7 +1180,7 @@ Todos os loggers usam o prefixo `automacao.`:
 Funções disponíveis (`json_repository.py`):
 
 | Função                                   | Descrição                                                                                       |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------- |
+|------------------------------------------|-------------------------------------------------------------------------------------------------|
 | `load(path)`                             | Carrega e retorna dict. Levanta `JsonNotFoundError` se não existir.                             |
 | `save(path, data)`                       | Salva dict como JSON.                                                                           |
 | `update(path, updates)`                  | Carrega, mescla com updates, salva.                                                             |
@@ -1188,8 +1209,8 @@ Funções disponíveis (`json_repository.py`):
 
 - **Criação automática**: O diretório é criado automaticamente se não existir (`mkdir(parents=True, exist_ok=True)`)
 - **Nomenclatura**:
-  - `Carta_Proposta_{NOME_SANITIZADO}.pdf`
-  - `Contrato_{NOME_SANITIZADO}.pdf`
+    - `Carta_Proposta_{NOME_SANITIZADO}.pdf`
+    - `Contrato_{NOME_SANITIZADO}.pdf`
 - **Sanitização**: Caracteres inválidos para filename são substituídos por `_`
 
 ---
@@ -1287,7 +1308,7 @@ ZAPSIGN_PASSWORD=sua_senha
 
 **Causa:**
 
-- Diretório `Logos/<Empresa>/` não existe ou está vazio
+- Diretório `logos/<Empresa>/` não existe ou está vazio
 
 **Solução:**
 
@@ -1337,8 +1358,8 @@ Logos/
 **Solução:**
 
 - A função `close_modal()` já tenta lidar com isso, mas se o modal mudar:
-  - Atualize o seletor em `close_modal()` (`button[aria-label='Fechar modal']`)
-  - Ou adicione o seletor do novo modal
+    - Atualize o seletor em `close_modal()` (`button[aria-label='Fechar modal']`)
+    - Ou adicione o seletor do novo modal
 
 ---
 
@@ -1403,7 +1424,7 @@ Logos/
   "url": "https://workflow.folhatech.com.br/triata/Sistema.php",
   "processo_id": "22133",
   "tarefa_nome": "04.1 - Confecção Proposta",
-  "modelo_nome": "Arantes - Contratação PJ",
+  "modelo_nome": "arantes - Contratação PJ",
   "nome_completo": "Alex de Niterói",
   "email_pessoal_candidato": "pedro.santana@folhatech.com.br",
   "cpf_candidato": "042.815.546-45",
@@ -1442,17 +1463,19 @@ Logos/
 
 ### Credenciais
 
-- **Triata**: Credenciais (`robo.cadastro` / `Robo@aut2024`) estão hardcoded em `settings.py`. Não são dados sensíveis de usuário humano, mas ainda assim devem ser protegidos.
+- **Triata**: Credenciais (`robo.cadastro` / `Robo@aut2024`) estão hardcoded em `settings.py`. Não são dados sensíveis
+  de usuário humano, mas ainda assim devem ser protegidos.
 - **ZapSign**: Credenciais **devem** estar no `.env`, nunca no código. O `.env` está no `.gitignore`.
 
 ### Dados dos Candidatos
 
-- CPFs, RG, endereços, dados bancários e contatos de emergência são extraídos e armazenados em `dados_formulario_atual.json` e `dados_formularios.xlsx`.
+- CPFs, RG, endereços, dados bancários e contatos de emergência são extraídos e armazenados em
+  `dados_formulario_atual.json` e `dados_formularios.xlsx`.
 - **Esses arquivos contêm dados pessoais sensíveis** e devem ser protegidos conforme a LGPD.
 - Recomenda-se:
-  - Não commitar os arquivos de dados (já ignorados via `.gitignore`? — verificar)
-  - Restringir acesso ao diretório do projeto
-  - Considerar criptografia dos arquivos JSON/Excel em ambientes de produção
+    - Não commitar os arquivos de dados (já ignorados via `.gitignore`? — verificar)
+    - Restringir acesso ao diretório do projeto
+    - Considerar criptografia dos arquivos JSON/Excel em ambientes de produção
 
 ### Links de Assinatura
 
@@ -1463,7 +1486,8 @@ Logos/
 ### Anti-Detecção
 
 - O projeto usa técnicas de anti-detecção (`navigator.webdriver = undefined`, user-agent customizado).
-- Essas técnicas são legítimas para automação de sistemas próprios, mas **não devem ser usadas para violar Termos de Serviço** de terceiros.
+- Essas técnicas são legítimas para automação de sistemas próprios, mas **não devem ser usadas para violar Termos de
+  Serviço** de terceiros.
 
 ---
 
@@ -1599,7 +1623,8 @@ uv run python -c "import automation; print('Import OK')"  # importação
 ```
 
 **Ruff** (`pyproject.toml`): line-length 100, double quotes, space indent, regras E/F/I/W/UP.  
-**Mypy**: `strict = false`, ignora imports faltantes de `reportlab.*`, `playwright.*`, `pandas.*`, `openpyxl.*`, `pydantic_settings.*`.
+**Mypy**: `strict = false`, ignora imports faltantes de `reportlab.*`, `playwright.*`, `pandas.*`, `openpyxl.*`,
+`pydantic_settings.*`.
 
 Instalar dev tools localmente:
 
@@ -1611,25 +1636,33 @@ uv sync --all-extras --dev
 
 ## Limitações Conhecidas
 
-1. **Sem Testes Automatizados**: Não há suíte de testes (unitários, integração ou e2e). Qualquer mudança requer validação manual.
+1. **Sem Testes Automatizados**: Não há suíte de testes (unitários, integração ou e2e). Qualquer mudança requer
+   validação manual.
 
-2. **Dependência de Seletores CSS**: O Triata e ZapSign podem mudar seus HTMLs a qualquer momento. Seletores hardcoded podem quebrar.
+2. **Dependência de Seletores CSS**: O Triata e ZapSign podem mudar seus HTMLs a qualquer momento. Seletores hardcoded
+   podem quebrar.
 
-3. **Primeira Tarefa Sempre**: O sistema sempre pega a **primeira** tarefa da lista. Se a ordem não for a esperada, processará o candidato errado.
+3. **Primeira Tarefa Sempre**: O sistema sempre pega a **primeira** tarefa da lista. Se a ordem não for a esperada,
+   processará o candidato errado.
 
-4. **Sem Fila de Processamento**: Não há mecanismo de fila. Se houver múltiplas tarefas, é necessário executar múltiplas vezes.
+4. **Sem Fila de Processamento**: Não há mecanismo de fila. Se houver múltiplas tarefas, é necessário executar múltiplas
+   vezes.
 
 5. **Execução Sequencial**: Não há paralelismo. Cada candidato é processado um por vez.
 
-6. **PDF de Contrato Simples**: O template de contrato é um texto simples com substituição de placeholders. Não suporta layouts complexos, tabelas ou condicionais.
+6. **PDF de Contrato Simples**: O template de contrato é um texto simples com substituição de placeholders. Não suporta
+   layouts complexos, tabelas ou condicionais.
 
-7. **Resolução de Empresa por Heurística**: `Enterprise.from_string()` usa matching por substring. Empresas com nomes similares podem ser classificadas incorretamente.
+7. **Resolução de Empresa por Heurística**: `Enterprise.from_string()` usa matching por substring. Empresas com nomes
+   similares podem ser classificadas incorretamente.
 
-8. **Sem Retry Automático**: Se uma etapa falhar (ex: timeout de rede), toda a pipeline falha. Não há mecanismo de retry com backoff.
+8. **Sem Retry Automático**: Se uma etapa falhar (ex: timeout de rede), toda a pipeline falha. Não há mecanismo de retry
+   com backoff.
 
 9. **Logs Somente em Console**: Não há persistência de logs em arquivo. Se o terminal for fechado, os logs são perdidos.
 
-10. **Sem Notificação**: Após a execução, o sucesso/falha não é notificado por email, Slack, etc. O operador deve verificar o terminal manualmente.
+10. **Sem Notificação**: Após a execução, o sucesso/falha não é notificado por email, Slack, etc. O operador deve
+    verificar o terminal manualmente.
 
 ---
 

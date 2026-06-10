@@ -4,8 +4,8 @@ from enum import Enum
 
 class Enterprise(Enum):
     FOLHA_TECH = "Folha Tech"
-    GENTER = "Genter"
-    ARANTES = "Arantes"
+    GENTER = "genter"
+    ARANTES = "arantes"
 
     @classmethod
     def from_string(cls, name: str):
@@ -31,7 +31,12 @@ class Address:
     @property
     def full_address(self) -> str:
         parts = [
-            self.logradouro, self.numero, self.complemento, self.bairro, self.cidade, self.cep
+            self.logradouro,
+            self.numero,
+            self.complemento,
+            self.bairro,
+            self.cidade,
+            self.cep,
         ]
         return " ".join(p for p in parts if p).strip()
 

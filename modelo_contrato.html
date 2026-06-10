@@ -6,320 +6,321 @@
     <title>Instrumento de Contrato Particular de Prestação de Serviços Financeiros</title>
     <style>
         @page {
-    size: A4;
-    margin: 20mm 25mm 35mm 25mm;
-    }
+            size: A4;
+            margin: 20mm 25mm 35mm 25mm;
 
-    @bottom-center {
-    content: "Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000\A Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446\A E-mail – contato@arantesarimura.adv.br\A Site – WWW.ARANTESARIMURA.ADV.BR";
-    white-space: pre;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 8pt;
-    color: #000;
-    text-align: center;
-    border-top: 1px solid #000;
-    padding-top: 3mm;
-    width: 100%;
-    }
+            @bottom-center {
+                content: "Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000\A Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446\A E-mail – contato@arantesarimura.adv.br\A Site – WWW.ARANTESARIMURA.ADV.BR";
+                white-space: pre;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 8pt;
+                color: #000;
+                text-align: center;
+                border-top: 1px solid #000;
+                padding-top: 3mm;
+                width: 100%;
+            }
+        }
 
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    }
 
-    body {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 12pt;
-    line-height: 1.6;
-    color: #000;
-    background: #fff;
-    hyphens: none;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .page {
-    margin: 0 auto;
-    position: relative;
-    page-break-after: always;
-    break-after: page;
-    orphans: 3;
-    widows: 3;
-    }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000;
+            background: #fff;
+            hyphens: none;
+        }
 
-    .header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-bottom: 8mm;
-    border-bottom: 1px solid #000;
-    padding-bottom: 4mm;
-    min-height: 15mm;
-    max-height: 20mm;
-    overflow: hidden;
-    }
+        .page {
+            margin: 0 auto;
+            position: relative;
+            page-break-after: always;
+            break-after: page;
+            orphans: 3;
+            widows: 3;
+        }
 
-    .logo-area {
-    text-align: right;
-    }
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 8mm;
+            border-bottom: 1px solid #000;
+            padding-bottom: 4mm;
+            min-height: 15mm;
+            max-height: 20mm;
+            overflow: hidden;
+        }
 
-    .logo-text-main {
-    font-size: 16pt;
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-family: Arial, sans-serif;
-    }
+        .logo-area {
+            text-align: right;
+        }
 
-    .logo-text-sub {
-    font-size: 8pt;
-    letter-spacing: 4px;
-    font-family: Arial, sans-serif;
-    }
+        .logo-text-main {
+            font-size: 16pt;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: Arial, sans-serif;
+        }
 
-    h1.title {
-    font-size: 13pt;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: underline;
-    text-transform: uppercase;
-    margin: 8mm 0 6mm;
-    font-family: Arial, sans-serif;
-    }
+        .logo-text-sub {
+            font-size: 8pt;
+            letter-spacing: 4px;
+            font-family: Arial, sans-serif;
+        }
 
-    p {
-    margin-bottom: 4mm;
-    text-align: justify;
-    orphans: 3;
-    widows: 3;
-    }
+        h1.title {
+            font-size: 13pt;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;
+            text-transform: uppercase;
+            margin: 8mm 0 6mm;
+            font-family: Arial, sans-serif;
+        }
 
-    .bold {
-    font-weight: bold;
-    }
+        p {
+            margin-bottom: 4mm;
+            text-align: justify;
+            orphans: 3;
+            widows: 3;
+        }
 
-    h2.clause {
-    font-size: 12pt;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: underline;
-    text-transform: uppercase;
-    margin: 6mm 0 4mm;
-    font-family: Arial, sans-serif;
-    }
+        .bold {
+            font-weight: bold;
+        }
 
-    .clause-item {
-    margin-bottom: 3mm;
-    text-align: justify;
-    }
+        h2.clause {
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;
+            text-transform: uppercase;
+            margin: 6mm 0 4mm;
+            font-family: Arial, sans-serif;
+        }
 
-    .clause-item .item-num {
-    font-weight: bold;
-    }
+        .clause-item {
+            margin-bottom: 3mm;
+            text-align: justify;
+        }
 
-    .sub-item {
-    margin: 3mm 0 3mm 15mm;
-    text-align: justify;
-    }
+        .clause-item .item-num {
+            font-weight: bold;
+        }
 
-    .sub-item .sub-num {
-    font-weight: bold;
-    }
+        .sub-item {
+            margin: 3mm 0 3mm 15mm;
+            text-align: justify;
+        }
 
-    .para-unico {
-    margin-bottom: 3mm;
-    text-align: justify;
-    }
+        .sub-item .sub-num {
+            font-weight: bold;
+        }
 
-    .para-unico .pu-label {
-    font-weight: bold;
-    text-decoration: underline;
-    }
+        .para-unico {
+            margin-bottom: 3mm;
+            text-align: justify;
+        }
 
-    .considering {
-    margin-bottom: 3mm;
-    text-align: justify;
-    }
+        .para-unico .pu-label {
+            font-weight: bold;
+            text-decoration: underline;
+        }
 
-    .considering .c-label {
-    font-weight: bold;
-    text-decoration: underline;
-    }
+        .considering {
+            margin-bottom: 3mm;
+            text-align: justify;
+        }
 
-    .portanto {
-    margin-bottom: 3mm;
-    text-align: justify;
-    }
+        .considering .c-label {
+            font-weight: bold;
+            text-decoration: underline;
+        }
 
-    .bank-info {
-    margin: 3mm 0;
-    }
+        .portanto {
+            margin-bottom: 3mm;
+            text-align: justify;
+        }
 
-    .bank-info p {
-    margin-bottom: 1mm;
-    text-decoration: none;
-    }
+        .bank-info {
+            margin: 3mm 0;
+        }
 
-    .signature-block {
-    margin-top: 10mm;
-    }
+        .bank-info p {
+            margin-bottom: 1mm;
+            text-decoration: none;
+        }
 
-    .sig-date {
-    text-align: center;
-    margin-bottom: 8mm;
-    }
+        .signature-block {
+            margin-top: 10mm;
+        }
 
-    .sig-party {
-    margin-bottom: 6mm;
-    }
+        .sig-date {
+            text-align: center;
+            margin-bottom: 8mm;
+        }
 
-    .sig-party .party-label {
-    font-weight: bold;
-    text-decoration: underline;
-    font-family: Arial, sans-serif;
-    }
+        .sig-party {
+            margin-bottom: 6mm;
+        }
 
-    .sig-party .party-name {
-    font-weight: bold;
-    text-align: center;
-    margin-top: 10mm;
-    border-top: 1px solid #000;
-    padding-top: 2mm;
-    }
+        .sig-party .party-label {
+            font-weight: bold;
+            text-decoration: underline;
+            font-family: Arial, sans-serif;
+        }
 
-    .witnesses {
-    margin-top: 6mm;
-    display: flex;
-    gap: 20mm;
-    }
+        .sig-party .party-name {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10mm;
+            border-top: 1px solid #000;
+            padding-top: 2mm;
+        }
 
-    .witness {
-    flex: 1;
-    }
+        .witnesses {
+            margin-top: 6mm;
+            display: flex;
+            gap: 20mm;
+        }
 
-    .witness-line {
-    border-top: 1px solid #000;
-    padding-top: 2mm;
-    margin-top: 8mm;
-    }
+        .witness {
+            flex: 1;
+        }
 
-    .annex-title {
-    font-size: 12pt;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: underline;
-    font-family: Arial, sans-serif;
-    margin: 6mm 0 4mm;
-    }
+        .witness-line {
+            border-top: 1px solid #000;
+            padding-top: 2mm;
+            margin-top: 8mm;
+        }
 
-    .list-alpha {
-    margin: 2mm 0 2mm 10mm;
-    }
+        .annex-title {
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: underline;
+            font-family: Arial, sans-serif;
+            margin: 6mm 0 4mm;
+        }
 
-    .list-alpha li {
-    margin-bottom: 2mm;
-    text-align: justify;
-    }
+        .list-alpha {
+            margin: 2mm 0 2mm 10mm;
+        }
 
-    /* Evitar quebra dentro de blocos importantes */
-    h1.title,
-    h2.clause,
-    .annex-title,
-    .signature-block,
-    .sig-party,
-    .witnesses,
-    .witness,
-    .bank-info,
-    .clause-item,
-    .sub-item,
-    .para-unico,
-    .considering,
-    .list-alpha li {
-    break-inside: avoid;
-    page-break-inside: avoid;
-    }
+        .list-alpha li {
+            margin-bottom: 2mm;
+            text-align: justify;
+        }
 
-    h1.title,
-    h2.clause,
-    .annex-title {
-    break-after: avoid;
-    page-break-after: avoid;
-    }
+        /* Evitar quebra dentro de blocos importantes */
+        h1.title,
+        h2.clause,
+        .annex-title,
+        .signature-block,
+        .sig-party,
+        .witnesses,
+        .witness,
+        .bank-info,
+        .clause-item,
+        .sub-item,
+        .para-unico,
+        .considering,
+        .list-alpha li {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
 
-    /* Impressão */
-    @media print {
-    .footer {
-     display: none !important;
-    }
+        h1.title,
+        h2.clause,
+        .annex-title {
+            break-after: avoid;
+            page-break-after: avoid;
+        }
 
-    .page {
-     width: auto !important;
-     min-height: auto !important;
-     padding: 0 !important;
-     margin: 0 !important;
-    }
+        /* Impressão */
+        @media print {
+            .footer {
+                display: none !important;
+            }
 
-    body {
-     background: white;
-     -webkit-print-color-adjust: exact;
-     print-color-adjust: exact;
-    }
+            .page {
+                width: auto !important;
+                min-height: auto !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
 
-    h1.title,
-    h2.clause,
-    .annex-title,
-    .signature-block,
-    .sig-party,
-    .witnesses,
-    .witness,
-    .bank-info,
-    .clause-item,
-    .sub-item,
-    .para-unico,
-    .considering,
-    .list-alpha li {
-     break-inside: avoid;
-     page-break-inside: avoid;
-    }
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
 
-    h1.title,
-    h2.clause,
-    .annex-title {
-     break-after: avoid;
-     page-break-after: avoid;
-    }
-    }
+            h1.title,
+            h2.clause,
+            .annex-title,
+            .signature-block,
+            .sig-party,
+            .witnesses,
+            .witness,
+            .bank-info,
+            .clause-item,
+            .sub-item,
+            .para-unico,
+            .considering,
+            .list-alpha li {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
 
-    /* Tela */
-    @media screen {
-    body {
-     background: #e0e0e0;
-    }
+            h1.title,
+            h2.clause,
+            .annex-title {
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+        }
 
-    .page {
-     width: 210mm;
-     min-height: 297mm;
-     padding: 20mm 25mm 25mm 25mm;
-     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-     margin: 10mm auto;
-     background: #fff;
-    }
+        /* Tela */
+        @media screen {
+            body {
+                background: #e0e0e0;
+            }
 
-    .footer {
-     position: absolute;
-     bottom: 8mm;
-     left: 0;
-     right: 0;
-     text-align: center;
-     font-size: 8pt;
-     border-top: 1px solid #000;
-     padding-top: 3mm;
-     margin: 0 25mm;
-    }
+            .page {
+                width: 210mm;
+                min-height: 297mm;
+                padding: 20mm 25mm 25mm 25mm;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                margin: 10mm auto;
+                background: #fff;
+            }
 
-    .footer a {
-     color: #000;
-     text-decoration: underline;
-    }
-    }
+            .footer {
+                position: absolute;
+                bottom: 8mm;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 8pt;
+                border-top: 1px solid #000;
+                padding-top: 3mm;
+                margin: 0 25mm;
+            }
+
+            .footer a {
+                color: #000;
+                text-decoration: underline;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1539,22 +1540,25 @@
         <div class="sig-date">{{DATA ATUAL}}</div>
 
         <p class="sig-party"><span class="party-label">CONTRATANTE:</span></p>
-        <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;">
+        <div style="text-align:center;margin-top:8mm;">{{ASSINATURA_CONTRATANTE}}</div>
+        <p style="text-align:center;margin-top:2mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;">
             RAPHAELLA ARANTES ARIMURA SOCIEDADE INDIVIDUAL DE ADVOCACIA<br><span style="font-weight:normal;">Raphaella Arantes Arimura (Sócia)</span>
         </p>
 
         <p class="sig-party" style="margin-top:8mm;"><span class="party-label">CONTRATADA:</span></p>
         <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;">
-            {{empresa_colaborador_novo}}<br><span style="font-weight:normal;">{{nome_completo}}</span></p>
+            {{nome_fantasia}}<br><span style="font-weight:normal;">{{nome_completo}}</span></p>
 
         <p style="margin-top:6mm;">Testemunhas:</p>
         <div class="witnesses">
             <div class="witness">
+                <div style="text-align:center;margin-bottom:4mm;">{{ASSINATURA_TESTEMUNHA_1}}</div>
                 <div class="witness-line">1. ___________________</div>
                 <p>Nome: Karla Schipani</p>
                 <p>CPF: 269.375.108-02</p>
             </div>
             <div class="witness">
+                <div style="text-align:center;margin-bottom:4mm;">{{ASSINATURA_TESTEMUNHA_2}}</div>
                 <div class="witness-line">2. ___________________</div>
                 <p>Nome: Luana Lidia</p>
                 <p>CPF: 293.342.578-57</p>
@@ -1634,16 +1638,18 @@
     <div class="signature-block">
         <div class="sig-date">{{DATA ATUAL}}</div>
         <p style="text-align:center;margin-top:12mm;border-top:1px solid #000;padding-top:2mm;font-weight:bold;max-width:200px;margin-left:auto;margin-right:auto;">
-            {{nome_completo}}</p>
+            {{nome_fantasia}}</p>
 
-        <p style="margin-top:8mm;">Testemunhas:</p>
+        <p style="margin-top:6mm;">Testemunhas:</p>
         <div class="witnesses">
             <div class="witness">
+                <div style="text-align:center;margin-bottom:4mm;">{{ASSINATURA_TESTEMUNHA_1}}</div>
                 <div class="witness-line">1. ___________________</div>
                 <p>Nome: Karla Schipani</p>
                 <p>CPF: 269.375.108-02</p>
             </div>
             <div class="witness">
+                <div style="text-align:center;margin-bottom:4mm;">{{ASSINATURA_TESTEMUNHA_2}}</div>
                 <div class="witness-line">2. ___________________</div>
                 <p>Nome: Luana Lidia</p>
                 <p>CPF: 293.342.578-57</p>

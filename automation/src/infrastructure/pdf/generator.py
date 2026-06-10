@@ -20,7 +20,10 @@ from automation.src.application.services.branding_service import (
     find_logo,
     find_signature,
     get_theme,
+    find_signature_by_role,
+    find_all_signatures_for_company,
 )
+from automation.src.domain import Enterprise
 from automation.src.domain.models import Proposal
 from automation.src.domain.validators import clean_value, format_currency
 from automation.src.infrastructure.pdf.styles import build_styles
@@ -345,6 +348,27 @@ def generate_contract_pdf(
     return output_path
 
 
+def _inject_signature(html: str, placeholder: str, signature_path: Path) -> str:
+    ext = signature_path.suffix.lower().lstrip(".")
+    mime_map = {
+        "svg": "image/svg+xml",
+        "png": "image/png",
+        "jpg": "image/jpeg",
+        "jpeg": "image/jpeg",
+    }
+    mime = mime_map.get(ext, "image/svg+xml")
+
+    with open(signature_path, "rb") as f:
+        b64 = base64.b64encode(f.read()).decode()
+
+    img_tag = (
+        f'<img src="data:{mime};base64,{b64}" '
+        f'style="max-height:40px; max-width:180px;">'
+    )
+
+    return html.replace(placeholder, img_tag)
+
+
 def generate_contract_html(
     dados: dict,
     output_path: Path,
@@ -361,7 +385,7 @@ def generate_contract_html(
     placeholders = re.findall(r"\{\{(.*?)\}\}", html)
     for p in placeholders:
         chave = p.strip()
-        if chave == "LOGO":
+        if chave == "LOGO" or chave.startswith("ASSINATURA_"):
             continue
 
         valor = clean_value(dados.get(chave, ""))
@@ -372,6 +396,20 @@ def generate_contract_html(
 
     logo_htm = _build_logo_html(logo_path)
     html = html.replace("{{LOGO}}", logo_htm)
+
+    empresa = Enterprise.from_string(dados.get("empresa_novo_calaborador", ""))
+    ass_contratante = find_signature_by_role(empresa, "contratante")
+    if ass_contratante:
+        html = _inject_signature(html, "{{ASSINATURA_CONTRATANTE}}", ass_contratante)
+
+    todas_ass = find_all_signatures_for_company(empresa)
+    testemunhas = [
+        path for papel, path in todas_ass.items() if papel.startswith("testemunha")
+    ]
+
+    for i, caminho in enumerate(testemunhas[:2], start=1):
+        placeholder = f"{{{{ASSINATURA_TESTEMUNHA_{i}}}}}"
+        html = _inject_signature(html, placeholder, caminho)
 
     page = context.new_page()
     page.set_content(html, wait_until="networkidle")

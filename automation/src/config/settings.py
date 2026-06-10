@@ -28,7 +28,7 @@ class Settings(BaseSettings):
 
     # Files Datas
     PDF_DIR: str = "pdfs_gerados"
-    LOGOS_DIR: str = "Logos"
+    LOGOS_DIR: str = "logos"
     ASSINATURAS_DIR: str = "assinatura"
     TEMPLATE_CONTRATO: str = "modelo_contrato.txt"
     TEMPLATE_CONTRATO_HTML: str = "modelo_contrato.html"

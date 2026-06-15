@@ -23,8 +23,8 @@ EMPRESA_TEMAS: dict[Enterprise, dict[str, str]] = {
 }
 
 LOGO_POR_EMPRESA: dict[Enterprise, str] = {
-    Enterprise.ARANTES: "logo-v2.png",
-    Enterprise.GENTER: "logo.png",
+    Enterprise.ARANTES: "logo.png",
+    Enterprise.GENTER: "logo-v3.png",
     Enterprise.FOLHA_TECH: "logo.png",
 }
 

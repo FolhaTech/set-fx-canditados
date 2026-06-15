@@ -2,7 +2,7 @@ import logging
 
 from automation.src.application.services.proposta_service import build_proposal
 from automation.src.config import settings
-from automation.src.domain import Enterprise
+from automation.src.domain import Enterprise, clean_value
 from automation.src.domain.validators import clean_filename
 from automation.src.infrastructure.browser.factory import create_page
 from automation.src.infrastructure.external_apis.triata_client import TriataClient
@@ -73,7 +73,13 @@ def executar() -> str | None:
                 valor_formatado += ",00"
             dados["valor_remuneracao"] = valor_formatado
 
-            logo_empresa = find_logo(Enterprise.ARANTES)
+            empresa = Enterprise.from_string(
+                clean_value(
+                    dados.get("empresa_novo_colaborador")
+                    or clean_value(dados.get("empresa_solicitante"))
+                )
+            )
+            logo_empresa = find_logo(empresa)
 
             resultado = generate_contract_html(
                 dados=dados,

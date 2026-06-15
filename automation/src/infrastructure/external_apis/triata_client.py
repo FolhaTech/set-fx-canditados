@@ -38,7 +38,9 @@ class TriataClient:
 
         # Confirma que o login sumiu
         try:
-            self.page.wait_for_selector('input[name="login"]', state="hidden", timeout=30_000)
+            self.page.wait_for_selector(
+                'input[name="login"]', state="hidden", timeout=30_000
+            )
             logger.info("Login realizado. URL: %s", self.page.url)
         except Exception:
             raise TriataLoginError("Campo de login ainda visível após tentativa.")
@@ -62,7 +64,9 @@ class TriataClient:
             pass
 
         if not clicado:
-            logger.info("Botão não encontrado. Chamando ModoTeste('I') via JavaScript...")
+            logger.info(
+                "Botão não encontrado. Chamando ModoTeste('I') via JavaScript..."
+            )
             try:
                 self.page.evaluate("""
                     () => {
@@ -115,6 +119,8 @@ class TriataClient:
             nome_tarefa = "04.1 - Confecção Proposta"
         elif "08" in titulo_lower:
             nome_tarefa = "08 - Confecção e assinatura (Contrato)"
+        # elif "05.1" in titulo_lower:
+        #     nome_tarefa = "05.1 - Confecção Proposta"
         else:
             raise TarefaNotFoundError(f"Tarefa não é de confecção: {titulo}")
 

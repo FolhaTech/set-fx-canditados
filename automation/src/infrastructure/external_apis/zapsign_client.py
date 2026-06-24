@@ -48,9 +48,7 @@ class ZapSignClient:
         campo_senha.fill(self.senha)
         self.page.locator("button:has-text('Entrar')").last.click()
 
-        self.page.wait_for_selector(
-            "#button-create-doc-sidebar-test", timeout=40_000
-        )
+        self.page.wait_for_selector("#button-create-doc-sidebar-test", timeout=40_000)
         close_modal(self.page)
         logger.info("Login ZapSign confirmado.")
 
@@ -192,7 +190,9 @@ class ZapSignClient:
                 pg = pages.nth(pidx)
                 canvas = pg.locator("canvas").first
                 if click_canvas_center(self.page, canvas, label="global"):
-                    safe_click(self.page, "#zs-options-lines-signature", label="Ass global")
+                    safe_click(
+                        self.page, "#zs-options-lines-signature", label="Ass global"
+                    )
                     return
             return
 
@@ -256,7 +256,7 @@ class ZapSignClient:
         return link
 
     def run_full_workflow(
-            self, nome: str, email: str | None, pdf_paths: list[str]
+        self, nome: str, email: str | None, pdf_paths: list[str]
     ) -> str:
         """Executa o fluxo completo e retorna o link de assinatura."""
         self.login()

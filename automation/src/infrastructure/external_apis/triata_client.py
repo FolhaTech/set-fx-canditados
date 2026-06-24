@@ -119,8 +119,8 @@ class TriataClient:
             nome_tarefa = "04.1 - Confecção Proposta"
         elif "08" in titulo_lower:
             nome_tarefa = "08 - Confecção e assinatura (Contrato)"
-        # elif "05.1" in titulo_lower:
-        #     nome_tarefa = "05.1 - Confecção Proposta"
+        elif "05.1" in titulo_lower:
+            nome_tarefa = "05.1 - Confecção Proposta"
         else:
             raise TarefaNotFoundError(f"Tarefa não é de confecção: {titulo}")
 

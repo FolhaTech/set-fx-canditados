@@ -1,0 +1,42 @@
+[
+  {
+    "label": "Proposta",
+    "command": "uv run python -m automation proposta",
+  },
+  {
+    "label": "Assinatura",
+    "command": "uv run python -m automation assinatura",
+  },
+  {
+    "label": "Completo",
+    "command": "uv run python -m automation completo",
+  },
+  {
+    "label": "Pytest",
+    "command": "uv run pytest tests/ -v",
+  },
+  {
+    "label": "Pytest (Quiet)",
+    "command": "uv run pytest tests/",
+  },
+  {
+    "label": "Teste Visual: Logos",
+    "command": "uv run python tests/gerar_pdfs_teste_logo.py",
+  },
+  {
+    "label": "Ruff Check",
+    "command": "uv run ruff check .",
+  },
+  {
+    "label": "Ruff Format",
+    "command": "uv run ruff format --check .",
+  },
+  {
+    "label": "Mypy",
+    "command": "uv run mypy automation/",
+  },
+  {
+    "label": "Sync Dev",
+    "command": "uv sync --all-extras --dev",
+  },
+]

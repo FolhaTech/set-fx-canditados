@@ -1,0 +1,25 @@
+{
+  "contatos": {
+    "genter": {
+      "endereco_linha_1": "R. Padre Estevão Pernet, 718 (Sala 1504)",
+      "endereco_linha_2": "Tatuapé, São Paulo – SP, 03315-000",
+      "telefone": "Tel.: (11) 95034-5525",
+      "site": "www.genter.com.br",
+      "email": "contato@genter.com.br"
+    },
+    "arantes": {
+      "endereco_linha_1": "R. Padre Estevão Pernet, 718 (Sala 1504)",
+      "endereco_linha_2": "Tatuapé, São Paulo – SP, 03315-000",
+      "telefone": "(11) 2774-1325 | (11) 99569-4446",
+      "site": "https://www.arantesarimura.adv.br/",
+      "email": "contato@arantesarimura.adv.br"
+    },
+    "folhaTech": {
+      "endereco_linha_1": "R. Padre Estevão Pernet, 718 (Sala 1504)",
+      "endereco_linha_2": "Tatuapé, São Paulo – SP, 03315-000",
+      "telefone": "(11) 2774-1325 | (11) 99569-4446",
+      "site": "https://folhatech.com.br/",
+      "email": "comercial@folhatech.com.br"
+    }
+  }
+}

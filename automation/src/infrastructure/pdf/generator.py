@@ -18,6 +18,7 @@ from reportlab.platypus import (
 
 from automation.src.application.services.branding_service import (
     find_logo,
+    get_contato,
     get_theme,
     find_signature_by_role,
     find_all_signatures_for_company,
@@ -256,7 +257,7 @@ def generate_proposal_pdf(proposta: Proposal, output_path: Path) -> Path:
     story.append(Spacer(1, 0.7 * cm))
 
     # Signature for image
-    caminho_ass = find_signature(empresa, "responsavel")
+    caminho_ass = find_signature_by_role(empresa, "responsavel")
     if caminho_ass:
         img_ass = Image(str(caminho_ass), width=4.5 * cm, height=1.8 * cm)
         img_ass.hAlign = "LEFT"
@@ -381,10 +382,28 @@ def generate_contract_html(
     with open(template_path, encoding="utf-8") as f:
         html = f.read()
 
+    empresa = Enterprise.from_string(
+        dados.get("empresa_novo_colaborador")
+        or dados.get("empresa_novo_calaborador")
+        or ""
+    )
+    contato = get_contato(empresa)
+
+    _RESERVED = {
+        "LOGO",
+        "ENDERECO_LINHA_1",
+        "ENDERECO_LINHA_2",
+        "TELEFONE",
+        "SITE",
+        "EMAIL",
+    }
+
     placeholders = re.findall(r"\{\{(.*?)\}\}", html)
     for p in placeholders:
         chave = p.strip()
         if chave == "LOGO" or chave.startswith("ASSINATURA_"):
+            continue
+        if chave in _RESERVED:
             continue
 
         valor = clean_value(dados.get(chave, ""))
@@ -394,9 +413,15 @@ def generate_contract_html(
         html = html.replace(f"{{{{{p}}}}}", valor)
 
     logo_htm = _build_logo_html(logo_path)
-    html = html.replace("{{LOGO}}", logo_htm)
+    for campo in (
+        "endereco_linha_1",
+        "endereco_linha_2",
+        "telefone",
+        "site",
+        "email",
+    ):
+        html = html.replace(f"{{{{{campo.upper()}}}}}", contato.get(campo, ""))
 
-    empresa = Enterprise.from_string(dados.get("empresa_novo_calaborador", ""))
     ass_contratante = find_signature_by_role(empresa, "contratante")
     if ass_contratante:
         html = _inject_signature(html, "{{ASSINATURA_CONTRATANTE}}", ass_contratante)

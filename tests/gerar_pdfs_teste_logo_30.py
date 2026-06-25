@@ -1,8 +1,12 @@
 import base64
+import json
 import logging
 from pathlib import Path
 
-from automation.src.application.services.branding_service import find_logo
+from automation.src.application.services.branding_service import (
+    _load_contatos_config,
+    find_logo,
+)
 from automation.src.config import settings
 from automation.src.domain.models import Enterprise
 from automation.src.infrastructure.browser.factory import create_browser, create_context
@@ -56,18 +60,32 @@ def _header_fallback(empresa: Enterprise) -> str:
     </div>"""
 
 
+def _load_contato(empresa: Enterprise) -> dict[str, str]:
+    config_path = settings.PROJECT_ROOT / "empresas.json"
+    if not config_path.exists():
+        return {}
+    with open(config_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data.get("contatos", {}).get(empresa.value, {})
+
+
 def gerar_pdf_30(empresa: Enterprise, output_name: str, context) -> Path:
     template_path = settings.PROJECT_ROOT / "modelo_contrato_30.html"
     html = template_path.read_text(encoding="utf-8")
 
     logo_path = find_logo(empresa)
     header_html = _build_header_html_30(logo_path, empresa)
-
     html = html.replace("{{LOGO_HEADER_30}}", header_html)
 
-    restantes = html.count("{{LOGO_HEADER_30}}")
-    if restantes > 0:
-        logger.warning("⚠️  Ainda restam %d placeholders não substituídos!", restantes)
+    contato = _load_contato(empresa)
+    for campo, placeholder in (
+        ("endereco_linha_1", "{{ENDERECO_LINHA_1}}"),
+        ("endereco_linha_2", "{{ENDERECO_LINHA_2}}"),
+        ("telefone", "{{TELEFONE}}"),
+        ("site", "{{SITE}}"),
+        ("email", "{{EMAIL}}"),
+    ):
+        html = html.replace(placeholder, contato.get(campo, ""))
 
     output = settings.pdf_dir_path / output_name
     logger.info("Gerando %s com logo: %s", output_name, logo_path)

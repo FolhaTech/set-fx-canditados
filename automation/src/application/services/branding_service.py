@@ -29,6 +29,19 @@ LOGO_POR_EMPRESA: dict[Enterprise, str] = {
 }
 
 
+def _load_contatos_config() -> dict:
+    config_path = settings.PROJECT_ROOT / "empresas.json"
+    if not config_path.exists():
+        return {}
+    with open(config_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def get_contato(empresa: Enterprise) -> dict[str, str]:
+    config = _load_contatos_config()
+    return config.get("contatos", {}).get(empresa.value, {})
+
+
 def _load_signature_config() -> dict:
     config_path = settings.PROJECT_ROOT / "signatures.json"
     if not config_path.exists():

@@ -1,560 +1,682 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrumento Particular de Contrato de Compromisso, Responsabilidade e de Parceria – Genter</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Instrumento Particular de Contrato de Compromisso, Responsabilidade e de
+      Parceria – Genter
+    </title>
     <style>
-        @page {
-            @bottom-center {
-                content: "Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000\A Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446\A E-mail – contato@arantesarimura.adv.br\A Site – WWW.ARANTESARIMURA.ADV.BR";
-                white-space: pre;
-                font-family: 'Times New Roman', Times, serif;
-                font-size: 8pt;
-                color: #000;
-                text-align: center;
-                border-top: 1px solid #000;
-                padding-top: 3mm;
-                width: 100%;
-            }
+      @page {
+        @bottom-center {
+          content: "Rua Padre Estevão Pernet, 718 – sala 704 – 7º Andar, Tatuapé, São Paulo/SP – CEP. 03315-000\A Tel. (+55 11) 2774-1325 / Cel. (+55 11) 99569-4446\A E-mail – contato@arantesarimura.adv.br\A Site – WWW.ARANTESARIMURA.ADV.BR";
+          white-space: pre;
+          font-family: "Times New Roman", Times, serif;
+          font-size: 8pt;
+          color: #000;
+          text-align: center;
+          border-top: 1px solid #000;
+          padding-top: 3mm;
+          width: 100%;
         }
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 1.6;
+        color: #000;
+        background: #fff;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 18mm 22mm 28mm 22mm;
+        position: relative;
+        page-break-after: always;
+      }
+
+      /* ── HEADER ── */
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 8mm;
+        border-bottom: 1px solid #000;
+        padding-bottom: 4mm;
+        min-height: 15mm;
+        max-height: 20mm;
+        overflow: hidden;
+      }
+
+      .logo-area {
+        text-align: right;
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        position: absolute;
+        bottom: 8mm;
+        right: 22mm;
+        text-align: right;
+        font-size: 8pt;
+        line-height: 1.5;
+        color: #222;
+      }
+
+      /* ── TITLE ── */
+      h1.title {
+        font-family: Arial, sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: underline;
+        text-transform: uppercase;
+        margin: 6mm 0 5mm;
+        line-height: 1.4;
+      }
+
+      /* ── BODY TEXT ── */
+      p {
+        margin-bottom: 4mm;
+        text-align: justify;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      /* ── CLAUSES ── */
+      h2.clause {
+        font-family: Arial, sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: underline;
+        text-transform: uppercase;
+        margin: 6mm 0 4mm;
+      }
+
+      .clause-item {
+        margin-bottom: 3mm;
+        text-align: justify;
+      }
+
+      .clause-item .num {
+        font-weight: bold;
+      }
+
+      .para {
+        margin-bottom: 3mm;
+        text-align: justify;
+      }
+
+      .para .plabel {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      /* ── BANK INFO ── */
+      .bank-info {
+        margin: 3mm 0 3mm 0;
+      }
+
+      .bank-info p {
+        margin-bottom: 1mm;
+        font-weight: bold;
+      }
+
+      /* ── SIGNATURE BLOCK ── */
+      .sig-date {
+        text-align: center;
+        margin-bottom: 10mm;
+      }
+
+      .sig-party-label {
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 12mm;
+        display: block;
+      }
+
+      .sig-line {
+        border-top: 1px solid #000;
+        padding-top: 2mm;
+        text-align: center;
+        font-weight: bold;
+        max-width: 280px;
+        margin: 0 auto 6mm;
+      }
+
+      .sig-sub {
+        font-weight: normal;
+      }
+
+      .witnesses-grid {
+        margin-top: 6mm;
+      }
+
+      .witnesses-row {
+        display: flex;
+        gap: 20mm;
+        margin-bottom: 6mm;
+      }
+
+      .witness {
+        flex: 1;
+      }
+
+      .witness-line {
+        border-top: 1px solid #000;
+        padding-top: 2mm;
+        margin-top: 10mm;
+      }
+
+      @media print {
+        .page {
+          margin: 0;
+          width: 100%;
         }
 
         body {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 12pt;
-            line-height: 1.6;
-            color: #000;
-            background: #fff;
+          background: white;
+        }
+      }
+
+      @media screen {
+        body {
+          background: #e0e0e0;
         }
 
         .page {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 0 auto;
-            padding: 18mm 22mm 28mm 22mm;
-            position: relative;
-            page-break-after: always;
+          width: 210mm;
+          min-height: 297mm;
+          padding: 20mm 25mm 25mm 25mm;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+          margin: 10mm auto;
+          background: #fff;
         }
 
-        /* ── HEADER ── */
-        .header {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 8mm;
-            border-bottom: 1px solid #000;
-            padding-bottom: 4mm;
-            min-height: 15mm;
-            max-height: 20mm;
-            overflow: hidden;
-        }
-
-        .logo-area {
-            text-align: right;
-        }
-
-        /* ── FOOTER ── */
         .footer {
-            position: absolute;
-            bottom: 8mm;
-            right: 22mm;
-            text-align: right;
-            font-size: 8pt;
-            line-height: 1.5;
-            color: #222;
+          position: absolute;
+          bottom: 8mm;
+          left: 0;
+          right: 0;
+          text-align: center;
+          font-size: 8pt;
+          border-top: 1px solid #000;
+          padding-top: 3mm;
+          margin: 0 25mm;
         }
 
-        /* ── TITLE ── */
-        h1.title {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: underline;
-            text-transform: uppercase;
-            margin: 6mm 0 5mm;
-            line-height: 1.4;
+        .footer a {
+          color: #000;
+          text-decoration: underline;
         }
-
-        /* ── BODY TEXT ── */
-        p {
-            margin-bottom: 4mm;
-            text-align: justify;
-        }
-
-        .bold {
-            font-weight: bold;
-        }
-
-        /* ── CLAUSES ── */
-        h2.clause {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: underline;
-            text-transform: uppercase;
-            margin: 6mm 0 4mm;
-        }
-
-        .clause-item {
-            margin-bottom: 3mm;
-            text-align: justify;
-        }
-
-        .clause-item .num {
-            font-weight: bold;
-        }
-
-        .para {
-            margin-bottom: 3mm;
-            text-align: justify;
-        }
-
-        .para .plabel {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        /* ── BANK INFO ── */
-        .bank-info {
-            margin: 3mm 0 3mm 0;
-        }
-
-        .bank-info p {
-            margin-bottom: 1mm;
-            font-weight: bold;
-        }
-
-        /* ── SIGNATURE BLOCK ── */
-        .sig-date {
-            text-align: center;
-            margin-bottom: 10mm;
-        }
-
-        .sig-party-label {
-            font-weight: bold;
-            text-decoration: underline;
-            margin-bottom: 12mm;
-            display: block;
-        }
-
-        .sig-line {
-            border-top: 1px solid #000;
-            padding-top: 2mm;
-            text-align: center;
-            font-weight: bold;
-            max-width: 280px;
-            margin: 0 auto 6mm;
-        }
-
-        .sig-sub {
-            font-weight: normal;
-        }
-
-        .witnesses-grid {
-            margin-top: 6mm;
-        }
-
-        .witnesses-row {
-            display: flex;
-            gap: 20mm;
-            margin-bottom: 6mm;
-        }
-
-        .witness {
-            flex: 1;
-        }
-
-        .witness-line {
-            border-top: 1px solid #000;
-            padding-top: 2mm;
-            margin-top: 10mm;
-        }
-
-        @media print {
-            .page {
-                margin: 0;
-                width: 100%;
-            }
-
-            body {
-                background: white;
-            }
-        }
-
-        @media screen {
-            body {
-                background: #e0e0e0;
-            }
-
-            .page {
-                width: 210mm;
-                min-height: 297mm;
-                padding: 20mm 25mm 25mm 25mm;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-                margin: 10mm auto;
-                background: #fff;
-            }
-
-            .footer {
-                position: absolute;
-                bottom: 8mm;
-                left: 0;
-                right: 0;
-                text-align: center;
-                font-size: 8pt;
-                border-top: 1px solid #000;
-                padding-top: 3mm;
-                margin: 0 25mm;
-            }
-
-            .footer a {
-                color: #000;
-                text-decoration: underline;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- ===================== PÁGINA 1 ===================== -->
+    <div class="page">
+      <div class="header">
+        <div class="logo-area">{{LOGO_HEADER_30}}</div>
+      </div>
 
-<!-- ===================== PÁGINA 1 ===================== -->
-<div class="page">
+      <h1 class="title">
+        Instrumento Particular de Contrato de Compromisso,<br />Responsabilidade
+        e de Parceria
+      </h1>
 
-    <div class="header">
-        <div class="logo-area">
-            {{LOGO_HEADER_30}}
-        </div>
+      <p>
+        Pelo presente contrato de compromisso, responsabilidade e parceria, de
+        um lado,
+        <span class="bold">{{NOME}}********</span>, brasileira, portadora da
+        cédula de identidade RG nº
+        <span class="bold">{{RG}}********</span> SSP/SP, e inscrito no CPF/MF
+        sob o nº <span class="bold">{{CPF}}********</span>, doravante designada
+        <span class="bold">"Parte 01"</span>, e de outro lado
+        <span class="bold">GENTER SERVIÇOS EM RECURSOS HUMANOS LTDA.</span>,
+        sociedade limitada com sede com sede social na cidade de São Paulo,
+        Estado de São Paulo, na Rua Padre Estevão Pernet, 718 - Sala 704 -
+        Tatuapé, São Paulo/SP, CEP. 03315-000, inscrita no CNPJ/MF sob o nº
+        13.173.017/0001-92, com seu Contrato Social registrado na Junta
+        Comercial do Estado de São Paulo ("JUCESP"), neste ato representado por
+        seu sócio <span class="bold">JEFERSON ARIMURA FREIRE</span>, brasileiro,
+        casado sob regime de comunhão parcial de bens, maior, portador do RG nº
+        30.061.439-1 SSP/SP, expedido em 29/05/2019 e do CPF/MF nº
+        358.555.628-08, Empresário, residente e domiciliado a Rua Luiz Lyria
+        Lopes, 215 – Bairro Martim de Sá – CEP. 11.662-540 – Caraguatatuba/SP,
+        doravante designada <span class="bold">"Parte 02"</span> e,
+        conjuntamente, <span class="bold">"Partes"</span>, protocolam entre si a
+        estipulação do presente contrato, sob risco recíproco, disciplinando
+        compromissos e responsabilidades especificados na cláusula primeira,
+        visando atuação conjunta das Partes por tempo determinado por meio de
+        parceria, até a adequação necessária da
+        <span class="bold">Parte 01</span> em viabilizar empresa e permitir a
+        contratação de referida pessoa jurídica pela
+        <span class="bold">Parte 02</span> via contrato de prestação de
+        serviços, sendo essa expressão de verdade e por ele respondendo
+        integralmente.
+      </p>
+
+      <h2 class="clause">Cláusula Primeira – Do Objeto</h2>
+
+      <p class="clause-item">
+        <span class="num">1.1.</span> A <span class="bold">Parte 01</span>,
+        assume o compromisso e a responsabilidade, em atuar em via de parceria
+        com a <span class="bold">Parte 02</span>, visando atuação conjunta das
+        <span class="bold">Partes</span> na esfera do setor financeiro, no cargo
+        de analista financeiro pleno, por tempo determinado, até a adequação
+        necessária da <span class="bold">Parte 01</span> em viabilizar empresa
+        que permita o estabelecimento de contrato de prestação de serviços entre
+        as <span class="bold">Partes</span>.
+      </p>
+
+      <p class="para">
+        <span class="plabel">Parágrafo Único</span> – A
+        <span class="bold">Parte 01</span> se compromete com a realização de
+        reuniões estratégicas e de alinhamento que poderão ser solicitadas com a
+        Diretoria da Contratante, sendo que 01 (uma) reunião mensal é
+        obrigatória e poderá ser realizadas remotamente ou presencialmente
+      </p>
+
+      <div class="footer">
+        {{ENDERECO_LINHA_1}}<br />
+        {{ENDERECO_LINHA_2}}<br />
+        {{TELEFONE}}<br />
+        {{SITE}}
+      </div>
     </div>
 
-    <h1 class="title">Instrumento Particular de Contrato de Compromisso,<br>Responsabilidade e de Parceria</h1>
+    <!-- ===================== PÁGINA 2 ===================== -->
+    <div class="page">
+      <div class="header">
+        <div class="logo-area">{{LOGO_HEADER_30}}</div>
+      </div>
 
-    <p>Pelo presente contrato de compromisso, responsabilidade e parceria, de um lado, <span class="bold">{{NOME}}********</span>,
-        brasileira, portadora da cédula de identidade RG nº <span class="bold">{{RG}}********</span> SSP/SP, e inscrito
-        no CPF/MF sob o nº <span class="bold">{{CPF}}********</span>, doravante designada <span
-                class="bold">"Parte 01"</span>, e de outro lado <span class="bold">GENTER SERVIÇOS EM RECURSOS HUMANOS LTDA.</span>,
-        sociedade limitada com sede com sede social na cidade de São Paulo, Estado de São Paulo, na Rua Padre Estevão
-        Pernet, 718 - Sala 704 - Tatuapé, São Paulo/SP, CEP. 03315-000, inscrita no CNPJ/MF sob o nº 13.173.017/0001-92,
-        com seu Contrato Social registrado na Junta Comercial do Estado de São Paulo ("JUCESP"), neste ato representado
-        por seu sócio <span class="bold">JEFERSON ARIMURA FREIRE</span>, brasileiro, casado sob regime de comunhão
-        parcial de bens, maior, portador do RG nº 30.061.439-1 SSP/SP, expedido em 29/05/2019 e do CPF/MF nº
-        358.555.628-08, Empresário, residente e domiciliado a Rua Luiz Lyria Lopes, 215 – Bairro Martim de Sá – CEP.
-        11.662-540 – Caraguatatuba/SP, doravante designada <span class="bold">"Parte 02"</span> e, conjuntamente, <span
-                class="bold">"Partes"</span>, protocolam entre si a estipulação do presente contrato, sob risco
-        recíproco, disciplinando compromissos e responsabilidades especificados na cláusula primeira, visando atuação
-        conjunta das Partes por tempo determinado por meio de parceria, até a adequação necessária da <span
-                class="bold">Parte 01</span> em viabilizar empresa e permitir a contratação de referida pessoa jurídica
-        pela <span class="bold">Parte 02</span> via contrato de prestação de serviços, sendo essa expressão de verdade e
-        por ele respondendo integralmente.</p>
+      <p class="para">
+        <span class="plabel">Parágrafo Primeiro</span> – A
+        <span class="bold">Parte 01</span>, por meio do presente contrato,
+        assume também, o compromisso de no prazo de 30 (trinta) dias corridos,
+        providenciar e efetuar a abertura de empresa com a finalidade de firmar
+        contrato de prestação de serviço com a
+        <span class="bold">Parte 02</span>, se responsabilizando pela emissão de
+        recibo de quitação de dívida pelos valores remuneratórios recebidos
+        anteriores à assinatura do contrato de prestação de serviço, incluindo
+        nesse cálculo, quaisquer prorrogações eventualmente necessárias.
+      </p>
 
-    <h2 class="clause">Cláusula Primeira – Do Objeto</h2>
+      <p class="para">
+        <span class="plabel">Parágrafo Segundo</span> – Enquanto perdurar a
+        pendência documental e de assinatura de instrumento de contrato de
+        prestação de serviço com a empresa aberta pela
+        <span class="bold">Parte 01</span>, fica estabelecida parceria
+        temporária, assumindo e efetuando a
+        <span class="bold">Parte 01</span> funções na área jurídica mediante
+        orientação da <span class="bold">Parte 02</span>, sem que com isso
+        assuma presunção de vínculo empregatício, conforme detalhado no
+        parágrafo terceiro abaixo.
+      </p>
 
-    <p class="clause-item"><span class="num">1.1.</span> A <span class="bold">Parte 01</span>, assume o compromisso e a
-        responsabilidade, em atuar em via de parceria com a <span class="bold">Parte 02</span>, visando atuação conjunta
-        das <span class="bold">Partes</span> na esfera do setor financeiro, no cargo de analista financeiro pleno, por
-        tempo determinado, até a adequação necessária da <span class="bold">Parte 01</span> em viabilizar empresa que
-        permita o estabelecimento de contrato de prestação de serviços entre as <span class="bold">Partes</span>.</p>
+      <p class="para">
+        <span class="plabel">Parágrafo Terceiro</span> – Em decorrência deste
+        contrato, sob nenhuma hipótese ou em qualquer situação, se presumirá a
+        eventual existência, ou se estabelecerá a presunção de qualquer vínculo
+        empregatício, ou obrigações de caráter trabalhista e previdenciário
+        entre a <span class="bold">Parte 01</span> e a
+        <span class="bold">Parte 02</span>; nem a
+        <span class="bold">Parte 02</span> será fiadora das obrigações, encargos
+        e ônus da <span class="bold">Parte 01</span> a qual, assume neste ato
+        integral responsabilidade por tais obrigações, inclusive civis e penais.
+      </p>
 
-    <p class="para"><span class="plabel">Parágrafo Único</span> – A <span class="bold">Parte 01</span> se compromete com
-        a realização de reuniões estratégicas e de alinhamento que poderão ser solicitadas com a Diretoria da
-        Contratante, sendo que 01 (uma) reunião mensal é obrigatória e poderá ser realizadas remotamente ou
-        presencialmente</p>
+      <h2 class="clause">Cláusula Segunda - Dos Deveres das Partes</h2>
 
-    <div class="footer">
-        Rua Padre Estevão Pernet, nº 718 - Sala 704 -Tatuapé<br>
-        São Paulo/SP - CEP. 03315-000 | Brasil<br>
-        Tel.: +55 11 94269-2739<br>
-        www.genter.com.br
-    </div>
-</div>
+      <p class="clause-item">
+        <span class="num">2.1.</span> As
+        <span class="bold">Partes</span> deverão zelar pelo bom nome e conceito
+        do parceiro, obrigando-se a, enquanto vigorar o presente contrato a agir
+        de forma profissional, criteriosa e zelosa entre si e clientes da
+        <span class="bold">Parte 02</span>.
+      </p>
 
-<!-- ===================== PÁGINA 2 ===================== -->
-<div class="page">
+      <p class="clause-item">
+        <span class="num">2.2.</span> A
+        <span class="bold">Parte 01</span> isentará a
+        <span class="bold">Parte 02</span> de qualquer encargo, seja ele,
+        administrativo, civil ou criminal praticados pela
+        <span class="bold">Parte 01</span>, que se responsabilizará
+        exclusivamente, por todo e qualquer problema ou pendência (na esfera,
+        administrativa, cível ou penal) que possa surgir durante o presente
+        contrato de compromisso, responsabilidade e parceria, podendo,
+        inclusive, a <span class="bold">Parte 02</span>, exercer direito
+        regressivo quando necessário.
+      </p>
 
-    <div class="header">
-        <div class="logo-area">
-            {{LOGO_HEADER_30}}
-        </div>
-    </div>
+      <p class="clause-item">
+        <span class="num">2.3.</span> A <span class="bold">Parte 01</span>,
+        ainda se responsabilizará, com o término do presente contrato, seja por
+        ter atingido o objetivo disposto na cláusula primeira, seja em caso de
+        rescisão por quaisquer das <span class="bold">Partes</span>, com a
+        emissão de notas fiscais ou pela emissão de recibo de quitação de dívida
+        nos valores recebidos da <span class="bold">Parte 02</span> durante a
+        vigência da parceria,
+      </p>
 
-    <p class="para"><span class="plabel">Parágrafo Primeiro</span> – A <span class="bold">Parte 01</span>, por meio do
-        presente contrato, assume também, o compromisso de no prazo de 30 (trinta) dias corridos, providenciar e efetuar
-        a abertura de empresa com a finalidade de firmar contrato de prestação de serviço com a <span class="bold">Parte 02</span>,
-        se responsabilizando pela emissão de recibo de quitação de dívida pelos valores remuneratórios recebidos
-        anteriores à assinatura do contrato de prestação de serviço, incluindo nesse cálculo, quaisquer prorrogações
-        eventualmente necessárias.</p>
-
-    <p class="para"><span class="plabel">Parágrafo Segundo</span> – Enquanto perdurar a pendência documental e de
-        assinatura de instrumento de contrato de prestação de serviço com a empresa aberta pela <span class="bold">Parte 01</span>,
-        fica estabelecida parceria temporária, assumindo e efetuando a <span class="bold">Parte 01</span> funções na
-        área jurídica mediante orientação da <span class="bold">Parte 02</span>, sem que com isso assuma presunção de
-        vínculo empregatício, conforme detalhado no parágrafo terceiro abaixo.</p>
-
-    <p class="para"><span class="plabel">Parágrafo Terceiro</span> – Em decorrência deste contrato, sob nenhuma hipótese
-        ou em qualquer situação, se presumirá a eventual existência, ou se estabelecerá a presunção de qualquer vínculo
-        empregatício, ou obrigações de caráter trabalhista e previdenciário entre a <span class="bold">Parte 01</span> e
-        a <span class="bold">Parte 02</span>; nem a <span class="bold">Parte 02</span> será fiadora das obrigações,
-        encargos e ônus da <span class="bold">Parte 01</span> a qual, assume neste ato integral responsabilidade por
-        tais obrigações, inclusive civis e penais.</p>
-
-    <h2 class="clause">Cláusula Segunda - Dos Deveres das Partes</h2>
-
-    <p class="clause-item"><span class="num">2.1.</span> As <span class="bold">Partes</span> deverão zelar pelo bom nome
-        e conceito do parceiro, obrigando-se a, enquanto vigorar o presente contrato a agir de forma profissional,
-        criteriosa e zelosa entre si e clientes da <span class="bold">Parte 02</span>.</p>
-
-    <p class="clause-item"><span class="num">2.2.</span> A <span class="bold">Parte 01</span> isentará a <span
-            class="bold">Parte 02</span> de qualquer encargo, seja ele, administrativo, civil ou criminal praticados
-        pela <span class="bold">Parte 01</span>, que se responsabilizará exclusivamente, por todo e qualquer problema ou
-        pendência (na esfera, administrativa, cível ou penal) que possa surgir durante o presente contrato de
-        compromisso, responsabilidade e parceria, podendo, inclusive, a <span class="bold">Parte 02</span>, exercer
-        direito regressivo quando necessário.</p>
-
-    <p class="clause-item"><span class="num">2.3.</span> A <span class="bold">Parte 01</span>, ainda se
-        responsabilizará, com o término do presente contrato, seja por ter atingido o objetivo disposto na cláusula
-        primeira, seja em caso de rescisão por quaisquer das <span class="bold">Partes</span>, com a emissão de notas
-        fiscais ou pela emissão de recibo de quitação de dívida nos valores recebidos da <span
-                class="bold">Parte 02</span> durante a vigência da parceria,</p>
-
-    <div class="footer">
-        Rua Padre Estevão Pernet, nº 718 - Sala 704 -Tatuapé<br>
-        São Paulo/SP - CEP. 03315-000 | Brasil<br>
-        Tel.: +55 11 94269-2739<br>
-        www.genter.com.br
-    </div>
-</div>
-
-<!-- ===================== PÁGINA 3 ===================== -->
-<div class="page">
-
-    <div class="header">
-        <div class="logo-area">
-            {{LOGO_HEADER_30}}
-        </div>
+      <div class="footer">
+        {{ENDERECO_LINHA_1}}<br />
+        {{ENDERECO_LINHA_2}}<br />
+        {{TELEFONE}}<br />
+        {{SITE}}
+      </div>
     </div>
 
-    <p>com a finalidade de permitir o ajuste contábil da <span class="bold">Parte 02</span>, sob pena de não o fazendo
-        serem adotadas medidas legais cabíveis.</p>
+    <!-- ===================== PÁGINA 3 ===================== -->
+    <div class="page">
+      <div class="header">
+        <div class="logo-area">{{LOGO_HEADER_30}}</div>
+      </div>
 
-    <h2 class="clause">Cláusula Terceira – Da Vigência</h2>
+      <p>
+        com a finalidade de permitir o ajuste contábil da
+        <span class="bold">Parte 02</span>, sob pena de não o fazendo serem
+        adotadas medidas legais cabíveis.
+      </p>
 
-    <p class="clause-item"><span class="num">3.1.</span> A parceria tem um período inicial de 30 (trinta) dias corridos,
-        contados a partir da data de assinatura do presente contrato, findo os quais as <span class="bold">Partes</span>
-        avaliarão as vantagens recíprocas e a eventual possibilidade de prorrogar o contrato, por igual período de tempo
-        de forma automática, sem que com isso, se perca o real objetivo do presente contrato, estipulado na cláusula
-        primeira.</p>
+      <h2 class="clause">Cláusula Terceira – Da Vigência</h2>
 
-    <h2 class="clause">Cláusula Quarta – Da Confidencialidade</h2>
+      <p class="clause-item">
+        <span class="num">3.1.</span> A parceria tem um período inicial de 30
+        (trinta) dias corridos, contados a partir da data de assinatura do
+        presente contrato, findo os quais as
+        <span class="bold">Partes</span> avaliarão as vantagens recíprocas e a
+        eventual possibilidade de prorrogar o contrato, por igual período de
+        tempo de forma automática, sem que com isso, se perca o real objetivo do
+        presente contrato, estipulado na cláusula primeira.
+      </p>
 
-    <p class="clause-item"><span class="num">4.1.</span> As <span class="bold">Partes</span> reconhecem que no âmbito de
-        suas funções, irão se deparar com informações ou documentos sigilosos e confidenciais, os quais se comprometem a
-        não utilizar em proveito próprio, divulgar ou revelar à pessoa física ou jurídica, durante e após o término do
-        presente contrato, salvo aquelas intrinsecamente relacionadas aos negócios objetos da parceria.</p>
+      <h2 class="clause">Cláusula Quarta – Da Confidencialidade</h2>
 
-    <p class="para"><span class="plabel">Parágrafo Único</span> – Em caso de utilização de cópia ou reprodução de
-        supramencionados documentos ou informações, comprometem-se ainda, a destruir o material após a sua utilização,
-        salvo seja expressamente autorizado pelo parceiro fornecedor que não o faça.</p>
+      <p class="clause-item">
+        <span class="num">4.1.</span> As
+        <span class="bold">Partes</span> reconhecem que no âmbito de suas
+        funções, irão se deparar com informações ou documentos sigilosos e
+        confidenciais, os quais se comprometem a não utilizar em proveito
+        próprio, divulgar ou revelar à pessoa física ou jurídica, durante e após
+        o término do presente contrato, salvo aquelas intrinsecamente
+        relacionadas aos negócios objetos da parceria.
+      </p>
 
-    <h2 class="clause">Cláusula Quinta – Da Remuneração e Condições Financeiras</h2>
+      <p class="para">
+        <span class="plabel">Parágrafo Único</span> – Em caso de utilização de
+        cópia ou reprodução de supramencionados documentos ou informações,
+        comprometem-se ainda, a destruir o material após a sua utilização, salvo
+        seja expressamente autorizado pelo parceiro fornecedor que não o faça.
+      </p>
 
-    <p class="clause-item"><span class="num">5.1.</span> A <span class="bold">Parte 01</span> receberá o valor de R$
-        {{HONORARIO}}******** (********) pelo desempenho das suas atividades de parceria que será determinada com base
-        em critérios claros e objetivos, sendo que essa remuneração será paga ao final do término do presente contrato
-        ou de suas prorrogações, sem que isso estabeleça quaisquer vínculos de cunho empregatício, conforme estabelecido
-        no parágrafo terceiro da cláusula primeira.</p>
+      <h2 class="clause">
+        Cláusula Quinta – Da Remuneração e Condições Financeiras
+      </h2>
 
-    <p class="para"><span class="plabel">Parágrafo Único</span> - Cumprido pela <span class="bold">Parte 01</span> o
-        compromisso firmado com <span class="bold">Parte 02</span> e estabelecido na cláusula primeira desse contrato, a
-        <span class="bold">Parte 01</span> se responsabilizará pela emissão das notas fiscais ou emissão de recibos de
-        quitação de dívida pendentes e anteriores à assinatura do contrato de prestação de serviço, dos recebíveis
-        realizados na vigência da parceria.</p>
+      <p class="clause-item">
+        <span class="num">5.1.</span> A
+        <span class="bold">Parte 01</span> receberá o valor de R$
+        {{HONORARIO}}******** (********) pelo desempenho das suas atividades de
+        parceria que será determinada com base em critérios claros e objetivos,
+        sendo que essa remuneração será paga ao final do término do presente
+        contrato ou de suas prorrogações, sem que isso estabeleça quaisquer
+        vínculos de cunho empregatício, conforme estabelecido no parágrafo
+        terceiro da cláusula primeira.
+      </p>
 
-    <div class="footer">
-        Rua Padre Estevão Pernet, nº 718 - Sala 704 -Tatuapé<br>
-        São Paulo/SP - CEP. 03315-000 | Brasil<br>
-        Tel.: +55 11 94269-2739<br>
-        www.genter.com.br
+      <p class="para">
+        <span class="plabel">Parágrafo Único</span> - Cumprido pela
+        <span class="bold">Parte 01</span> o compromisso firmado com
+        <span class="bold">Parte 02</span> e estabelecido na cláusula primeira
+        desse contrato, a <span class="bold">Parte 01</span> se responsabilizará
+        pela emissão das notas fiscais ou emissão de recibos de quitação de
+        dívida pendentes e anteriores à assinatura do contrato de prestação de
+        serviço, dos recebíveis realizados na vigência da parceria.
+      </p>
+
+      <div class="footer">
+        {{ENDERECO_LINHA_1}}<br />
+        {{ENDERECO_LINHA_2}}<br />
+        {{TELEFONE}}<br />
+        {{SITE}}
+      </div>
     </div>
-</div>
 
-<!-- ===================== PÁGINA 4 ===================== -->
-<div class="page">
+    <!-- ===================== PÁGINA 4 ===================== -->
+    <div class="page">
+      <div class="header">
+        <div class="logo-area">{{LOGO_HEADER_30}}</div>
+      </div>
 
-    <div class="header">
-        <div class="logo-area">
-            {{LOGO_HEADER_30}}
-        </div>
-    </div>
+      <p class="clause-item">
+        <span class="num">5.2.</span>&nbsp;&nbsp;&nbsp;&nbsp;Todos os pagamentos
+        realizados à <span class="bold">Parte 01</span> pela
+        <span class="bold">Parte 02</span>, relacionados a este contrato e
+        prorrogações, deverão ser realizados em moeda corrente nacional, na
+        seguinte conta bancária de titularidade da
+        <span class="bold">Parte 01</span>, ou em qualquer outra conta bancária
+        em nome da <span class="bold">Parte 01</span> cujos dados tenham sido
+        fornecidos pelo mesmo com até 5 (cinco) dias úteis de antecedência da
+        data do pagamento:
+      </p>
 
-    <p class="clause-item"><span class="num">5.2.</span>&nbsp;&nbsp;&nbsp;&nbsp;Todos os pagamentos realizados à <span
-            class="bold">Parte 01</span> pela <span class="bold">Parte 02</span>, relacionados a este contrato e
-        prorrogações, deverão ser realizados em moeda corrente nacional, na seguinte conta bancária de titularidade da
-        <span class="bold">Parte 01</span>, ou em qualquer outra conta bancária em nome da <span
-                class="bold">Parte 01</span> cujos dados tenham sido fornecidos pelo mesmo com até 5 (cinco) dias úteis
-        de antecedência da data do pagamento:</p>
-
-    <div class="bank-info">
+      <div class="bank-info">
         <p>Banco: {{BANCO}}********</p>
         <p>Agência: {{AGÊNCIA}}********</p>
         <p>Conta: {{CONTA}}********</p>
         <p>Tipo de Conta: {{TIPO DE CONTA}}********</p>
         <p>PIX: {{PIX}}********</p>
         <p>Titularidade: {{TITULARIDADE}}********</p>
+      </div>
+
+      <p class="clause-item">
+        <span class="num">5.3.</span>&nbsp;&nbsp;&nbsp;&nbsp;O recebimento, por
+        parte da <span class="bold">Parte 01</span>, de todos os montantes pagos
+        em observância a esta Cláusula deverão liberar a
+        <span class="bold">Parte 02</span> com relação a suas correspondentes
+        obrigações de pagamento de tais valores, de forma que nenhuma
+        formalidade adicional será requerida para esse fim, outorgando a
+        <span class="bold">Parte 01</span> a mais plena, geral irrevogável e
+        irretratável quitação com relação aos valores por ela recebidos em
+        cumprimento às obrigações de pagamento da
+        <span class="bold">Parte 02</span> sob o presente contrato.
+      </p>
+
+      <h2 class="clause">Cláusula Sexta – Da Rescisão</h2>
+
+      <p class="clause-item">
+        <span class="num">6.1.</span> Poderá ser rescindido este contrato pela
+        <span class="bold">Parte 01</span> ou
+        <span class="bold">Parte 02</span>, a qualquer tempo, ficando, porém,
+        estabelecida a necessidade de uma notificação prévia.
+      </p>
+
+      <p class="para">
+        <span class="plabel">Parágrafo Primeiro</span> - A rescisão do presente
+        contrato ocorrerá imediatamente, independentemente de notificação ou
+        aviso, se alguma das <span class="bold">Partes</span> vier a descumprir
+        quaisquer das cláusulas e obrigações decorrentes deste contrato ou
+        ocorrer o término do prazo estabelecido de vigência ou prorrogações, sem
+        que o objetivo estipulado na cláusula primeiro seja atingido.
+      </p>
+
+      <p class="para">
+        <span class="plabel">Parágrafo Segundo</span> – Caberá ainda, as
+        <span class="bold">Partes</span> em caso de rescisão, realizar a
+        devolução de todos os documentos e bens que porventura estejam em sua
+        posse.
+      </p>
+
+      <p class="para">
+        <span class="plabel">Parágrafo Terceiro</span> – A
+        <span class="bold">Parte 01</span>, ainda se responsabilizará, em caso
+        de rescisão, com a emissão das notas fiscais ou pela emissão de recibos
+        de quitação de dívida dos valores recebidos da
+        <span class="bold">Parte 02</span> durante a vigência da parceria, com a
+        finalidade de
+      </p>
+
+      <div class="footer">
+        {{ENDERECO_LINHA_1}}<br />
+        {{ENDERECO_LINHA_2}}<br />
+        {{TELEFONE}}<br />
+        {{SITE}}
+      </div>
     </div>
 
-    <p class="clause-item"><span class="num">5.3.</span>&nbsp;&nbsp;&nbsp;&nbsp;O recebimento, por parte da <span
-            class="bold">Parte 01</span>, de todos os montantes pagos em observância a esta Cláusula deverão liberar a
-        <span class="bold">Parte 02</span> com relação a suas correspondentes obrigações de pagamento de tais valores,
-        de forma que nenhuma formalidade adicional será requerida para esse fim, outorgando a <span class="bold">Parte 01</span>
-        a mais plena, geral irrevogável e irretratável quitação com relação aos valores por ela recebidos em cumprimento
-        às obrigações de pagamento da <span class="bold">Parte 02</span> sob o presente contrato.</p>
+    <!-- ===================== PÁGINA 5 ===================== -->
+    <div class="page">
+      <div class="header">
+        <div class="logo-area">{{LOGO_HEADER_30}}</div>
+      </div>
 
-    <h2 class="clause">Cláusula Sexta – Da Rescisão</h2>
+      <p>
+        permitir o ajuste contábil da
+        <span class="bold">Parte 02</span>, decorrente da falta de regularização
+        do compromisso estabelecido na cláusula primeira e regularização e
+        assinatura de contrato de prestação de serviços com pessoa jurídica (um
+        dos objetivos do presente contrato), sob pena de não o fazendo serem
+        adotadas medidas legais cabíveis.
+      </p>
 
-    <p class="clause-item"><span class="num">6.1.</span> Poderá ser rescindido este contrato pela <span class="bold">Parte 01</span>
-        ou <span class="bold">Parte 02</span>, a qualquer tempo, ficando, porém, estabelecida a necessidade de uma
-        notificação prévia.</p>
+      <p class="para">
+        <span class="plabel">Parágrafo Quarto</span> – A partir da data da
+        rescisão, que poderá ser por distrato e notificação, as
+        <span class="bold">Partes</span> ficarão desobrigados das atribuições
+        ora estabelecidas, com <u>exceção</u> das estabelecidas nas
+        <u
+          >cláusulas 1.1 e parágrafos, cláusula 2.3, cláusula 5.1 e parágrafo
+          único e cláusula 6.1, parágrafo terceiro</u
+        >.
+      </p>
 
-    <p class="para"><span class="plabel">Parágrafo Primeiro</span> - A rescisão do presente contrato ocorrerá
-        imediatamente, independentemente de notificação ou aviso, se alguma das <span class="bold">Partes</span> vier a
-        descumprir quaisquer das cláusulas e obrigações decorrentes deste contrato ou ocorrer o término do prazo
-        estabelecido de vigência ou prorrogações, sem que o objetivo estipulado na cláusula primeiro seja atingido.</p>
+      <h2 class="clause">Cláusula Sétima – Das Disposições e Garantias</h2>
 
-    <p class="para"><span class="plabel">Parágrafo Segundo</span> – Caberá ainda, as <span class="bold">Partes</span> em
-        caso de rescisão, realizar a devolução de todos os documentos e bens que porventura estejam em sua posse.</p>
+      <p class="clause-item">
+        <span class="num">7.1.</span> As <span class="bold">Partes</span>,
+        afirmam e garantem que o presente contrato de compromisso,
+        responsabilidade e parceria, agora constituído e firmado, não ofende,
+        fere, viola ou conflita com nenhum interesse ou acordo prévio
+        estabelecido entre eles ou qualquer outra pessoa ou entidade, não
+        existindo, nesta feita, qualquer limite ou obrigação legal, ordem
+        judicial ou quebra de direito de confidencialidade ou de propriedade
+        intelectual para com terceiros.
+      </p>
 
-    <p class="para"><span class="plabel">Parágrafo Terceiro</span> – A <span class="bold">Parte 01</span>, ainda se
-        responsabilizará, em caso de rescisão, com a emissão das notas fiscais ou pela emissão de recibos de quitação de
-        dívida dos valores recebidos da <span class="bold">Parte 02</span> durante a vigência da parceria, com a
-        finalidade de</p>
+      <p class="para">
+        <span class="plabel">Parágrafo Primeiro</span> – O presente contrato
+        deverá sobrepujar a quaisquer outros acordos firmados entre as
+        <span class="bold">Partes</span> sejam elas: orais ou escritos. As
+        alterações, relativas aos termos do presente contrato, para deterem
+        validade, deverão ser feitas por escrito e devidamente assinadas pelas
+        <span class="bold">Partes</span>, por meio de termo aditivo ou novo
+        contrato regulatório.
+      </p>
 
-    <div class="footer">
-        Rua Padre Estevão Pernet, nº 718 - Sala 704 -Tatuapé<br>
-        São Paulo/SP - CEP. 03315-000 | Brasil<br>
-        Tel.: +55 11 94269-2739<br>
-        www.genter.com.br
-    </div>
-</div>
+      <p class="para">
+        <span class="plabel">Parágrafo Segundo</span> – Em caso de qualquer
+        termo ou disposição deste contrato torne-se ilegal, inválido ou
+        ineficaz, em todo ou em parte, em detrimento da esfera legal. Tal termo
+        ou disposição deverá ser considerado como não integrante do presente
+        contrato, não se afetando o cumprimento da parte não atingida.
+      </p>
 
-<!-- ===================== PÁGINA 5 ===================== -->
-<div class="page">
+      <h2 class="clause">Cláusula Oitava – Do Foro</h2>
 
-    <div class="header">
-        <div class="logo-area">
-            {{LOGO_HEADER_30}}
-        </div>
-    </div>
+      <p class="clause-item">
+        <span class="num">8.1.</span> Fica eleito o Foro da Comarca de São Paulo
+        para dirimir quaisquer dúvidas oriundas do presente instrumento, com
+        renúncia de qualquer outro por mais privilegiado que seja.
+      </p>
 
-    <p>permitir o ajuste contábil da <span class="bold">Parte 02</span>, decorrente da falta de regularização do
-        compromisso estabelecido na cláusula primeira e regularização e assinatura de contrato de prestação de serviços
-        com pessoa jurídica (um dos objetivos do presente contrato), sob pena de não o fazendo serem adotadas medidas
-        legais cabíveis.</p>
+      <p>
+        E assim, por estarem de pleno acordo, as partes assinam o presente
+        contrato de prestação de serviços em 02 (duas) vias de igual teor e
+        forma, juntamente com as testemunhas abaixo.
+      </p>
 
-    <p class="para"><span class="plabel">Parágrafo Quarto</span> – A partir da data da rescisão, que poderá ser por
-        distrato e notificação, as <span class="bold">Partes</span> ficarão desobrigados das atribuições ora
-        estabelecidas, com <u>exceção</u> das estabelecidas nas <u>cláusulas 1.1 e parágrafos, cláusula 2.3, cláusula
-            5.1 e parágrafo único e cláusula 6.1, parágrafo terceiro</u>.</p>
-
-    <h2 class="clause">Cláusula Sétima – Das Disposições e Garantias</h2>
-
-    <p class="clause-item"><span class="num">7.1.</span> As <span class="bold">Partes</span>, afirmam e garantem que o
-        presente contrato de compromisso, responsabilidade e parceria, agora constituído e firmado, não ofende, fere,
-        viola ou conflita com nenhum interesse ou acordo prévio estabelecido entre eles ou qualquer outra pessoa ou
-        entidade, não existindo, nesta feita, qualquer limite ou obrigação legal, ordem judicial ou quebra de direito de
-        confidencialidade ou de propriedade intelectual para com terceiros.</p>
-
-    <p class="para"><span class="plabel">Parágrafo Primeiro</span> – O presente contrato deverá sobrepujar a quaisquer
-        outros acordos firmados entre as <span class="bold">Partes</span> sejam elas: orais ou escritos. As alterações,
-        relativas aos termos do presente contrato, para deterem validade, deverão ser feitas por escrito e devidamente
-        assinadas pelas <span class="bold">Partes</span>, por meio de termo aditivo ou novo contrato regulatório.</p>
-
-    <p class="para"><span class="plabel">Parágrafo Segundo</span> – Em caso de qualquer termo ou disposição deste
-        contrato torne-se ilegal, inválido ou ineficaz, em todo ou em parte, em detrimento da esfera legal. Tal termo ou
-        disposição deverá ser considerado como não integrante do presente contrato, não se afetando o cumprimento da
-        parte não atingida.</p>
-
-    <h2 class="clause">Cláusula Oitava – Do Foro</h2>
-
-    <p class="clause-item"><span class="num">8.1.</span> Fica eleito o Foro da Comarca de São Paulo para dirimir
-        quaisquer dúvidas oriundas do presente instrumento, com renúncia de qualquer outro por mais privilegiado que
-        seja.</p>
-
-    <p>E assim, por estarem de pleno acordo, as partes assinam o presente contrato de prestação de serviços em 02 (duas)
-        vias de igual teor e forma, juntamente com as testemunhas abaixo.</p>
-
-    <div class="footer">
-        Rua Padre Estevão Pernet, nº 718 - Sala 704 -Tatuapé<br>
-        São Paulo/SP - CEP. 03315-000 | Brasil<br>
-        Tel.: +55 11 94269-2739<br>
-        www.genter.com.br
-    </div>
-</div>
-
-<!-- ===================== PÁGINA 6 – ASSINATURAS ===================== -->
-<div class="page">
-
-    <div class="header">
-        <div class="logo-area">
-            {{LOGO_HEADER_30}}
-        </div>
+      <div class="footer">
+        {{ENDERECO_LINHA_1}}<br />
+        {{ENDERECO_LINHA_2}}<br />
+        {{TELEFONE}}<br />
+        {{SITE}}
+      </div>
     </div>
 
-    <div class="sig-date">{{CIDADE,DATA}}***********</div>
+    <!-- ===================== PÁGINA 6 – ASSINATURAS ===================== -->
+    <div class="page">
+      <div class="header">
+        <div class="logo-area">{{LOGO_HEADER_30}}</div>
+      </div>
 
-    <p><span class="sig-party-label">Parte 01:</span></p>
+      <div class="sig-date">{{CIDADE,DATA}}***********</div>
 
-    <div style="margin-top:14mm;">
+      <p><span class="sig-party-label">Parte 01:</span></p>
+
+      <div style="margin-top: 14mm">
         <div class="sig-line">
-            {{NOME EMPRESA (FANTASIA)}} ********<br>
-            <span class="sig-sub">{{NOME}}********* (representante)</span>
+          {{NOME EMPRESA (FANTASIA)}} ********<br />
+          <span class="sig-sub">{{NOME}}********* (representante)</span>
         </div>
-    </div>
+      </div>
 
-    <p style="margin-top:8mm;"><span class="sig-party-label">Parte 02:</span></p>
+      <p style="margin-top: 8mm">
+        <span class="sig-party-label">Parte 02:</span>
+      </p>
 
-    <div style="margin-top:14mm;">
+      <div style="margin-top: 14mm">
         <div class="sig-line">
-            GENTER SERVIÇOS EM RECURSOS HUMANOS LTDA.<br>
-            <span class="sig-sub">Jeferson Arimura Freire (Sócio)</span>
+          GENTER SERVIÇOS EM RECURSOS HUMANOS LTDA.<br />
+          <span class="sig-sub">Jeferson Arimura Freire (Sócio)</span>
         </div>
-    </div>
+      </div>
 
-    <div class="witnesses-grid" style="margin-top:10mm;">
-        <p style="text-decoration:underline;margin-bottom:4mm;">Testemunhas:</p>
+      <div class="witnesses-grid" style="margin-top: 10mm">
+        <p style="text-decoration: underline; margin-bottom: 4mm">
+          Testemunhas:
+        </p>
 
         <div class="witnesses-row">
-            <div class="witness">
-                <div class="witness-line">1. ___________________</div>
-                <p>Nome: Karla Schipani</p>
-                <p>CPF: : 269.375.108-02</p>
-            </div>
-            <div class="witness">
-                <div class="witness-line">2. ___________________</div>
-                <p>Nome: Luana Lidia</p>
-                <p>CPF: 293.342.578-57</p>
-            </div>
+          <div class="witness">
+            <div class="witness-line">1. ___________________</div>
+            <p>Nome: Karla Schipani</p>
+            <p>CPF: : 269.375.108-02</p>
+          </div>
+          <div class="witness">
+            <div class="witness-line">2. ___________________</div>
+            <p>Nome: Luana Lidia</p>
+            <p>CPF: 293.342.578-57</p>
+          </div>
         </div>
 
-        <div style="margin-top:6mm;margin-left:0;max-width:220px;">
-            <div class="witness-line">3.___________________</div>
-            <p>Nome: Jefferson Silva</p>
-            <p>CPF: 385.522.008-56</p>
+        <div style="margin-top: 6mm; margin-left: 0; max-width: 220px">
+          <div class="witness-line">3.___________________</div>
+          <p>Nome: Jefferson Silva</p>
+          <p>CPF: 385.522.008-56</p>
         </div>
-    </div>
+      </div>
 
-    <div class="footer">
-        Rua Padre Estevão Pernet, nº 718 - Sala 704 -Tatuapé<br>
-        São Paulo/SP - CEP. 03315-000 | Brasil<br>
-        Tel.: +55 11 94269-2739<br>
-        www.genter.com.br
+      <div class="footer">
+        {{ENDERECO_LINHA_1}}<br />
+        {{ENDERECO_LINHA_2}}<br />
+        {{TELEFONE}}<br />
+        {{SITE}}
+      </div>
     </div>
-</div>
-
-</body>
+  </body>
 </html>

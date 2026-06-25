@@ -81,6 +81,31 @@ def create_table(
     return elementos
 
 
+def _build_footer(contato: dict[str, str]) -> str:
+    endereco_1 = contato.get("endereco_linha_1", "")
+    endereco_2 = contato.get("endereco_linha_2", "")
+    telefone = contato.get("telefone", "")
+    site = contato.get("site", "")
+    email = contato.get("email", "")
+
+    linhas = []
+
+    if endereco_1:
+        linhas.append(endereco_1)
+    if endereco_2:
+        linhas.append(endereco_2)
+    if telefone:
+        linhas.append(telefone)
+    if site:
+        linhas.append(site)
+    if email:
+        linhas.append(email)
+
+    footer = "<br/>".join(linhas)
+    print(f"  [DEBUG] footer gerado: {footer[:80]}...")
+    return footer
+
+
 def create_bullet_list(
     titulo: str,
     itens: list[str],
@@ -388,6 +413,8 @@ def generate_contract_html(
         or ""
     )
     contato = get_contato(empresa)
+    footer_html = _build_footer(contato)
+    html = html.replace("{{FOOTER}}", footer_html)
 
     _RESERVED = {
         "LOGO",
@@ -396,6 +423,7 @@ def generate_contract_html(
         "TELEFONE",
         "SITE",
         "EMAIL",
+        "FOOTER",
     }
 
     placeholders = re.findall(r"\{\{(.*?)\}\}", html)
@@ -412,7 +440,9 @@ def generate_contract_html(
             valor = format_currency(valor)
         html = html.replace(f"{{{{{p}}}}}", valor)
 
-    logo_htm = _build_logo_html(logo_path)
+    logo_html = _build_logo_html(logo_path)
+    html = html.replace("{{LOGO}}", logo_html)
+
     for campo in (
         "endereco_linha_1",
         "endereco_linha_2",

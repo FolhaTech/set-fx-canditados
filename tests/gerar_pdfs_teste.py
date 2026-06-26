@@ -79,27 +79,27 @@ def main():
         gerar_pdf_para_empresa(
             empresa=Enterprise.ARANTES,
             empresa_form_field="Arantes Arimura Advocacia",
-            output_name="TESTE_LOGO_Arantes.pdf",
+            output_name="TESTE_Arantes.pdf",
             context=context,
         )
 
         gerar_pdf_para_empresa(
             empresa=Enterprise.GENTER,
             empresa_form_field="Genter Serviços em Recursos Humanos",
-            output_name="TESTE_LOGO_Genter.pdf",
+            output_name="TESTE_Genter.pdf",
             context=context,
         )
 
         gerar_pdf_para_empresa(
             empresa=Enterprise.FOLHA_TECH,
             empresa_form_field="Folha Tech Tecnologia",
-            output_name="TESTE_LOGO_FolhaTech.pdf",
+            output_name="TESTE_FolhaTech.pdf",
             context=context,
         )
 
         print("\n" + "=" * 60)
         print("  ✅ 3 PDFs gerados em pdfs_gerados/")
-        print("  Abra-os e compare as logos nos cabeçalhos!")
+        print("  Abra-os e compare as logos e footers nos PDFs!")
         print("=" * 60)
 
     finally:

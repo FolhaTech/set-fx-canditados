@@ -30,13 +30,13 @@
     "cwd": "$ZED_WORKTREE_ROOT",
   },
   {
-    "label": "Teste Visual: Logos",
-    "command": "$env:PYTHONIOENCODING='utf-8'; uv run python -m tests.gerar_pdfs_teste_logo",
+    "label": "Teste Visual: Gerar PDFs",
+    "command": "$env:PYTHONIOENCODING='utf-8'; uv run python -m tests.gerar_pdfs_teste",
     "cwd": "$ZED_WORKTREE_ROOT",
   },
   {
-    "label": "Teste Visual: Logos (30 dias)",
-    "command": "$env:PYTHONIOENCODING='utf-8'; uv run python -m tests.gerar_pdfs_teste_logo_30",
+    "label": "Teste Visual: Gerar PDFs (30 dias)",
+    "command": "$env:PYTHONIOENCODING='utf-8'; uv run python -m tests.gerar_pdfs_teste_30",
     "cwd": "$ZED_WORKTREE_ROOT",
   },
   {

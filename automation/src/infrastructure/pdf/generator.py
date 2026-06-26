@@ -101,9 +101,7 @@ def _build_footer(contato: dict[str, str]) -> str:
     if email:
         linhas.append(email)
 
-    footer = "<br/>".join(linhas)
-    print(f"  [DEBUG] footer gerado: {footer[:80]}...")
-    return footer
+    return "<br/>".join(linhas)
 
 
 def create_bullet_list(
@@ -467,11 +465,38 @@ def generate_contract_html(
 
     page = context.new_page()
     page.set_content(html, wait_until="networkidle")
+
+    footer_lines = [
+        line.replace("&", "&amp;").strip()
+        for line in footer_html.split("<br/>")
+        if line.strip()
+    ]
+    footer_html_safe = "<br/>".join(footer_lines)
+
+    footer_template = f"""
+<div style="
+    width: 100%;
+    font-size: 8pt;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    border-top: 1px solid #000;
+    padding: 3mm 25mm 5mm 25mm;
+    margin: 0;
+    color: #000;
+    -webkit-print-color-adjust: exact;
+">
+    {footer_html_safe}
+</div>
+"""
+
     page.pdf(
         path=str(output_path),
         format="A4",
         print_background=True,
-        margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
+        display_header_footer=True,
+        header_template="<div></div>",
+        footer_template=footer_template,
+        margin={"top": "20mm", "bottom": "18mm", "left": "25mm", "right": "25mm"},
     )
     page.close()
 

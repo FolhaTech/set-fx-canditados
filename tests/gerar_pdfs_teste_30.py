@@ -114,16 +114,16 @@ def main():
     context = create_context(browser)
 
     try:
-        gerar_pdf_30(Enterprise.ARANTES, "TESTE_LOGO_30_Arantes.pdf", context)
-        gerar_pdf_30(Enterprise.GENTER, "TESTE_LOGO_30_Genter.pdf", context)
-        gerar_pdf_30(Enterprise.FOLHA_TECH, "TESTE_LOGO_30_FolhaTech.pdf", context)
+        gerar_pdf_30(Enterprise.ARANTES, "TESTE_30_Arantes.pdf", context)
+        gerar_pdf_30(Enterprise.GENTER, "TESTE_30_Genter.pdf", context)
+        gerar_pdf_30(Enterprise.FOLHA_TECH, "TESTE_30_FolhaTech.pdf", context)
 
         print("\n" + "=" * 60)
         print("  ✅ 3 PDFs gerados em pdfs_gerados/")
-        print("  Abra e compare os cabeçalhos das páginas!")
+        print("  Abra e compare os PDFs gerados!")
         print("=" * 60)
         print("\n  📁 Arquivos:")
-        for f in sorted(settings.pdf_dir_path.glob("TESTE_LOGO_30_*.pdf")):
+        for f in sorted(settings.pdf_dir_path.glob("TESTE_30_*.pdf")):
             print(f"     {f.name}  ({f.stat().st_size / 1024:.0f} KB)")
     finally:
         context.close()

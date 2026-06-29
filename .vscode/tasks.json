@@ -26,6 +26,14 @@
       "group": { "kind": "build", "isDefault": true },
     },
     {
+      "label": "Automation: Finalizar",
+      "type": "shell",
+      "command": "uv run python -m automation finalizar",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "group": { "kind": "build", "isDefault": false },
+    },
+    {
       "label": "Tests: Pytest",
       "type": "shell",
       "command": "uv run pytest tests/ -v",

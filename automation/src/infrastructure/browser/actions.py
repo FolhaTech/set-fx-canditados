@@ -11,6 +11,7 @@ logger = logging.getLogger("automacao.browser")
 
 # Screenshot
 
+
 def screenshot(page: Page, filename: str, full_page: bool = True) -> None:
     try:
         page.screenshot(path=filename, full_page=full_page)
@@ -20,6 +21,7 @@ def screenshot(page: Page, filename: str, full_page: bool = True) -> None:
 
 
 # Modal
+
 
 def close_modal(page: Page, timeout_ms: int = 2500) -> bool:
     try:
@@ -98,11 +100,12 @@ def close_modal(page: Page, timeout_ms: int = 2500) -> bool:
 
 # Click resilient
 
+
 def safe_click(
-        page: Page,
-        selector: str,
-        timeout_ms: int = 30_000,
-        label: str = "",
+    page: Page,
+    selector: str,
+    timeout_ms: int = 30_000,
+    label: str = "",
 ) -> None:
     """Clica em um elemento com fallback progressivo.
 
@@ -192,11 +195,12 @@ def safe_click(
 
 # fill
 
+
 def safe_fill(
-        page: Page,
-        selector: str,
-        value: str,
-        timeout_ms: int = 30_000,
+    page: Page,
+    selector: str,
+    value: str,
+    timeout_ms: int = 30_000,
 ) -> None:
     close_modal(page, timeout_ms=500)
     campo = page.locator(selector).first
@@ -206,7 +210,9 @@ def safe_fill(
     logger.debug(f"Preenchido: {selector}")
 
 
-def wait_for_value(page: Page, selector: str, condition: str, timeout_ms: int = 10_000) -> None:
+def wait_for_value(
+    page: Page, selector: str, condition: str, timeout_ms: int = 10_000
+) -> None:
     escaped = selector.replace("'", "\\'")
     page.wait_for_function(
         f"""
@@ -220,6 +226,7 @@ def wait_for_value(page: Page, selector: str, condition: str, timeout_ms: int = 
 
 
 #  Canvas / PDF Viewer
+
 
 def click_canvas_center(page: Page, canvas: Locator, label: str = "") -> bool:
     canvas.wait_for(state="visible", timeout=30_000)
@@ -238,7 +245,9 @@ def click_canvas_center(page: Page, canvas: Locator, label: str = "") -> bool:
 
     box = canvas.bounding_box()
     if not box:
-        logger.warning(f"Bounding box não encontrada para canvas{(' ' + label) if label else ''}")
+        logger.warning(
+            f"Bounding box não encontrada para canvas{(' ' + label) if label else ''}"
+        )
         return False
 
     x = box["x"] + box["width"] / 2

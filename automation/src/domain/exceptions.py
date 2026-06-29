@@ -73,3 +73,7 @@ class ElementNotFoundError(BrowserError):
 
 class ClickFailedError(BrowserError):
     pass
+
+
+class TriataFinalizarError(AutomationError):
+    pass

@@ -3,7 +3,18 @@ from pathlib import Path
 from automation.src.domain.exceptions import MandatoryFieldError
 
 from .excel_repository import append as append_excel
-from .json_repository import get_field, load, save, save_signature_link, update
+from .json_repository import (
+    candidate_exists,
+    candidate_filename,
+    candidate_path,
+    get_candidate,
+    get_field,
+    load,
+    save,
+    save_candidate,
+    save_signature_link,
+    update,
+)
 
 __all__ = [
     "append_excel",
@@ -13,6 +24,11 @@ __all__ = [
     "save",
     "save_signature_link",
     "update",
+    "candidate_exists",
+    "candidate_filename",
+    "candidate_path",
+    "get_candidate",
+    "save_candidate",
 ]
 
 

@@ -14,12 +14,14 @@ if __name__ == "__main__":
     etapa = sys.argv[1] if len(sys.argv) > 1 else "proposta"
 
     if etapa == "proposta":
-        logger.info("=== PIPELINE 1: Gerar Proposta ===")
+        logger.info("=== PIPELINE 1: Gerar Proposta (fila) ===")
         resultado = gerar_proposta.executar()
         if resultado:
-            logger.info("PDF gerado: %s", resultado)
+            logger.info("%d PDFs gerados nesta execução:", len(resultado))
+            for p in resultado:
+                logger.info("  - %s", p)
         else:
-            logger.error("Falha ao gerar proposta.")
+            logger.warning("Nenhum PDF gerado (fila vazia ou tudo já processado).")
 
     elif etapa == "assinatura":
         logger.info("=== PIPELINE 2: Enviar para Assinatura ===")
@@ -38,11 +40,11 @@ if __name__ == "__main__":
 
     elif etapa == "completo":
         logger.info("=== PIPELINE COMPLETA ===")
-        pdf = gerar_proposta.executar()
-        if not pdf:
-            logger.error("Falha na etapa 1 (proposta).")
+        pdfs = gerar_proposta.executar()
+        if not pdfs:
+            logger.warning("Fila vazia ou tudo já processado. Encerrando sem enviar assinatura.")
         else:
-            logger.info("PDF gerado: %s", pdf)
+            logger.info("%d PDFs gerados.", len(pdfs))
             link = enviar_assinatura.executar()
             if not link:
                 logger.error("Falha na etapa 2 (assinatura).")

@@ -1,7 +1,7 @@
 import logging
 import re
 
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 
 from automation.src.domain.exceptions import (
     TarefaNotFoundError,
@@ -38,9 +38,7 @@ class TriataClient:
 
         # Confirma que o login sumiu
         try:
-            self.page.wait_for_selector(
-                'input[name="login"]', state="hidden", timeout=30_000
-            )
+            self.page.wait_for_selector('input[name="login"]', state="hidden", timeout=30_000)
             logger.info("Login realizado. URL: %s", self.page.url)
         except Exception:
             raise TriataLoginError("Campo de login ainda visível após tentativa.")
@@ -64,9 +62,7 @@ class TriataClient:
             pass
 
         if not clicado:
-            logger.info(
-                "Botão não encontrado. Chamando ModoTeste('I') via JavaScript..."
-            )
+            logger.info("Botão não encontrado. Chamando ModoTeste('I') via JavaScript...")
             try:
                 self.page.evaluate("""
                     () => {
@@ -146,6 +142,7 @@ class TriataClient:
         logger.info("Extraindo campos do formulário...")
         self.page.wait_for_selector("#TriareProcessoForm", timeout=20_000)
 
+        # language=javascript
         dados = self.page.evaluate("""
             () => {
                 const form = document.querySelector("#TriareProcessoForm");
@@ -187,3 +184,25 @@ class TriataClient:
         except Exception:
             logger.exception("Erro no fluxo Triata.")
             return None
+
+    def find_all_tasks(self) -> list[Locator]:
+        logger.info("Aguardando listagem de tarefas...")
+        self.page.wait_for_selector('td[id^="tarefa_"]', timeout=20_000)
+
+        tds = self.page.locator('td[id^="tarefa_"]').all()
+        logger.info("Total de %d tarefas encontradas.", len(tds))
+
+        if not tds:
+            raise TarefaNotFoundError("Nenhuma tarefa encontrada.")
+
+        confeccao = []
+        for td in tds:
+            title = (td.get_attribute("title") or "").lower()
+            if "04.1" in title or "05.1" in title or "08" in title:
+                confeccao.append(td)
+
+        if not confeccao:
+            raise TarefaNotFoundError("Nenhuma tarefa de confeccao encontrada.")
+
+        logger.info("Total de %d tarefas de confeccao encontradas.", len(confeccao))
+        return confeccao

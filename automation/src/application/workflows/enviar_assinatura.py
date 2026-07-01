@@ -15,10 +15,7 @@ def _find_pdf(nome_candidato: str, pdf_dir):
 
     Migrado de: encontrar_pdf_carta_proposta() → login_zap.py:147-182
     """
-    pdfs = [
-        p for p in pdf_dir.iterdir()
-        if p.is_file() and p.suffix.lower() == ".pdf"
-    ]
+    pdfs = [p for p in pdf_dir.iterdir() if p.is_file() and p.suffix.lower() == ".pdf"]
 
     if not pdfs:
         return None
@@ -38,7 +35,8 @@ def _find_pdf(nome_candidato: str, pdf_dir):
     pdf_mais_recente = max(pdfs, key=lambda p: p.stat().st_mtime)
     logger.warning(
         "PDF pelo nome '%s' não encontrado. Usando o mais recente: %s",
-        nome_candidato, pdf_mais_recente.name,
+        nome_candidato,
+        pdf_mais_recente.name,
     )
     return str(pdf_mais_recente)
 
@@ -61,7 +59,7 @@ def executar() -> str | None:
 
     logger.info("PDF para upload: %s", pdf_path)
 
-    page = create_page()
+    page, browser, playwright = create_page()
     try:
         client = ZapSignClient(
             page=page,
@@ -84,5 +82,9 @@ def executar() -> str | None:
         return None
 
     finally:
-        page.context.browser.close()
-        logger.info("Navegador fechado.")
+        try:
+            page.context.browser.close()
+            logger.info("Navegador fechado.")
+        except Exception:
+            pass
+        playwright.stop()

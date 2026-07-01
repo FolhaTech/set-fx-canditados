@@ -3,79 +3,47 @@
     "raphaella_arimura": {
       "nome": "Raphaella Arantes Arimura",
       "cpf": "357.205.748-59",
-      "arquivo": "signatures/AssRapha.svg",
+      "arquivo": "signatures/AssRapha.png",
       "papeis_por_empresa": {
-        "arantes": [
-          "contratante",
-          "responsavel"
-        ]
+        "arantes": ["contratante", "responsavel"]
       }
     },
     "arimura": {
       "nome": "Arimura",
-      "arquivo": "signatures/AssArimura.svg",
+      "arquivo": "signatures/AssArimura.png",
       "papeis_por_empresa": {
-        "arantes": [
-          "contratante",
-          "responsavel"
-        ],
-        "genter": [
-          "contratante",
-          "responsavel"
-        ],
-        "folha_tech": [
-          "responsavel"
-        ]
+        "arantes": ["contratante", "responsavel"],
+        "genter": ["contratante", "responsavel"],
+        "folha_tech": ["responsavel"]
       }
     },
     "karla_schipani": {
       "nome": "Karla Schipani",
       "cpf": "269.375.108-02",
-      "arquivo": "signatures/AssKarla.svg",
+      "arquivo": "signatures/AssKarla.png",
       "papeis_por_empresa": {
-        "arantes": [
-          "testemunha"
-        ],
-        "genter": [
-          "testemunha"
-        ],
-        "folha_tech": [
-          "testemunha"
-        ]
+        "arantes": ["testemunha"],
+        "genter": ["testemunha"],
+        "folha_tech": ["testemunha"]
       }
     },
     "luana_lidia": {
       "nome": "Luana Lidia",
       "cpf": "293.342.578-57",
-      "arquivo": "signatures/AssLuana.svg",
+      "arquivo": "signatures/AssLuana.png",
       "papeis_por_empresa": {
-        "arantes": [
-          "testemunha"
-        ],
-        "genter": [
-          "testemunha"
-        ],
-        "folha_tech": [
-          "testemunha"
-        ]
+        "arantes": ["testemunha"],
+        "genter": ["testemunha"],
+        "folha_tech": ["testemunha"]
       }
     },
     "fernando": {
       "nome": "Fernando",
-      "arquivo": "signatures/AssFernando.svg",
+      "arquivo": "signatures/AssFernando.png",
       "papeis_por_empresa": {
-        "folha_tech": [
-          "contratante",
-          "responsavel"
-        ],
-        "arantes": [
-          "testemunha",
-          "responsavel"
-        ],
-        "genter": [
-          "testemunha",
-          "responsavel"
-        ]
+        "folha_tech": ["contratante", "responsavel"],
+        "arantes": ["testemunha", "responsavel"],
+        "genter": ["testemunha", "responsavel"]
       }
     }
   }

@@ -16,7 +16,7 @@ def executar() -> bool:
     logger.info("Candidato: %s", nome)
     logger.info("Link ZapSign: %s", link)
 
-    page = create_page()
+    page, browser, playwright = create_page()
     try:
         client = TriataFinalizarClient(
             page=page,
@@ -29,5 +29,9 @@ def executar() -> bool:
         logger.exception("Erro no fluxo de finalização.")
         return False
     finally:
-        page.context.browser.close()
-        logger.info("Navegador fechado.")
+        try:
+            page.context.browser.close()
+            logger.info("Navegador fechado.")
+        except Exception:
+            pass
+        playwright.stop()

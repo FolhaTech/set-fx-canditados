@@ -15,7 +15,9 @@ class TriataFinalizarClient:
     """Finaliza a tarefa 04.1 - Confecção Proposta no Triata após ZapSign."""
 
     PROSSEGUIR_JS = "TriareSubmeteProcesso('G', 'N', '0121000001301', ...arguments)"
-    PROSSEGUIR_SELECTOR = "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001301'\"]"
+    PROSSEGUIR_SELECTOR = (
+        "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001301'\"]"
+    )
 
     def __init__(self, page: Page, url: str, username: str, password: str):
         self.page = page
@@ -37,51 +39,86 @@ class TriataFinalizarClient:
         logger.info("Clicando no botão de login...")
         safe_click(self.page, ".TriataFixUiIE7", label="Login Triata")
 
-        self.page.wait_for_selector('input[name="login"]', state="hidden", timeout=30_000)
+        self.page.wait_for_selector(
+            'input[name="login"]', state="hidden", timeout=30_000
+        )
         self.page.wait_for_load_state("networkidle", timeout=30_000)
         logger.info("Login Triata confirmado.")
 
-    def aguardar_modo_teste_manual(self, timeout_ms: int = 120_000) -> None:
+    def ativar_modo_teste(self) -> None:
+        """Clica no botão Modo Teste e aceita o diálogo de confirmação."""
+        logger.info("Ativando Modo Teste...")
+        self.page.on("dialog", lambda dialog: dialog.accept())
 
-        logger.info(
-            "Aguardando ativação manual do modo de teste (até %ds)...",
-            timeout_ms // 1000,
-        )
-        self.page.wait_for_function(
-            """
-            () => {
-                const el = document.querySelector('span.btn_ativa_modo_teste');
-                if (!el) return true;
-                const style = window.getComputedStyle(el);
-                return style.display === 'none' || style.visibility === 'hidden';
-            }
-            """,
-            timeout=timeout_ms,
-        )
-        logger.info("Modo de teste detectado como ativo.")
+        self.page.wait_for_timeout(5_000)
 
-    def clicar_tarefa_confecao(self) -> bool:
-        logger.info("Procurando tarefa: 04.1 - Confecção Proposta")
-        seletor = 'td[title="04.1 - Confecção Proposta"]'
-        self.page.wait_for_timeout(2000)
-        elemento = self.page.query_selector(seletor)
-        if not elemento:
-            self.page.screenshot(path="tarefa_nao_encontrada.png", full_page=True)
-            raise TriataFinalizarError("Tarefa 04.1 não encontrada na lista.")
+        clicado = False
 
-        elemento.scroll_into_view_if_needed()
-        self.page.wait_for_timeout(500)
+        btn = self.page.locator(".btn_ativa_modo_teste")
         try:
-            elemento.click(timeout=5000)
+            btn.wait_for(state="attached", timeout=10_000)
+            btn.click()
+            clicado = True
+            logger.info("Modo Teste clicado na página principal.")
         except Exception:
-            elemento.click(force=True, timeout=5000)
+            pass
+
+        if not clicado:
+            logger.info(
+                "Botão não encontrado. Chamando ModoTeste('I') via JavaScript..."
+            )
+            try:
+                self.page.evaluate("""
+                    () => {
+                        if (typeof ModoTeste === 'function') {
+                            ModoTeste('I');
+                        } else {
+                            // Procurar o botão no DOM e clicar via JS
+                            const btn = document.querySelector('.btn_ativa_modo_teste');
+                            if (btn) btn.click();
+                        }
+                    }
+                """)
+                clicado = True
+                logger.info("ModoTeste('I') chamado via JS.")
+            except Exception as e:
+                logger.warning("Falha ao ativar via JS: %s", e)
+
+        if not clicado:
+            logger.warning("Não foi possível ativar Modo Teste.")
 
         self.page.wait_for_load_state("networkidle", timeout=30_000)
-        self.page.wait_for_selector("#TriareProcessoForm", timeout=30_000)
-        logger.info("Tarefa 04.1 aberta.")
-        return True
+        self.page.wait_for_timeout(3_000)
+        self.page.wait_for_selector('td[id^="tarefa_"]', timeout=20_000)
+        logger.info("Modo Teste processado.")
 
-    def preencher_consideracoes(self, link: str, texto: str = "concluido pelo robo") -> None:
+    def clicar_tarefa_confecao(self) -> bool:
+        logger.info("Procurando tarefas")
+        candidatos = [
+            'td[title="04.1 - Confecção Proposta"]',
+            'td[title="05.1 - Confecção Proposta"]',
+            'td[title="08 - Confecção e assinatura (Contrato)"]',
+        ]
+        self.page.wait_for_timeout(2000)
+        for selector in candidatos:
+            elemento = self.page.query_selector(selector)
+            if elemento:
+                logger.info("Tarefa encontrada: %s", selector)
+                elemento.scroll_into_view_if_needed()
+                self.page.wait_for_timeout(500)
+                try:
+                    elemento.click(timeout=5_000)
+                except Exception:
+                    elemento.click(force=True, timeout=5_000)
+                self.page.wait_for_load_state("networkidle", timeout=30_000)
+                self.page.wait_for_selector("#TriareProcessoForm", timeout=30_000)
+                return True
+
+        raise TriataFinalizarError("Nenhuma tarefa encontrada na lista.")
+
+    def preencher_consideracoes(
+        self, link: str, texto: str = "concluido pelo robo"
+    ) -> None:
         logger.info("Preenchendo #ass_prestador com o link...")
         self.page.wait_for_selector("#ass_prestador", timeout=20_000)
         self.page.evaluate(
@@ -163,7 +200,7 @@ class TriataFinalizarClient:
     def run(self, link: str, nome: str) -> bool:
         try:
             self.login()
-            self.aguardar_modo_teste_manual()
+            self.ativar_modo_teste()
             self.clicar_tarefa_confecao()
             self.preencher_consideracoes(link=link)
             self.clicar_prosseguir()
@@ -172,5 +209,7 @@ class TriataFinalizarClient:
             raise
         except Exception:
             logger.exception("Erro inesperado no fluxo de finalização.")
-            self.page.screenshot(path="erro_geral_finalizar_workflow.png", full_page=True)
+            self.page.screenshot(
+                path="erro_geral_finalizar_workflow.png", full_page=True
+            )
             return False

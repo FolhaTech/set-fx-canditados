@@ -1,9 +1,19 @@
-from playwright.sync_api import Browser, BrowserContext, Page, sync_playwright
+from typing import Tuple
+
+from playwright.sync_api import (
+    Browser,
+    BrowserContext,
+    Page,
+    Playwright,
+    sync_playwright,
+)
 
 from automation.src.config import settings
 
 
-def create_browser(headless: bool | None = None, slow_mo: int | None = None) -> Browser:
+def create_browser(
+    headless: bool | None = None, slow_mo: int | None = None
+) -> tuple[Browser, Playwright]:
     if headless is None:
         headless = settings.HEADLESS
     if slow_mo is None:
@@ -18,7 +28,7 @@ def create_browser(headless: bool | None = None, slow_mo: int | None = None) -> 
             "--disable-blink-features=AutomationControlled",
         ],
     )
-    return browser
+    return browser, playwright
 
 
 def create_context(browser: Browser) -> BrowserContext:
@@ -36,8 +46,11 @@ def create_context(browser: Browser) -> BrowserContext:
     return context
 
 
-def create_page(browser: Browser | None = None) -> Page:
-    if browser is None:
-        browser = create_browser()
+def create_page(
+    browser: Browser | None = None, playwright: Playwright | None = None
+) -> Tuple[Page, Browser, Playwright]:
+    if browser is None or playwright is None:
+        browser, playwright = create_browser()
     context = create_context(browser)
-    return context.new_page()
+    page = context.new_page()
+    return page, browser, playwright

@@ -108,7 +108,9 @@ def _processar_tarefa(client: TriataClient, tarefa, idx: int, total: int) -> str
     processo_id = match.group(1)
 
     if candidate_exists(processo_id):
-        logger.info("[%d/%d] Processo %s já processado — pulando", idx, total, processo_id)
+        logger.info(
+            "[%d/%d] Processo %s já processado — pulando", idx, total, processo_id
+        )
         return None
 
     logger.info("[%d/%d] %s (processo %s)", idx, total, title, processo_id)
@@ -144,7 +146,7 @@ def executar() -> list[str]:
     Returns:
         Lista de paths de PDFs gerados nesta execução.
     """
-    page = create_page()
+    page, browser, playwright = create_page()
     pdfs: list[str] = []
 
     try:
@@ -193,5 +195,8 @@ def executar() -> list[str]:
         return pdfs
 
     finally:
-        page.context.browser.close()
-        logger.info("Navegador fechado.")
+        try:
+            page.context.browser.close()
+        except Exception:
+            pass
+        playwright.stop()

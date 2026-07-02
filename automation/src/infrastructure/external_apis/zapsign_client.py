@@ -1,7 +1,9 @@
 import logging
 
 from playwright.sync_api import Page
+import httpx
 
+from automation.src.config import settings
 from automation.src.domain.exceptions import (
     ZapSignLinkError,
     ZapSignUploadError,
@@ -51,6 +53,48 @@ class ZapSignClient:
         self.page.wait_for_selector("#button-create-doc-sidebar-test", timeout=40_000)
         close_modal(self.page)
         logger.info("Login ZapSign confirmado.")
+
+    def navigate_to_contracts_robo(self) -> None:
+        logger.info("Navegando para a página de contratos do Robo...")
+
+        safe_click(
+            self.page,
+            '[data-cy="documentos"]',
+            label="Documentos (sidebar)",
+        )
+        self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
+
+        safe_click(
+            self.page,
+            "body > app-root > div > app-client > div > div > app-sidebar > div "
+            "> div.zs-two-blocks-sidebar > div:nth-child(1) > ul "
+            "> div:nth-child(1) > li",
+            label="Documentos Criados",
+        )
+        self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
+
+        safe_click(
+            self.page,
+            "body > app-root > div > app-client > div > div > div "
+            "> app-my-documents > app-documents > div > div "
+            "> div.container-folders-doc.ng-star-inserted > app-folders > div "
+            "> div > div > app-folder-tree > div > div > div.folders-list "
+            "> app-folder:nth-child(2) > div",
+            label="Pasta Contratos Robo",
+        )
+        self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
+
+        safe_click(
+            self.page,
+            "body > app-root > div > app-client > div > div > div "
+            "> app-my-documents > app-documents > div > div "
+            "> div.container-folders-doc.ng-star-inserted > div > app-accordion "
+            "> div > div.container-btn > zs-button:nth-child(1) > button "
+            "> span.mat-button-wrapper",
+            label="Criar documento (na pasta)",
+        )
+        self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
+        logger.info("Pronto para upload na pasta Contratos Robo.")
 
     def create_and_upload(self, pdf_paths: list[str]) -> None:
         """Cria novo documento e faz upload dos PDFs."""
@@ -260,6 +304,7 @@ class ZapSignClient:
     ) -> str:
         """Executa o fluxo completo e retorna o link de assinatura."""
         self.login()
+        self.navigate_to_contracts_robo()
         self.create_and_upload(pdf_paths)
         self.enable_advanced_auth()
         self.fill_signer_info(nome, email)
@@ -268,4 +313,5 @@ class ZapSignClient:
         self.place_signature_field()
         self.save_and_continue()
         link = self.capture_link()
+
         return link

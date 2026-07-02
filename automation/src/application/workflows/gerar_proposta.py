@@ -58,6 +58,11 @@ def _gerar_pdf(dados: dict, processo_id: str, page_context) -> str | None:
         return str(output)
 
     if "08" in tarefa:
+        template_path = (
+            settings.PROJECT_ROOT / "modelo_contrato_30.html"
+            if "30 dias" in tarefa.lower()
+            else settings.template_contrato_30_html_path
+        )
         output = settings.pdf_dir_path / f"Contrato_{nome}_{processo_id}.pdf"
         dados["data_atual"] = datetime.now().strftime("%d/%m/%Y")
         dados["endereco_formatado"] = (
@@ -86,7 +91,7 @@ def _gerar_pdf(dados: dict, processo_id: str, page_context) -> str | None:
         resultado = generate_contract_html(
             dados=dados,
             output_path=output,
-            template_path=settings.template_contrato_html_path,
+            template_path=template_path,
             context=page_context,
             logo_path=logo_empresa,
         )

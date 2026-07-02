@@ -25,6 +25,8 @@ class Settings(BaseSettings):
     ZAPSIGN_URL: str = "https://app.zapsign.com.br/acesso/entrar"
     ZAPSIGN_EMAIL: str = ""
     ZAPSIGN_PASSWORD: str = ""
+    ZAPSIGN_API_TOKEN: str = ""
+    ZAPSIGN_FOLDER_TOKEN: str = ""
 
     # Files Datas
     PDF_DIR: str = "pdfs_gerados"
@@ -32,6 +34,7 @@ class Settings(BaseSettings):
     ASSINATURAS_DIR: str = "assinatura"
     TEMPLATE_CONTRATO: str = "modelo_contrato.txt"
     TEMPLATE_CONTRATO_HTML: str = "modelo_contrato.html"
+    TEMPLATE_CONTRATO_30_HTML: str = "modelo_contrato_30.html"
     JSON_FILE: str = "dados_formulario_atual.json"
     EXCEL_FILE: str = "dados_formularios.xlsx"
 
@@ -86,6 +89,10 @@ class Settings(BaseSettings):
     @property
     def template_contrato_html_path(self) -> Path:
         return self.PROJECT_ROOT / self.TEMPLATE_CONTRATO_HTML
+
+    @property
+    def template_contrato_30_html_path(self) -> Path:
+        return self.PROJECT_ROOT / self.TEMPLATE_CONTRATO_30_HTML
 
 
 settings = Settings()

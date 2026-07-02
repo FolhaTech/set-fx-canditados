@@ -18,6 +18,10 @@ class TriataFinalizarClient:
     PROSSEGUIR_SELECTOR = (
         "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001301'\"]"
     )
+    LINK_FIELD_MAP: dict[str, str] = {
+        "proposta": "#ass_prestador",
+        "contrato": "#contrato_prestador_temporario",
+    }
 
     def __init__(self, page: Page, url: str, username: str, password: str):
         self.page = page
@@ -92,18 +96,20 @@ class TriataFinalizarClient:
         self.page.wait_for_selector('td[id^="tarefa_"]', timeout=20_000)
         logger.info("Modo Teste processado.")
 
-    def clicar_tarefa_confecao(self) -> bool:
+    def clicar_tarefa_confecao(self) -> str:
         logger.info("Procurando tarefas")
         candidatos = [
             'td[title="04.1 - Confecção Proposta"]',
             'td[title="05.1 - Confecção Proposta"]',
-            'td[title="08 - Confecção e assinatura (Contrato)"]',
+            'td[title="08 - Confecção 30 dias (Contrato)"]',
         ]
         self.page.wait_for_timeout(2000)
         for selector in candidatos:
             elemento = self.page.query_selector(selector)
             if elemento:
-                logger.info("Tarefa encontrada: %s", selector)
+                title = (elemento.get_attribute("title") or "").lower()
+                tipo = "contrato" if "08" in title else "proposta"
+                logger.info("Tarefa encontrada (%s): %s", tipo, selector)
                 elemento.scroll_into_view_if_needed()
                 self.page.wait_for_timeout(500)
                 try:
@@ -112,27 +118,28 @@ class TriataFinalizarClient:
                     elemento.click(force=True, timeout=5_000)
                 self.page.wait_for_load_state("networkidle", timeout=30_000)
                 self.page.wait_for_selector("#TriareProcessoForm", timeout=30_000)
-                return True
+                return tipo
 
         raise TriataFinalizarError("Nenhuma tarefa encontrada na lista.")
 
     def preencher_consideracoes(
-        self, link: str, texto: str = "concluido pelo robo"
+        self, link: str, tipo: str, texto: str = "concluido pelo robo"
     ) -> None:
-        logger.info("Preenchendo #ass_prestador com o link...")
-        self.page.wait_for_selector("#ass_prestador", timeout=20_000)
+        seletor_link = self.LINK_FIELD_MAP.get(tipo, "#ass_prestador")
+        logger.info("Preenchendo %s com o link...", seletor_link)
+        self.page.wait_for_selector(seletor_link, timeout=20_000)
         self.page.evaluate(
             """
-            (link) => {
-                const campo = document.querySelector('#ass_prestador');
-                if (!campo) throw new Error('#ass_prestador não encontrado');
-                campo.value = link;
-                campo.dispatchEvent(new Event('input', { bubbles: true }));
-                campo.dispatchEvent(new Event('change', { bubbles: true }));
-                if (typeof bTeveAlteracao !== 'undefined') bTeveAlteracao = true;
-            }
-            """,
-            link,
+                      ([sel, link]) => {
+                          const campo = document.querySelector(sel);
+                          if (!campo) throw new Error(sel + ' não encontrado');
+                          campo.value = link;
+                          campo.dispatchEvent(new Event('input', { bubbles: true }));
+                          campo.dispatchEvent(new Event('change', { bubbles: true }));
+                          if (typeof bTeveAlteracao !== 'undefined') bTeveAlteracao = true;
+                      }
+                      """,
+            [seletor_link, link],
         )
 
         logger.info("Preenchendo #consideracoes_historico...")
@@ -155,28 +162,27 @@ class TriataFinalizarClient:
 
     def clicar_prosseguir(self) -> bool:
         logger.info("Clicando em Prosseguir...")
-        botao = self.page.locator(self.PROSSEGUIR_SELECTOR).first
-        botao.wait_for(state="visible", timeout=20_000)
-        botao.scroll_into_view_if_needed()
-        self.page.wait_for_timeout(500)
-        try:
-            botao.click(timeout=5000)
-        except Exception:
+        candidatos = [
+            "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001301'\"]",
+            "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001601'\"]",
+        ]
+
+        for selector in candidatos:
+            botao = self.page.locator(selector).first
             try:
-                botao.click(force=True, timeout=5000)
+                botao.wait_for(state="visible", timeout=5_000)
+                botao.scroll_into_view_if_needed()
+                self.page.wait_for_timeout(500)
+                try:
+                    botao.click(timeout=5_000)
+                except Exception:
+                    botao.click(force=True, timeout=5_000)
+                self.page.wait_for_load_state("networkidle", timeout=30_000)
+                logger.info("Botão Prosseguir clicado (%s).", selector[:80])
+                return True
             except Exception:
-                self.page.evaluate(
-                    """
-                    (sel) => {
-                        const el = document.querySelector(sel);
-                        if (el) el.click();
-                    }
-                    """,
-                    self.PROSSEGUIR_SELECTOR,
-                )
-        self.page.wait_for_load_state("networkidle", timeout=30_000)
-        logger.info("Botão Prosseguir clicado.")
-        return True
+                continue
+        raise TriataFinalizarError("Nenhum botão Prosseguir encontrado.")
 
     def confirmar_prosseguimento(self) -> bool:
         try:
@@ -201,8 +207,8 @@ class TriataFinalizarClient:
         try:
             self.login()
             self.ativar_modo_teste()
-            self.clicar_tarefa_confecao()
-            self.preencher_consideracoes(link=link)
+            tipo = self.clicar_tarefa_confecao()
+            self.preencher_consideracoes(link=link, tipo=tipo)
             self.clicar_prosseguir()
             return self.confirmar_prosseguimento()
         except TriataFinalizarError:

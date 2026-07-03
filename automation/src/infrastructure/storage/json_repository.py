@@ -45,8 +45,25 @@ def save_signature_link(path: Path, link: str) -> None:
     )
 
 
-def get_field(path: Path, field: str, required: bool = False) -> str | None:
+def get_field(
+    path: Path,
+    field: str,
+    required: bool = False,
+    return_full: bool = False,
+) -> str | dict | None:
+    """Lê um campo do JSON.
+
+    Args:
+        path: Caminho do JSON.
+        field: Nome do campo.
+        required: Se True, levanta MandatoryFieldError se o campo estiver vazio.
+        return_full: Se True, retorna o dict inteiro (ignora `field`).
+    """
     data = load(path)
+
+    if return_full:
+        return data
+
     value = data.get(field)
 
     if required and not value:

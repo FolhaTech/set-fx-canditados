@@ -50,6 +50,7 @@ def _gerar_pdf(dados: dict, processo_id: str, page_context) -> str | None:
     """Gera o PDF (carta proposta ou contrato). Retorna path ou None."""
     nome = clean_filename(dados.get("nome_completo", ""))
     tarefa = (dados.get("tarefa_nome") or "").lower()
+    titulo_html = tarefa
 
     if "04.1" in tarefa or "05.1" in tarefa:
         output = settings.pdf_dir_path / f"Carta_Proposta_{nome}_{processo_id}.pdf"
@@ -58,11 +59,7 @@ def _gerar_pdf(dados: dict, processo_id: str, page_context) -> str | None:
         return str(output)
 
     if "08" in tarefa:
-        template_path = (
-            settings.PROJECT_ROOT / "modelo_contrato_30.html"
-            if "30 dias" in tarefa.lower()
-            else settings.template_contrato_30_html_path
-        )
+        template_path = settings.template_contrato_30_html_path
         output = settings.pdf_dir_path / f"Contrato_{nome}_{processo_id}.pdf"
         dados["data_atual"] = datetime.now().strftime("%d/%m/%Y")
         dados["endereco_formatado"] = (

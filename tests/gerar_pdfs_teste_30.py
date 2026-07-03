@@ -3,6 +3,8 @@ import json
 import logging
 from pathlib import Path
 
+import playwright
+
 from automation.src.application.services.branding_service import (
     _load_contatos_config,
     find_logo,
@@ -110,7 +112,7 @@ def main():
     print("  Gera 3 PDFs para comparação visual")
     print("=" * 60)
 
-    browser = create_browser(headless=True)
+    browser, playwright = create_browser(True)
     context = create_context(browser)
 
     try:

@@ -1,4 +1,5 @@
 import base64
+from os import path
 import re
 from datetime import datetime
 from pathlib import Path
@@ -17,11 +18,11 @@ from reportlab.platypus import (
 )
 
 from automation.src.application.services.branding_service import (
+    find_all_signatures_for_company,
     find_logo,
+    find_signature_by_role,
     get_contato,
     get_theme,
-    find_signature_by_role,
-    find_all_signatures_for_company,
 )
 from automation.src.domain import Enterprise
 from automation.src.domain.models import Proposal
@@ -384,12 +385,53 @@ def _inject_signature(html: str, placeholder: str, signature_path: Path) -> str:
     with open(signature_path, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
 
-    img_tag = (
-        f'<img src="data:{mime};base64,{b64}" '
-        f'style="max-height:40px; max-width:180px;">'
-    )
+    img_tag = f'<img src="data:{mime};base64,{b64}" style="max-height:40px; max-width:180px;">'
 
     return html.replace(placeholder, img_tag)
+
+
+def _build_header_html_30(logo_path: Path, empresa: Enterprise) -> str:
+    """Header específico para modelo_contrato_30.html.
+
+    Inclui o logo + tagline por empresa (ex: "ADVOCACIA" para Arantes).
+    """
+    if not logo_path or not logo_path.exists():
+        return _header_fallback_30(empresa)
+
+    ext = logo_path.suffix.lower().lstrip(".")
+    mime_map = {"png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg"}
+    mime = mime_map.get(ext, "image/png")
+
+    with open(logo_path, "rb") as f:
+        b64 = base64.b64encode(f.read()).decode()
+
+    data_url = f"data:{mime};base64,{b64}"
+
+    tagline = {
+        Enterprise.GENTER: "TUDO GIRA EM TORNO DAS </span>PESSOAS</span>",
+        Enterprise.ARANTES: "<span>ADVOCACIA</span>",
+        Enterprise.FOLHA_TECH: "<span>TECNOLOGIA</span>",
+    }.get(empresa, "")
+
+    return f"""
+    <div class="logo-block">
+      <div class="logo-icon">
+        <img src="{data_url}" style="max-height:38px; max-width:140px;">
+      </div>
+      <div style="font-size: 10pt;line-height: 1.5;">{tagline}</div>
+    </div>"""
+
+
+def _header_fallback_30(empresa: Enterprise) -> str:
+    """Fallback do header_30 quando não há logo."""
+    nome = {
+        Enterprise.ARANTES: "ARANTES ARIMURA",
+        Enterprise.GENTER: "genter",
+        Enterprise.FOLHA_TECH: "Folha Tech",
+    }.get(empresa, empresa.value)
+    return f"""<div class="logo-block">
+      <div class="logo-name">{nome}</div>
+    </div>"""
 
 
 def generate_contract_html(
@@ -414,8 +456,24 @@ def generate_contract_html(
     footer_html = _build_footer(contato)
     html = html.replace("{{FOOTER}}", footer_html)
 
+    _PLACEHOLDER_ALIASES_30 = {
+        "NOME": "nome_completo",
+        "RG": "rg_candidato",
+        "CPF": "cpf_candidato",
+        "CIDADE,DATA": "cidade_estado",
+        "NOME EMPRESA (FANTASIA)": "nome_fantasia",
+        "AGÊNCIA": "agencia_banco",
+        "CONTA": "conta_banco",
+        "TIPO DE CONTA": "tipo_conta",
+        "TITULARIDADE": "titularidade_banco",
+        "PIX": "pix_banco",
+        "BANCO": "qual_banco",
+        "HONORARIO": "valor_remuneracao",
+    }
+
     _RESERVED = {
         "LOGO",
+        "LOGO_HEADER_30",
         "ENDERECO_LINHA_1",
         "ENDERECO_LINHA_2",
         "TELEFONE",
@@ -429,8 +487,13 @@ def generate_contract_html(
         chave = p.strip()
         if chave == "LOGO" or chave.startswith("ASSINATURA_"):
             continue
+        if chave == "LOGO_HEADER_30":
+            continue
         if chave in _RESERVED:
             continue
+        # Resolve placeholders do template 30 dias
+        if chave in _PLACEHOLDER_ALIASES_30:
+            chave = _PLACEHOLDER_ALIASES_30[chave]
 
         valor = clean_value(dados.get(chave, ""))
 
@@ -438,8 +501,15 @@ def generate_contract_html(
             valor = format_currency(valor)
         html = html.replace(f"{{{{{p}}}}}", valor)
 
-    logo_html = _build_logo_html(logo_path)
+    is_template_30 = "30" in template_path.name
+    if is_template_30:
+        header_html = _build_header_html_30(logo_path, empresa)
+    else:
+        header_html = _build_logo_html(logo_path)
+
+    logo_html = header_html
     html = html.replace("{{LOGO}}", logo_html)
+    html = html.replace("{{LOGO_HEADER_30}}", header_html)
 
     for campo in (
         "endereco_linha_1",
@@ -466,37 +536,11 @@ def generate_contract_html(
     page = context.new_page()
     page.set_content(html, wait_until="networkidle")
 
-    footer_lines = [
-        line.replace("&", "&amp;").strip()
-        for line in footer_html.split("<br/>")
-        if line.strip()
-    ]
-    footer_html_safe = "<br/>".join(footer_lines)
-
-    footer_template = f"""
-<div style="
-    width: 100%;
-    font-size: 8pt;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-    border-top: 1px solid #000;
-    padding: 3mm 25mm 5mm 25mm;
-    margin: 0;
-    color: #000;
-    -webkit-print-color-adjust: exact;
-">
-    {footer_html_safe}
-</div>
-"""
-
     page.pdf(
         path=str(output_path),
         format="A4",
         print_background=True,
-        display_header_footer=True,
-        header_template="<div></div>",
-        footer_template=footer_template,
-        margin={"top": "20mm", "bottom": "18mm", "left": "25mm", "right": "25mm"},
+        margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
     )
     page.close()
 

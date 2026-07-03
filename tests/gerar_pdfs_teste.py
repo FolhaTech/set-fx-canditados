@@ -1,6 +1,8 @@
 import logging
 from pathlib import Path
 
+import playwright
+
 from automation.src.application.services.branding_service import find_logo
 from automation.src.config import settings
 from automation.src.domain.models import Enterprise
@@ -72,7 +74,7 @@ def main():
     print("  Gera 3 PDFs lado a lado para comparação visual")
     print("=" * 60)
 
-    browser = create_browser(headless=True)
+    browser, playwright = create_browser(headless=True)
     context = create_context(browser)
 
     try:
@@ -105,6 +107,7 @@ def main():
     finally:
         context.close()
         browser.close()
+        playwright.stop()
         logger.info("Navegador fechado.")
 
 

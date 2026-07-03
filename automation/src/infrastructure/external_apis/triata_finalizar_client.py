@@ -15,9 +15,7 @@ class TriataFinalizarClient:
     """Finaliza a tarefa 04.1 - Confecção Proposta no Triata após ZapSign."""
 
     PROSSEGUIR_JS = "TriareSubmeteProcesso('G', 'N', '0121000001301', ...arguments)"
-    PROSSEGUIR_SELECTOR = (
-        "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001301'\"]"
-    )
+    PROSSEGUIR_SELECTOR = "button[onclick*=\"TriareSubmeteProcesso('G', 'N', '0121000001301'\"]"
     LINK_FIELD_MAP: dict[str, str] = {
         "proposta": "#ass_prestador",
         "contrato": "#contrato_prestador_temporario",
@@ -43,9 +41,7 @@ class TriataFinalizarClient:
         logger.info("Clicando no botão de login...")
         safe_click(self.page, ".TriataFixUiIE7", label="Login Triata")
 
-        self.page.wait_for_selector(
-            'input[name="login"]', state="hidden", timeout=30_000
-        )
+        self.page.wait_for_selector('input[name="login"]', state="hidden", timeout=30_000)
         self.page.wait_for_load_state("networkidle", timeout=30_000)
         logger.info("Login Triata confirmado.")
 
@@ -68,9 +64,7 @@ class TriataFinalizarClient:
             pass
 
         if not clicado:
-            logger.info(
-                "Botão não encontrado. Chamando ModoTeste('I') via JavaScript..."
-            )
+            logger.info("Botão não encontrado. Chamando ModoTeste('I') via JavaScript...")
             try:
                 self.page.evaluate("""
                     () => {
@@ -215,7 +209,5 @@ class TriataFinalizarClient:
             raise
         except Exception:
             logger.exception("Erro inesperado no fluxo de finalização.")
-            self.page.screenshot(
-                path="erro_geral_finalizar_workflow.png", full_page=True
-            )
+            self.page.screenshot(path="erro_geral_finalizar_workflow.png", full_page=True)
             return False

@@ -38,7 +38,9 @@ class TriataClient:
 
         # Confirma que o login sumiu
         try:
-            self.page.wait_for_selector('input[name="login"]', state="hidden", timeout=30_000)
+            self.page.wait_for_selector(
+                'input[name="login"]', state="hidden", timeout=30_000
+            )
             logger.info("Login realizado. URL: %s", self.page.url)
         except Exception:
             raise TriataLoginError("Campo de login ainda visível após tentativa.")
@@ -62,7 +64,9 @@ class TriataClient:
             pass
 
         if not clicado:
-            logger.info("Botão não encontrado. Chamando ModoTeste('I') via JavaScript...")
+            logger.info(
+                "Botão não encontrado. Chamando ModoTeste('I') via JavaScript..."
+            )
             try:
                 self.page.evaluate("""
                     () => {
@@ -206,3 +210,21 @@ class TriataClient:
 
         logger.info("Total de %d tarefas de confeccao encontradas.", len(confeccao))
         return confeccao
+
+    def list_process_ids(self) -> list[str]:
+        self.login()
+        self.ativar_modo_teste()
+        self.page.wait_for_selector('td[id^="tarefa_"]', timeout=20_000)
+        tds = self.page.locator('td[id^="tarefa_"]').all()
+
+        process_ids: list[str] = []
+        for td in tds:
+            title = (td.get_attribute("title") or "").lower()
+            if "04.1" in title or "05.1" in title or "08" in title:
+                td_id = td.get_attribute("id") or ""
+                match = re.search(r"tarefa_(\d+)_\d+", td_id)
+                if match:
+                    process_ids.append(match.group(1))
+
+        logger.info("Processos na fila: %s", process_ids)
+        return process_ids

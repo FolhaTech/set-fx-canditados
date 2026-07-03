@@ -1,6 +1,6 @@
 {
-    "extraido_em": "02/07/2026, 16:52:44",
-    "url": "https://workflow.folhatech.com.br//triata/Sistema.php",
+    "extraido_em": "03/07/2026, 17:06:56",
+    "url": "https://workflow.folhatech.com.br/triata/Sistema.php",
     "id": "147",
     "modelo_versao_id": "0121000",
     "tarefa_id": "01210000016",
@@ -15,11 +15,11 @@
     "amb_usuario_email": "robo.relatorio@folhatech.com.br",
     "amb_lider_id": "408",
     "amb_lider_nome": "Robo Cadastro Cliente",
-    "amb_data": "1782961200",
-    "amb_hora": "1783021839",
-    "amb_data_formatada": "02/07/2026",
-    "amb_hora_formatada": "16:50",
-    "amb_data_hora_formatada": "02/07/2026 16:50",
+    "amb_data": "1783047600",
+    "amb_hora": "1783109084",
+    "amb_data_formatada": "03/07/2026",
+    "amb_hora_formatada": "17:04",
+    "amb_data_hora_formatada": "03/07/2026 17:04",
     "amb_data_abertura_processo": "01/07/2026 09:31",
     "amb_processo_id": "22820",
     "amb_dat_abertura_tarefa": "01/07/2026 16:17",
@@ -94,12 +94,12 @@
     "consideracoes_historico_historico": "_BR_TRIATA_<div class=\"hist_autor hist_cor_1\">{{TAREFA}}: 07 - Sistema / Equipamento TI<br>Pedro Santana - {{2026-07-01 16:17:12}}</div><div class=\"hist_texto hist_cor_1\">segue </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_2\">{{TAREFA}}: 06 - Proposta<br>Adrielly Santana - {{2026-07-01 16:16:28}}</div><div class=\"hist_texto hist_cor_2\">segue </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_1\">{{TAREFA}}: 05.1 - Confecção Proposta<br>Robo Cadastro Cliente - {{2026-07-01 11:44:14}}</div><div class=\"hist_texto hist_cor_1\">concluido pelo robo </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_2\">{{TAREFA}}: 05 - Validação jurídico<br>Leonardo Toledo - {{2026-07-01 09:36:50}}</div><div class=\"hist_texto hist_cor_2\">ok </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_1\">{{TAREFA}}: 04 - Aprovação gestor<br>tiago izaias - {{2026-07-01 09:36:34}}</div><div class=\"hist_texto hist_cor_1\">aaa </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_2\">{{TAREFA}}: 03 - Recrutamento<br>Luana Lidia - {{2026-07-01 09:36:14}}</div><div class=\"hist_texto hist_cor_2\">aaa </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_1\">{{TAREFA}}: 02 - Aprovação Financeiro<br>Jefferson Silva - {{2026-07-01 09:32:24}}</div><div class=\"hist_texto hist_cor_1\">aaa </div>_BR_TRIATA_<div class=\"hist_autor hist_cor_2\">{{TAREFA}}: 01 - Requisição<br>tiago izaias - {{2026-07-01 09:32:02}}</div><div class=\"hist_texto hist_cor_2\">aaa </div>",
     "consideracoes_historico_historico_complemento": "{{TAREFA}}: 08 - Confecção 30 dias (Contrato)<br>",
     "tarefa_nome": "08 - Confecção 30 dias (Contrato)",
-    "data_atual": "02/07/2026",
+    "data_atual": "03/07/2026",
     "endereco_formatado": "Alameda dos Pescadores 202 Loja 28, 762  - Praia do Forte",
     "cidade_estado": "Mata de São João/SP",
     "valor_remuneracao": "R$ 12.700,00",
     "zapsign": {
-        "link_assinatura": "https://app.zapsign.com.br/verificar/020d92bf-c105-49ef-8ad4-b55536d39a80",
-        "capturado_em": "2026-07-02 16:55:59"
+        "link_assinatura": "https://app.zapsign.com.br/verificar/35f7bb53-813e-4225-9e2d-9a3336d8defd",
+        "capturado_em": "2026-07-03 17:09:35"
     }
 }

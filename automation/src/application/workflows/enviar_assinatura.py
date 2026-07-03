@@ -1,20 +1,22 @@
 import logging
+from pathlib import Path
 
 from automation.src.config import settings
 from automation.src.domain.exceptions import MandatoryFieldError
 from automation.src.domain.validators import normalize_text
 from automation.src.infrastructure.browser.factory import create_page
 from automation.src.infrastructure.external_apis.zapsign_client import ZapSignClient
-from automation.src.infrastructure.storage import get_field, save_signature_link
+from automation.src.infrastructure.storage import (
+    get_candidate,
+    get_field,
+    save_signature_link,
+)
 
 logger = logging.getLogger("automacao.workflow.enviar_assinatura")
 
 
 def _find_pdf(nome_candidato: str, pdf_dir):
-    """Busca PDF por nome do candidato, com fallback para o mais recente.
-
-    Migrado de: encontrar_pdf_carta_proposta() → login_zap.py:147-182
-    """
+    """Busca PDF por nome do candidato, com fallback para o mais recente."""
     pdfs = [p for p in pdf_dir.iterdir() if p.is_file() and p.suffix.lower() == ".pdf"]
 
     if not pdfs:
@@ -41,15 +43,32 @@ def _find_pdf(nome_candidato: str, pdf_dir):
     return str(pdf_mais_recente)
 
 
-def executar() -> str | None:
-    """Executa o fluxo completo de envio para assinatura."""
+def _resolver_dados_candidato(processo_id: str | None) -> tuple[dict, Path]:
+    if processo_id:
+        record = get_candidate(processo_id)
+        if record is None:
+            raise MandatoryFieldError(
+                f"Candidato {processo_id} não encontrado em dados/. Rode 'proposta' primeiro."
+            )
+        return record, settings.PROJECT_ROOT / "dados" / f"{processo_id}.json"
+
+    return (
+        get_field(settings.json_path, "nome_completo", required=True, return_full=True),
+        settings.json_path,
+    )
+
+
+def executar(processo_id: str | None = None) -> str | None:
     if not settings.ZAPSIGN_EMAIL or not settings.ZAPSIGN_PASSWORD:
         raise MandatoryFieldError(
             "ZAPSIGN_EMAIL e ZAPSIGN_PASSWORD devem estar definidos no .env"
         )
 
-    nome = get_field(settings.json_path, "nome_completo", required=True)
-    email = get_field(settings.json_path, "email_pessoal_candidato")
+    dados, json_path = _resolver_dados_candidato(processo_id)
+    nome = dados.get("nome_completo", "").strip()
+    if not nome:
+        raise MandatoryFieldError("Campo 'nome_completo' ausente no JSON.")
+    email = dados.get("email_pessoal_candidato")
     logger.info("Candidato: %s | Email: %s", nome, email)
 
     pdf_path = _find_pdf(nome, settings.pdf_dir_path)
@@ -73,8 +92,8 @@ def executar() -> str | None:
             pdf_paths=[pdf_path],
         )
 
-        save_signature_link(settings.json_path, link)
-        logger.info("Link de assinatura salvo no JSON.")
+        save_signature_link(json_path, link)
+        logger.info("Link de assinatura salvo no JSON (%s).", json_path.name)
         return link
 
     except Exception:

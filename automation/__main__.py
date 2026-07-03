@@ -4,6 +4,7 @@ from automation.src.application.workflows import (
     enviar_assinatura,
     finalizar_proposta,
     gerar_proposta,
+    processar_fila,
 )
 from automation.src.config import get_logger, setup_logging
 
@@ -24,7 +25,7 @@ if __name__ == "__main__":
             logger.warning("Nenhum PDF gerado (fila vazia ou tudo já processado).")
 
     elif etapa == "assinatura":
-        logger.info("=== PIPELINE 2: Enviar para Assinatura ===")
+        logger.info("=== PIPELINE 2: Enviar para Assinatura (último) ===")
         resultado = enviar_assinatura.executar()
         if resultado:
             logger.info("Link: %s", resultado)
@@ -32,14 +33,21 @@ if __name__ == "__main__":
             logger.error("Falha ao enviar para assinatura.")
 
     elif etapa == "finalizar":
-        logger.info("=== PIPELINE 3: Finalizar Tarefa 04.1 no Triata ===")
+        logger.info("=== PIPELINE 3: Finalizar Tarefa 04.1 no Triata (último) ===")
         if finalizar_proposta.executar():
             logger.info("Tarefa finalizada com sucesso.")
         else:
             logger.error("Falha ao finalizar tarefa.")
 
+    elif etapa == "processar":
+        logger.info("=== PIPELINE COMPLETA (fila inteira) ===")
+        if processar_fila.executar():
+            logger.info("Fila processada com sucesso.")
+        else:
+            logger.error("Fila processada com falhas (ver log).")
+
     elif etapa == "completo":
-        logger.info("=== PIPELINE COMPLETA ===")
+        logger.info("=== PIPELINE COMPLETA (1 candidato por vez) ===")
         pdfs = gerar_proposta.executar()
         if not pdfs:
             logger.warning("Fila vazia ou tudo já processado. Encerrando sem enviar assinatura.")
@@ -56,4 +64,4 @@ if __name__ == "__main__":
                     logger.info("Pipeline completa finalizada.")
 
     else:
-        print("Uso: python -m automation [proposta|assinatura|finalizar|completo]")
+        print("Uso: python -m automation [proposta|assinatura|finalizar|processar|completo]")

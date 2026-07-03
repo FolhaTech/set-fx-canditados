@@ -10,9 +10,22 @@ from automation.src.infrastructure.storage import read_signature_link
 logger = logging.getLogger("automacao.workflow.finalizar_proposta")
 
 
-def executar() -> bool:
-    """Finaliza a tarefa 04.1 - Confecção Proposta no Triata após ZapSign."""
-    link, nome = read_signature_link(settings.json_path)
+def executar(processo_id: str | None = None) -> bool:
+    if processo_id:
+        candidates = list(
+            (settings.PROJECT_ROOT / "dados").glob(f"{processo_id}_*.json")
+        )
+        if not candidates:
+            logger.error(
+                "Candidato %s não encontrado em dados/. Rode 'proposta' primeiro.",
+                processo_id,
+            )
+            return False
+        json_path = candidates[0]
+    else:
+        json_path = settings.json_path
+
+    link, nome = read_signature_link(json_path)
     logger.info("Candidato: %s", nome)
     logger.info("Link ZapSign: %s", link)
 

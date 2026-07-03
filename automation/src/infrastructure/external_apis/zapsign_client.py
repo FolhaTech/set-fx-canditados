@@ -1,9 +1,7 @@
 import logging
 
 from playwright.sync_api import Page
-import httpx
 
-from automation.src.config import settings
 from automation.src.domain.exceptions import (
     ZapSignLinkError,
     ZapSignUploadError,
@@ -73,33 +71,21 @@ class ZapSignClient:
         )
         self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
 
-        safe_click(
-            self.page,
-            "body > app-root > div > app-client > div > div > div "
-            "> app-my-documents > app-documents > div > div "
-            "> div.container-folders-doc.ng-star-inserted > app-folders > div "
-            "> div > div > app-folder-tree > div > div > div.folders-list "
-            "> app-folder:nth-child(2) > div",
-            label="Pasta Contratos Robo",
-        )
+        self.page.locator(
+            'app-folder:has(div:has-text("Contratos Robo"))'
+        ).first.click()
+        logger.info("Pasta 'Contratos Robo' selecionada.")
         self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
 
-        safe_click(
-            self.page,
-            "body > app-root > div > app-client > div > div > div "
-            "> app-my-documents > app-documents > div > div "
-            "> div.container-folders-doc.ng-star-inserted > div > app-accordion "
-            "> div > div.container-btn > zs-button:nth-child(1) > button "
-            "> span.mat-button-wrapper",
-            label="Criar documento (na pasta)",
-        )
-        self.page.wait_for_load_state("domcontentloaded", timeout=30_000)
-        logger.info("Pronto para upload na pasta Contratos Robo.")
+        self.page.wait_for_timeout(1_000)
+
+        self.page.locator(
+            'app-folder:has(div:has-text("Contratos Robo")) '
+            'button:has-text("Criar documento")'
+        ).click()
+        logger.info("Botão 'Criar documento' clicado dentro da pasta.")
 
     def create_and_upload(self, pdf_paths: list[str]) -> None:
-        """Cria novo documento e faz upload dos PDFs."""
-        logger.info("Criando documento...")
-        safe_click(self.page, "#button-create-doc-sidebar-test", label="Criar doc")
 
         logger.info("Aguardando input de upload...")
         file_input = self.page.locator('input#files[type="file"]')
